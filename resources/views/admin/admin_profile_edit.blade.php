@@ -24,7 +24,7 @@
                                         <div class="form-group">
                                             <h5>Admin User Name <span class="text-danger">*</span></h5>
                                             <div class="controls">
-                                                <input type="text" name="text" class="form-control" > 
+                                                <input type="text" name="text" value="{{ $editData->name}}" class="form-control" > 
                                             </div>
                                         </div>
                                     </div>
@@ -34,7 +34,7 @@
                                         <div class="form-group">
                                             <h5>Admin Email Address <span class="text-danger">*</span></h5>
                                             <div class="controls">
-                                                <input type="email" name="email" class="form-control" > 
+                                                <input type="email" name="email" value="{{ $editData->email}}" class="form-control" > 
                                             </div>
                                         </div>
                                     
@@ -48,6 +48,9 @@
                                                     <input type="file" name="profile_photo_path" class="form-control" required=""> 
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <img src="{{ (!empty($editData->profile_photo_path))? url('upload/admin_images/'.$editData->profile_photo_path):url('upload/no_image.jpg') }}" style="width:100px; height:100px;" alt="">
                                     </div>
                                 </div>
                                 
