@@ -41,6 +41,10 @@ Route::get('/admin/change/password', [AdminProfileController::class, 'AdminChang
 Route::post('/update/change/password', [AdminProfileController::class, 'AdminUpdateChangePassword'])->name('update.change.password');
 
 
+
+//All Routes For the Home Page
+
+
 Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
