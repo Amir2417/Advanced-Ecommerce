@@ -17,7 +17,8 @@
 			<div class="box-body">
 			  <div class="row">
 				<div class="col">
-					<form novalidate="">
+					<form action="{{ route('admin.profile.store')}}" method="post" enctype="multipart/form-data">
+                        @csrf
 					    <div class="row">
 						    <div class="col-12">						
                                 <div class="row">
@@ -25,7 +26,7 @@
                                         <div class="form-group">
                                             <h5>Admin User Name <span class="text-danger">*</span></h5>
                                             <div class="controls">
-                                                <input type="text" name="text" value="{{ $editData->name}}" class="form-control" > 
+                                                <input type="text" name="name" value="{{ $editData->name}}" class="form-control" > 
                                             </div>
                                         </div>
                                     </div>
