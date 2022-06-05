@@ -38,4 +38,19 @@ class AdminProfileController extends Controller
         return Redirect()->route('admin.profile')->with($notification);
 
     }
+
+    //Admin Change Password 
+    public function AdminChangePassword(){
+        return view('admin.admin_change_password');
+    }
+    public function AdminUpdateChangePassword(Request $request){
+        $validateData = $request->validate([
+            'old_password' => 'required',
+            'password' => 'required|confirmed',
+        ]);
+        $hashedPassword = Admin::find(1)->password;
+        if(Hash::check($request->old_password,$hashedPassword)){
+            $admin
+        }
+    }
 }
