@@ -10,10 +10,10 @@
 		 <!-- Basic Forms -->
 		  <div class="box">
 			<div class="box-header with-border">
-			  <h4 class="box-title">Admin Profile Edit</h4>
+			  <h4 class="box-title">Admin Change Password</h4>
 			  
 			</div>
-			<!-- /.box-header -->
+			<!-- /.box-header --> 
 			<div class="box-body">
 			  <div class="row">
 				<div class="col">
@@ -26,19 +26,19 @@
                                         <div class="form-group">
                                             <h5>Current Password <span class="text-danger">*</span></h5>
                                             <div class="controls">
-                                                <input type="password" id="current_password" name="old_password"  class="form-control" > 
+                                                <input type="password" id="current_password" name="oldpassword"  class="form-control" required=""> 
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <h5>New Password <span class="text-danger">*</span></h5>
                                             <div class="controls">
-                                                <input type="password" id="password" name="password"  class="form-control" > 
+                                                <input type="password" id="password" name="password"  class="form-control" required=""> 
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <h5>Confirm Password <span class="text-danger">*</span></h5>
                                             <div class="controls">
-                                                <input type="password" id="password_confirmation" name="name"  class="form-control" > 
+                                                <input type="password" id="password_confirmation" name="password_confirmation"  class="form-control" required=""> 
                                             </div>
                                         </div>
                                     </div>
