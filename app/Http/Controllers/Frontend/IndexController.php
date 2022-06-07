@@ -53,7 +53,7 @@ class IndexController extends Controller
         'oldpassword' =>'required',
         'password' =>'required|confirmed',
        ]);
-
+ 
        $hashPassword = Auth::user()->password;
        if( Hash::check($request->oldpassword,$hashPassword)){
            $user = User::find(Auth::id());

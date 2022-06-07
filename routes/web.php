@@ -5,6 +5,7 @@ use App\Models\User;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\AdminProfileController;
 use App\Http\Controllers\Frontend\IndexController;
+use App\Http\Controllers\Frontend\BrandController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,6 +53,11 @@ Route::get('user/profile',[IndexController::class,'UserProfile'])->name('user.pr
 Route::post('user/profile/store',[IndexController::class,'UserProfileStore'])->name('user.profile.store');
 Route::get('user/change/password',[IndexController::class,'UserChangePassword'])->name('user.change.password');
 Route::post('user/password/update',[IndexController::class,'UserPasswordUpdate'])->name('user.password.update');
+
+// All Routes For Brands Section
+Route::prefix('brand')->group(function(){
+    Route::get('/view',[BrandController::class,'BrandView'])->name('all.brands');
+});
 
 Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
     $id = Auth::user()->id;
