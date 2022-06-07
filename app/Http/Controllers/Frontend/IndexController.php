@@ -60,7 +60,11 @@ class IndexController extends Controller
            $user ->password = Hash::make($request->password);
            $user->save();
            Auth::logout();
-           return Redirect()->route('user.logout');
+           $noitifation = array(
+               'message' => 'Password Change Successfully',
+               'alert-type'=>'primary',
+           ); 
+           return Redirect()->route('user.logout')->with($noitifation);
        }
        else{
            return Redirect()->back();

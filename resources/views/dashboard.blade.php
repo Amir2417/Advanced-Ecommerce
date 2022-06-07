@@ -19,7 +19,7 @@
             </div>
             <div class="col-md-6">
                 <div class="card">
-                    <h3 class="text-center"><span>Hi... <strong>{{Auth::user()->name}}</strong> Welcome to SoftLight Shoop</span></h3>
+                    <h3 class="text-center"><span>Hi... <strong>{{Auth::user()->name}}</strong> Welcome to SoftLight Shop</span></h3>
                 </div>
             </div>
         </div>
