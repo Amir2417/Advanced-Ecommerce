@@ -11,7 +11,7 @@
                     <a class="btn btn-primary btn-sm btn-block" href="">Home</a>
                     <a class="btn btn-primary btn-sm btn-block" href="">Profile Update</a>
                     <a class="btn btn-primary btn-sm btn-block" href="">Change Password</a>
-                    <a class="btn btn-danger btn-sm btn-block" href="">Logout</a>
+                    <a class="btn btn-danger btn-sm btn-block" href="{{ route('user.logout') }}">Logout</a>
                 </ul>
             </div>
             <div class="col-md-2">
