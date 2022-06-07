@@ -58,7 +58,12 @@ Route::post('user/password/update',[IndexController::class,'UserPasswordUpdate']
 // All Routes For Brands Section
 Route::prefix('brand')->group(function(){
     Route::get('/view',[BrandController::class,'BrandView'])->name('all.brands');
+    Route::post('/store',[BrandController::class,'BrandStore'])->name('brand.store');
 });
+
+
+
+
 
 Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
     $id = Auth::user()->id;

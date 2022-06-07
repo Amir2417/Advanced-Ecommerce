@@ -6,7 +6,7 @@
         <div class="row">
 
         
-            <div class="col-12">
+            <div class="col-8">
 
                 <div class="box">
                     <div class="box-header with-border">
@@ -45,7 +45,45 @@
                    
                 </div>       
             </div>
-        </div>
+            
+            <div class="col-md-4">
+                <div class="box">
+                    <div class="box-header with-border">
+                            <h3 class="box-title">Add Brand</h3>
+                    </div>
+                        <div class="card-body">
+                            <form action="{{ route('brand.store')}}" method="post" enctype="multipart/form-data">
+                                @csrf
+                                <div class="form-group">
+                                    <h5>Brand Name English<span class="text-danger">*</span></h5>
+                                    <div class="controls">
+                                        <input type="text" name="brand_name_en" class="form-control" > 
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                        <h5>Brand Name Hindi<span class="text-danger">*</span></h5>
+                                    <div class="controls">
+                                        <input type="text" name="brand_name_en" class="form-control" > 
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                        <h5>Brand Image <span class="text-danger">*</span></h5>
+                                    <div class="controls">
+                                        <input type="file" name="brand_image" class="form-control" > 
+                                    </div>
+                                </div>
+                                    
+                                    
+                                <div class="text-xs-right">
+                                    <button type="submit" class="btn btn-rounded btn-info">Add Brand</button>
+                                </div>
+                            </form>
+                        </div>
+                    
+                    </div>
+                </div>
+            </div>
+        </div> 
     </div>
 </div>
 
