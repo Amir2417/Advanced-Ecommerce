@@ -9,9 +9,9 @@
                 <img class="card-img-top" style="border-radius:50%" src="{{ (!empty($user->profile_photo_path))? url('upload/user_images/'.$user->profile_photo_path): url('upload/no_image.jpg')}}" height="100%" width="100%" alt=""><br><br>
 
                 <ul class="list-group list-group-flush" >
-                    <a class="btn btn-primary btn-sm btn-block" href="">Home</a>
+                    <a class="btn btn-primary btn-sm btn-block" href="{{ route('dashboard')}}">Home</a>
                     <a class="btn btn-primary btn-sm btn-block" href="{{ route('user.profile') }}">Profile Update</a>
-                    <a class="btn btn-primary btn-sm btn-block" href="">Change Password</a>
+                    <a class="btn btn-primary btn-sm btn-block" href="{{ route('user.change.password') }}">Change Password</a>
                     <a class="btn btn-danger btn-sm btn-block" href="{{ route('user.logout') }}">Logout</a>
                 </ul>
             </div>
@@ -49,7 +49,7 @@
                                     </div>
                             </div>
                             <div class="form-group">
-                                <img id="showImage" src="{{(!empty($user->photo_profile_path))? url('upload/user_images/'.$user->photo_profile_path): url('upload/no_image.jpg')}}" style="width:100px;height:100px;">
+                                <img id="showImage" src="{{(!empty($user->profile_photo_path))? url('upload/user_images/'.$user->profile_photo_path): url('upload/no_image.jpg')}}" style="width:100px;height:100px;">
                             </div>
                             <div class="form-group">
                                 <button class="btn btn-primary" type="submit">Update Profile</button>
