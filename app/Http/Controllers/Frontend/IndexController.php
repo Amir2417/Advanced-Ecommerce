@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
+use App\Models\User;
 
 class IndexController extends Controller
 {
@@ -15,4 +16,10 @@ class IndexController extends Controller
         Auth::logout();
         return Redirect()->route('login');
     }
+    public function UserProfile(){
+        $id = Auth::user()->id;
+        $user = User::find($id);
+        return view('frontend.profile.update_profile',compact('user'));
+    }
+
 }
