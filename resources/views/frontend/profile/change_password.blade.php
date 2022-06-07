@@ -22,7 +22,7 @@
                 <div class="card">
                     <h3 class="text-center"><span>Hi... <strong>{{Auth::user()->name}}</strong> Update Your Profile</span></h3><br>
 
-                    <form action="{{ route('user.profile.store')}}" method="post">
+                    <form action="{{ route('user.password.update')}}" method="post">
                         @csrf
                         <div class="form-group">
                             <h5>Current Password <span class="text-danger">*</span></h5>

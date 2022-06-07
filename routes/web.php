@@ -51,6 +51,7 @@ Route::get('user/logout',[IndexController::class,'UserLogout'])->name('user.logo
 Route::get('user/profile',[IndexController::class,'UserProfile'])->name('user.profile');
 Route::post('user/profile/store',[IndexController::class,'UserProfileStore'])->name('user.profile.store');
 Route::get('user/change/password',[IndexController::class,'UserChangePassword'])->name('user.change.password');
+Route::post('user/password/update',[IndexController::class,'UserPasswordUpdate'])->name('user.password.update');
 
 Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
     $id = Auth::user()->id;
