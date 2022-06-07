@@ -14,27 +14,32 @@
 				</a>
 			</div>
         </div>
-      
+      @php 
+
+        $prefix = Request::route()->getPrefix();
+        $route = Route::current()->getName();
+
+      @endphp
       <!-- sidebar menu-->
       <ul class="sidebar-menu" data-widget="tree">  
 		  
-		<li>
-          <a href="index.html">
+		<li class="{{ ( $route == 'dashboard')?'active':''  }}">
+          <a href="{{ url('admin/dashboard') }}">
             <i data-feather="pie-chart"></i>
 			<span>Dashboard</span>
           </a>
         </li>  
 		
-        <li class="treeview">
+        <li class="treeview {{ ($prefix == '/brand')?'active':''}}">
           <a href="#">
             <i data-feather="message-circle"></i>
-            <span>Application</span>
+            <span>Brands</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{ route('all.brands') }}"><i class="ti-more"></i>All Brands</a></li>
+            <li class="{{ ( $route == 'all.brands')?'active':''  }}"><a href="{{ route('all.brands') }}"><i class="ti-more"></i>All Brands</a></li>
             
           </ul>
         </li> 
