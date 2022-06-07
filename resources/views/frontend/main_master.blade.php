@@ -25,6 +25,9 @@
 <!-- Icons/Glyphs -->
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/font-awesome.css') }}">
 
+<!-- alert css cdn  -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" type="text/css">
+
 <!-- Fonts -->
 <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,700' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,600italic,700,700italic,800' rel='stylesheet' type='text/css'>
@@ -59,5 +62,28 @@
 <script src="{{ asset('frontend/assets/js/bootstrap-select.min.js')}}"></script> 
 <script src="{{ asset('frontend/assets/js/wow.min.js')}}"></script> 
 <script src="{{ asset('frontend/assets/js/scripts.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" type="text/javascript"></script>
+
+  <script>
+    @if(Session::has('message'))
+      var type = "{{ Session::get('alert-type','info') }}"
+      switch(type){
+        case 'info':
+          toastr.info("{{Session::get('message')}}");
+          break;
+        case 'success':
+          toastr.success("{{ Session::get('message')}}");
+          break;
+        case 'warning':
+          toastr.warning("{{Session::get('message')}}");
+          break;
+        case 'error':
+          toastr.error("{{Session::get('message')}}");
+          break;
+      }
+    @endif
+
+    
+  </script>
 </body>
 </html>

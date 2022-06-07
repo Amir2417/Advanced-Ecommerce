@@ -35,7 +35,11 @@ class IndexController extends Controller
             $data['profile_photo_path'] = $filename;
         }
         $data->save();
-        return Redirect()->route('dashboard');
+        $notification = array(
+            'message' =>'User Profile Updated Successfully',
+            'alert-type'=>"success",
+        );
+        return Redirect()->route('dashboard')->with($notification);
     }
 
 }
