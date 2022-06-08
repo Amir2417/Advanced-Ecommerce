@@ -33,7 +33,7 @@
                                         <td><img src="{{ asset($item->brand_image) }}"style="width:75px;height:75px;"></td>
                                         <td>
                                             <a class="btn btn-primary" href="{{ route('brand.edit',$item->id) }}">Edit</a>
-                                            <a class="btn btn-danger" id="delete" href="">Delete</a>
+                                            <a class="btn btn-danger" id="delete" href="{{ route('brand.delete',$item->id) }}">Delete</a>
                                         </td>
                                         
                                    @endforeach 
