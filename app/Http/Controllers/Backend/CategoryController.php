@@ -56,6 +56,6 @@ class CategoryController extends Controller
             'message' => "Category Updated Succesfully",
             'alert-type'=>'success',
         );
-        return Redirect()->back()->with($notification);
+        return Redirect()->route('all.category')->with($notification);
     }
 }
