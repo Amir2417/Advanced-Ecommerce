@@ -8,5 +8,8 @@ use App\Models\Category;
 
 class CategoryController extends Controller
 {
-    //
+    public function CategoryView(){
+        $category = Category::latest()->get();
+        return view('backend.category.category_view',compact('category'));
+    }
 }

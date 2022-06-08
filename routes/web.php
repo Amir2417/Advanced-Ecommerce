@@ -69,10 +69,10 @@ Route::prefix('brand')->group(function(){
 //All Routes For the Category Section
 Route::prefix('category')->group(function(){
     Route::get('/view',[CategoryController::class,'CategoryView'])->name('all.category');
-    Route::post('/store',[CategoryController::class,'BrandStore'])->name('brand.store');
-    Route::get('/edit/{id}',[CategoryController::class,'BrandEdit'])->name('brand.edit');
-    Route::post('/update',[CategoryController::class,'BrandUpdate'])->name('brand.update');
-    Route::get('/delete/{id}',[CategoryController::class,'BrandDelete'])->name('brand.delete');
+    Route::post('/store',[CategoryController::class,'CategoryStore'])->name('category.store');
+    Route::get('/edit/{id}',[CategoryController::class,'CategoryEdit'])->name('category.edit');
+    Route::post('/update',[CategoryController::class,'CategoryUpdate'])->name('category.update');
+    Route::get('/delete/{id}',[CategoryController::class,'CategoryDelete'])->name('category.delete');
 });
 
 
