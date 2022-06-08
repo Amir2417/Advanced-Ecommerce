@@ -32,8 +32,8 @@
                                         <td>{{$item->brand_name_hin}}</td>
                                         <td><img src="{{ asset($item->brand_image) }}"style="width:75px;height:75px;"></td>
                                         <td>
-                                            <a class="btn btn-primary" href="{{ route('brand.edit',$item->id) }}">Edit</a>
-                                            <a class="btn btn-danger" id="delete" href="{{ route('brand.delete',$item->id) }}">Delete</a>
+                                            <a class="btn btn-primary" href="{{ route('brand.edit',$item->id) }}" title="Edit Data"><i class="fa fa-pencil"></i></a>
+                                            <a class="btn btn-danger" id="delete" href="{{ route('brand.delete',$item->id) }}" title="Delete Data"><i class="fa fa-trash"></i></a>
                                         </td>
                                         
                                    @endforeach 
