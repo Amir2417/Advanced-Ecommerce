@@ -10,8 +10,9 @@
                             <h3 class="box-title">Edit SubCategory</h3>
                     </div>
                         <div class="card-body">
-                            <form action="{{ route('subcategory.store')}}" method="post">
+                            <form action="{{ route('subcategory.update')}}" method="post">
                                 @csrf
+                                <input type="hidden" name="id" value="{{ $subcategory->id}}">
                                 <div class="form-group">
 								    <h5>Category Select <span class="text-danger">*</span></h5>
                                     <div class="controls">
