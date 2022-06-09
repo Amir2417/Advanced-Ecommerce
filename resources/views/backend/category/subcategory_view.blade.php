@@ -28,7 +28,7 @@
                                 <tbody>
                                     @foreach($subcategory as $item)
                                     <tr>
-                                        <td>{{$item->category_id}}</td>
+                                        <td>{{$item['category']['category_name_en']}}</td>
                                         <td>{{$item->subcategory_name_en}}</td>
                                         <td>{{$item->subcategory_name_ban}}</td>
                                         <td>
