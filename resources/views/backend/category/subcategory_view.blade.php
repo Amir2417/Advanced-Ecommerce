@@ -52,20 +52,21 @@
                             <h3 class="box-title">Add SubCategory</h3>
                     </div>
                         <div class="card-body">
-                            <form action="{{ route('category.store')}}" method="post">
+                            <form action="{{ route('subcategory.store')}}" method="post">
                                 @csrf
                                 <div class="form-group">
 								<h5>Category Select <span class="text-danger">*</span></h5>
 								<div class="controls">
-									<select name="select" id="select" required="" class="form-control" aria-invalid="false">
-										<option value="">Select Your City</option>
-										<option value="1">India</option>
-										<option value="2">USA</option>
-										<option value="3">UK</option>
-										<option value="4">Canada</option>
-										<option value="5">Dubai</option>
+									<select name="category_id" class="form-control">
+										<option value="" selected="" disabled="">Select Category</option>
+                                        @foreach($categories as $category)
+										<option value="{{ $category->id }}">{{$category->category_name_en}}</option>
+										@endforeach
 									</select>
-								<div class="help-block"></div></div>
+                                    @error('category_id')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+								
 							</div>
                                 <div class="form-group">
                                         <h5>SubCategory English<span class="text-danger">*</span></h5>
