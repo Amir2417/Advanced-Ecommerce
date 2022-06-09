@@ -69,4 +69,9 @@ class SubCategoryController extends Controller
         );
         return Redirect()->back()->with($notification);
     }
+
+    //Subsub Category
+    public function SubSubCategoryView(){
+        
+    }
 }
