@@ -7,7 +7,7 @@
         <div class="row">
 
         
-            <div class="col-8">
+            <div class="col-md-8">
 
                 <div class="box">
                     <div class="box-header with-border">
@@ -35,7 +35,7 @@
                                         <td>{{$item->subsubcategory_name_en}}</td>
                                         <td>{{$item->subsubcategory_name_ban}}</td>
                                         <td>
-                                            <a class="btn btn-primary" href="{{ route('subcategory.edit',$item->id) }}" title="Edit Data"><i class="fa fa-pencil"></i></a>
+                                            <a class="btn btn-primary" href="{{ route('subsubcategory.edit',$item->id) }}" title="Edit Data"><i class="fa fa-pencil"></i></a>
                                             <a class="btn btn-danger" id="delete" href="{{ route('subcategory.delete',$item->id) }}" title="Delete Data"><i class="fa fa-trash"></i></a>
                                         </td>
                                         
