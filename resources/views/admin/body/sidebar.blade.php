@@ -55,24 +55,22 @@
             <li class="{{ ( $route == 'all.category')?'active':''  }}"><a href="{{ route('all.category') }}"><i class="ti-more"></i>All Category</a></li>
             <li class="{{ ( $route == 'all.subcategory')?'active':''  }}"><a href="{{ route('all.subcategory')}}"><i class="ti-more"></i>SubCategory</a></li>
             <li class="{{ ( $route == 'all.subsubcategory')?'active':''  }}"><a href="{{ route('all.subsubcategory')}}"><i class="ti-more"></i>Sub SubCategory</a></li>
-            <li><a href="mailbox_read_mail.html"><i class="ti-more"></i>Read</a></li>
+           
           </ul>
         </li>
 		
         <li class="treeview">
           <a href="#">
             <i data-feather="file"></i>
-            <span>Pages</span>
+            <span>Products</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
             </span>
           </a>
-          <ul class="treeview-menu">
-            <li><a href="profile.html"><i class="ti-more"></i>Profile</a></li>
+          <ul class="treeview-menu {{ ($prefix == '/category')?'active':''}}">
+            <li class="{{ ( $route == 'add-products')?'active':''  }}"><a href="{{ route('add-products')}}"><i class="ti-more"></i>Add Products</a></li>
             <li><a href="invoice.html"><i class="ti-more"></i>Invoice</a></li>
-            <li><a href="gallery.html"><i class="ti-more"></i>Gallery</a></li>
-            <li><a href="faq.html"><i class="ti-more"></i>FAQs</a></li>
-            <li><a href="timeline.html"><i class="ti-more"></i>Timeline</a></li>
+          
           </ul>
         </li> 		  
 		 

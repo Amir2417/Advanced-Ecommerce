@@ -140,7 +140,7 @@ class SubCategoryController extends Controller
             'message' => 'SubSub Category Deleted Successfully',
             'alert-type' => 'success',
         );
-        return Redirect()->route('all.subsubcategory')->with($notification);
+        return Redirect()->back()->with($notification);
     }
 
 }
