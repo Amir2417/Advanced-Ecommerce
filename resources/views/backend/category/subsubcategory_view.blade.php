@@ -1,5 +1,6 @@
 @extends('admin.admin_master')
 @section('admin')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <div class="container-full">
     <div class="content">
@@ -10,7 +11,7 @@
 
                 <div class="box">
                     <div class="box-header with-border">
-                        <h3 class="box-title">SubCategory List</h3>
+                        <h3 class="box-title">SubSubCategory List</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
@@ -57,19 +58,31 @@
                             <form action="{{ route('subsubcategory.store')}}" method="post">
                                 @csrf
                                 <div class="form-group">
-								<h5>Category Select <span class="text-danger">*</span></h5>
-								<div class="controls">
-									<select name="category_id" class="form-control">
-										<option value="" selected="" disabled="">Select Category</option>
-                                        @foreach($categories as $category)
-										<option value="{{ $category->id }}">{{$category->category_name_en}}</option>
-										@endforeach
-									</select>
-                                    @error('category_id')
-                                            <span class="text-danger">{{ $message }}</span>
+                                    <h5>Category Select <span class="text-danger">*</span></h5>
+                                    <div class="controls">
+                                        <select name="category_id" class="form-control">
+                                            <option value="" selected="" disabled="">Select Category</option>
+                                            @foreach($categories as $category)
+                                            <option value="{{ $category->id }}">{{$category->category_name_en}}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('category_id')
+                                                <span class="text-danger">{{ $message }}</span>
                                         @enderror
-								
-							</div>
+                                    </div>
+							    </div>
+                                <div class="form-group">
+                                    <h5>SubCategory Select <span class="text-danger">*</span></h5>
+                                    <div class="controls">
+                                        <select name="subcategory_id" class="form-control">
+                                            <option value="" selected="" disabled="">Select SubCategory</option>
+                                            
+                                        </select>
+                                        @error('subcategory_id')
+                                                <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+							    </div>
                                 <div class="form-group">
                                         <h5>SubSubCategory English<span class="text-danger">*</span></h5>
                                     <div class="controls">
@@ -103,5 +116,30 @@
         </div> 
     </div>
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('select[name ="category_id"]').on('change',function(){
+            var category_id = $(this).val();
+            if(category_id) {
+                $.ajax({
+                    url: "{{ url('/category/subcategory/ajax') }}/"+category_id,
+                    type:"GET",
+                    dataType:"json",
+                    success:function(data) {
+                        var d = $('select[name="subcategory_id"]').empty();
+                        $.each(data,function(key,value){
+                            $('select[name ="subcategory_id"]').append('<option value="'+ value.id +'">' + value.subcategory_name_en + '</option>');
+                        });
+                    },
+                });
+            }
+            else{
+                alert('danger');
+            }
+        });
+    });
+</script>
+
 
 @endsection 
