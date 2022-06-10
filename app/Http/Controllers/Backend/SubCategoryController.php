@@ -118,4 +118,21 @@ class SubCategoryController extends Controller
         $subsubcategories = SubSubCategory::findOrFail($id);
         return view('backend.category.sub_subcategory_edit',compact('categories','subcategories','subsubcategories'));
     }
+    public function SubSubCategoryUpdate(Request $request){
+        $subsubcat_id =$request->id;
+        SubSubCategory::findOrFail($subsubcat_id)->update([
+            'category_id' => $request ->category_id,
+            'subcategory_id' => $request ->subcategory_id,
+            'subsubcategory_name_en' => $request ->subsubcategory_name_en,
+            'subsubcategory_name_ban' => $request ->subsubcategory_name_ban,
+            'subsubcategory_slug_en' => strtolower(str_replace(' ','-', $request ->subsubcategory_name_en)),
+            'subsubcategory_slug_ban' => str_replace(' ','-',$request ->subsubcategory_name_ban),
+        ]);
+        $notification = array(
+            'message' => 'SubSub Category Updated Successfully',
+            'alert-type' => 'success',
+        );
+        return Redirect()->route('all.subsubcategory')->with($notification);
+    }
+
 }
