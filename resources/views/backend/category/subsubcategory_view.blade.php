@@ -35,8 +35,8 @@
                                         <td>{{$item->subsubcategory_name_en}}</td>
                                         <td>{{$item->subsubcategory_name_ban}}</td>
                                         <td>
-                                            <a class="btn btn-primary" href="{{ route('subsubcategory.edit',$item->id) }}" title="Edit Data"><i class="fa fa-pencil"></i></a>
-                                            <a class="btn btn-danger" id="delete" href="{{ route('subsubcategory.delete',$item->id) }}" title="Delete Data"><i class="fa fa-trash"></i></a>
+                                            <a class="btn btn-primary" href="{{ route('subcategory.edit',$item->id) }}" title="Edit Data"><i class="fa fa-pencil"></i></a>
+                                            <a class="btn btn-danger" id="delete" href="{{ route('subcategory.delete',$item->id) }}" title="Delete Data"><i class="fa fa-trash"></i></a>
                                         </td>
                                         
                                    @endforeach 
@@ -129,7 +129,7 @@
                     success:function(data) {
                         var d = $('select[name="subcategory_id"]').empty();
                         $.each(data,function(key,value){
-                            $('select[name ="subcategory_id"]').append('<option value="'+ value.id +'">' + value.subcategory_name_en + '</option>');
+                            $('select[name ="subcategory_id"]').append('<option value="'+ value.id +'">' + value.   subcategory_name_en + '</option>');
                         });
                     },
                 });
@@ -140,6 +140,7 @@
         });
     });
 </script>
+
 
 
 @endsection 
