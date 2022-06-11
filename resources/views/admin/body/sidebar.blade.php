@@ -69,7 +69,7 @@
           </a>
           <ul class="treeview-menu {{ ($prefix == '/category')?'active':''}}">
             <li class="{{ ( $route == 'add-products')?'active':''  }}"><a href="{{ route('add-products')}}"><i class="ti-more"></i>Add Products</a></li>
-            <li><a href="invoice.html"><i class="ti-more"></i>Invoice</a></li>
+            <li class="{{ ( $route == 'manage-products')?'active':''  }}"><a href="{{ route('manage-products')}}"><i class="ti-more"></i>Manage All Products</a></li>
           
           </ul>
         </li> 		  

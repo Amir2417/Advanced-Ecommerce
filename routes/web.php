@@ -99,6 +99,7 @@ Route::prefix('products')->group(function(){
     Route::get('/add',[ProductController::class,'AddProduct'])->name('add-products');
     
     Route::post('/store',[ProductController::class,'ProductStore'])->name('product-store'); 
+    Route::get('/view',[ProductController::class,'ProductShow'])->name('manage-products'); 
   
 });
 

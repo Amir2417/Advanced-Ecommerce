@@ -78,6 +78,10 @@ class ProductController extends Controller
             'message' =>'Products Inserted Successfully',
             'alert-type'=>"success",
         );
-        return Redirect()->back()->with($notification);
+        return Redirect()->route('manage-products')->with($notification);
+    }
+    public function ProductShow(){
+        $products = Product::latest()->get();
+        return view('backend.product.product_manage',compact('products'));
     }
 }
