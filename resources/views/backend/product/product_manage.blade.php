@@ -34,7 +34,7 @@
                                         <td>{{$item->product_name_ban}}</td>
                                         <td>{{$item->product_qty}}</td>
                                         <td>
-                                            <a class="btn btn-primary" href="{{ route('subcategory.edit',$item->id) }}" title="Edit Data"><i class="fa fa-pencil"></i></a>
+                                            <a class="btn btn-primary" href="{{ route('product.edit',$item->id) }}" title="Edit Data"><i class="fa fa-pencil"></i></a>
                                             <a class="btn btn-danger" id="delete" href="{{ route('subcategory.delete',$item->id) }}" title="Delete Data"><i class="fa fa-trash"></i></a>
                                         </td>
                                         

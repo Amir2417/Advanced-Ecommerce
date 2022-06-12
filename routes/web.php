@@ -100,6 +100,7 @@ Route::prefix('products')->group(function(){
     
     Route::post('/store',[ProductController::class,'ProductStore'])->name('product-store'); 
     Route::get('/view',[ProductController::class,'ProductShow'])->name('manage-products'); 
+    Route::get('/edit/{id}',[ProductController::class,'ProductEdit'])->name('product.edit'); 
   
 });
 

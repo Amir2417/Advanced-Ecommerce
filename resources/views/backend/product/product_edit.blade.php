@@ -14,7 +14,7 @@
 		 <!-- Basic Forms -->
 		  <div class="box">
 			<div class="box-header with-border">
-			  <h4 class="box-title">Add Products</h4>
+			  <h4 class="box-title">Edit Products</h4>
 			  
 			</div>
 			<!-- /.box-header -->
@@ -30,10 +30,10 @@
                                     <div class="form-group">
                                         <h5>Brand Select <span class="text-danger">*</span></h5>
                                         <div class="controls">
-                                            <select name="brand_id" class="form-control" required>
+                                            <select name="brand_id" class="form-control" >
                                                 <option value="" selected="" disabled="">Select Category</option>
                                                 @foreach($brands as $brand)
-                                                <option value="{{ $brand->id }}">{{$brand->brand_name_en}}</option>
+                                                <option value="{{ $brand->id }} " {{ $brand->id == $products->brand_id ?'selected' :'' }}>{{$brand->brand_name_en}}</option>
                                                 @endforeach
                                             </select>
                                             @error('brand_id')
@@ -46,10 +46,10 @@
                                     <div class="form-group">
                                         <h5>Category Select <span class="text-danger">*</span></h5>
                                         <div class="controls">
-                                            <select name="category_id" class="form-control" required>
+                                            <select name="category_id" class="form-control" >
                                                 <option value="" selected="" disabled="">Select Category</option>
                                                 @foreach($categories as $category)
-                                                <option value="{{ $category->id }}">{{$category->category_name_en}}</option>
+                                                <option value="{{ $category->id }}" {{ $category->id == $products->category_id ? 'selected' : ''}}>{{$category->category_name_en}}</option>
                                                 @endforeach
                                             </select>
                                             @error('category_id')
@@ -62,9 +62,11 @@
                                     <div class="form-group">
                                         <h5>SubCategory Select <span class="text-danger">*</span></h5>
                                         <div class="controls">
-                                            <select name="subcategory_id" class="form-control" required>
+                                            <select name="subcategory_id" class="form-control" >
                                                 <option value="" selected="" disabled="">Select Category</option>
-                                                
+                                                @foreach($subcategories as $subcategory)
+                                                <option value="{{ $subcategory->id }}" {{ $subcategory->id == $products->subcategory_id ? 'selected' : ''}}>{{$subcategory->subcategory_name_en}}</option>
+                                                @endforeach
                                             </select>
                                             @error('subcategory_id')
                                                     <span class="text-danger">{{ $message }}</span>
@@ -78,9 +80,11 @@
                                     <div class="form-group">
                                         <h5>SubSub Category Select <span class="text-danger">*</span></h5>
                                         <div class="controls">
-                                            <select name="subsubcategory_id" class="form-control" required>
+                                            <select name="subsubcategory_id" class="form-control" >
                                                 <option value="" selected="" disabled="">Select Category</option>
-                                                
+                                                @foreach($subsubcategories as $subsubcategory)
+                                                <option value="{{ $subsubcategory->id }}" {{ $subsubcategory->id == $products->subsubcategory_id ? 'selected' : ''}}>{{$subsubcategory->subsubcategory_name_en}}</option>
+                                                @endforeach
                                             </select>
                                             @error('subsubcategory_id')
                                                     <span class="text-danger">{{ $message }}</span>
@@ -92,7 +96,7 @@
                                     <div class="form-group">
                                         <h5>Product Name English <span class="text-danger">*</span></h5>
                                         <div class="controls">
-                                        <input type="text" name="product_name_en" class="form-control" required>
+                                        <input type="text" name="product_name_en" class="form-control" value="" >
                                             @error('product_name_en')
                                                     <span class="text-danger">{{ $message }}</span>
                                             @enderror
