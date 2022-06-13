@@ -371,7 +371,7 @@
                                                 <img src="{{ asset($img->photo_name) }}" class="card-img-top" alt="">
                                                 <div class="card-body">
                                                     <h5 class="card-title">
-                                                        <a href="" class="btn btn-sm btn-danger" id="delete" title="Delete Data"><i class="fa fa-trash"></i></a>
+                                                        <a href="{{ route('multi.image.delete',$img->id) }}" class="btn btn-sm btn-danger" id="delete" title="Delete Data"><i class="fa fa-trash"></i></a>
                                                     </h5>
                                                     <p>Change Image <span class="text-danger">*</span>
                                                         <input class="form-control" type="file" name="multi_img[ {{$img->id}}]" >

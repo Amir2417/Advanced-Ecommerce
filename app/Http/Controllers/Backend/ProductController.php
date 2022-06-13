@@ -162,7 +162,7 @@ class ProductController extends Controller
             ]);
         }//end foreach
         $notification = array(
-            'message' =>'Products Image Updated Successfully',
+            'message' =>'Products Multiple Image Updated Successfully',
             'alert-type'=>"success",
         );
         return Redirect()->back()->with($notification);
@@ -184,7 +184,19 @@ class ProductController extends Controller
             'updated_at' => Carbon::now(),
         ]);
         $notification = array(
-            'message' =>'Products Image Updated Successfully',
+            'message' =>'Products Thambnail Image Updated Successfully',
+            'alert-type'=>"success",
+        );
+        return Redirect()->back()->with($notification);
+
+    }
+    public function MultiImageDelete($id){
+        $oldimg = MultiImg::findOrFail($id);
+        unlink($oldimg->photo_name);
+        MultiImg::findOrFail($id)->delete();
+        
+        $notification = array(
+            'message' =>'Products Image Deleted Successfully',
             'alert-type'=>"success",
         );
         return Redirect()->back()->with($notification);

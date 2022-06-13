@@ -103,6 +103,7 @@ Route::prefix('products')->group(function(){
     Route::post('/image/update',[ProductController::class,'MultiImageUpdate'])->name('update-product-image'); 
     Route::post('/thamb/image/update',[ProductController::class,'ThambImageUpdate'])->name('update-product-thambnail'); 
     Route::get('/view',[ProductController::class,'ProductShow'])->name('manage-products'); 
+    Route::get('/multi/image/delete/{id}',[ProductController::class,'MultiImageDelete'])->name('multi.image.delete'); 
     Route::get('/edit/{id}',[ProductController::class,'ProductEdit'])->name('product.edit'); 
   
 });
