@@ -99,7 +99,8 @@ Route::prefix('products')->group(function(){
     Route::get('/add',[ProductController::class,'AddProduct'])->name('add-products');
     
     Route::post('/store',[ProductController::class,'ProductStore'])->name('product-store'); 
-    Route::post('/update',[ProductController::class,'ProductUpdate'])->name('product-update'); 
+    Route::post('/data/update',[ProductController::class,'ProductUpdate'])->name('product-update'); 
+    Route::post('/image/update',[ProductController::class,'MultiImageUpdate'])->name('update-product-image'); 
     Route::get('/view',[ProductController::class,'ProductShow'])->name('manage-products'); 
     Route::get('/edit/{id}',[ProductController::class,'ProductEdit'])->name('product.edit'); 
   

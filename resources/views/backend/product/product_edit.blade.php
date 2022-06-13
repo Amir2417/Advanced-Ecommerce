@@ -340,7 +340,7 @@
 						
 						
 						<div class="text-xs-right">
-                        <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Add Product">
+                        <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Update Product">
 						</div>
 					</form>
 
@@ -354,6 +354,43 @@
 		  <!-- /.box -->
 
 		</section>
+        <section class ="content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box bt-3 border-info">
+                        <div class="box-header">
+                            <h4 class="box-title">Product Multiple Image <strong>Update</strong></h4>
+                        </div>
+                        <form action="{{ route('update-product-image') }}" method="post" enctype="multipart/form-data" >
+                            @csrf 
+                            <div class="row row-sm">
+                                @foreach($multiImgs as $img)
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <div class="card" style="width: 18rem;">
+                                                <img src="{{ asset($img->photo_name) }}" class="card-img-top" alt="">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">
+                                                        <a href="" class="btn btn-sm btn-danger" id="delete" title="Delete Data"><i class="fa fa-trash"></i></a>
+                                                    </h5>
+                                                    <p>Change Image <span class="text-danger">*</span>
+                                                        <input class="form-control" type="file" name="multi_img[ {{$img->id}}]" >
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach    
+                            </div>
+                            <div class="text-xs-right">
+                                    <input type="submit" class="btn btn-rounded btn-primary ms-5 mb-5" value="Update Image">
+						        </div>
+                                <br>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
         
 		<!-- /.content -->
 	  </div>
