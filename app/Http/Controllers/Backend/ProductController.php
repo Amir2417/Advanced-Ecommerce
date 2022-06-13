@@ -98,8 +98,54 @@ class ProductController extends Controller
         $categories = Category::latest()->get();
         $subcategories = SubCategory::latest()->get();
         $subsubcategories = SubSubCategory::latest()->get();
+        $multiImgs = MultiImg::where('product_id',$id)->get();
         $products = Product::findOrFail($id);
-        return view('backend.product.product_edit',compact('brands','categories','subcategories','subsubcategories','products'));
+        return view('backend.product.product_edit',compact('brands','categories','subcategories','subsubcategories','products','multiImgs'));
 
     }
+    public function ProductUpdate(Request $request){
+        $product_id = $request->id;
+        Product::findOrFail($product_id)->update([
+            'brand_id'=>$request->brand_id, 
+            'category_id'=>$request->category_id, 
+            'subcategory_id'=>$request->subcategory_id, 
+            'subsubcategory_id'=>$request->subsubcategory_id, 
+ 
+            'product_name_en'=>$request->product_name_en, 
+            'product_name_ban'=>$request->product_name_ban, 
+            'product_slug_en'=>strtolower(str_replace(' ','-',$request->product_name_en)), 
+            'product_slug_ban'=>str_replace(' ','-',$request->product_name_ban), 
+            'product_code'=>$request->product_code,
+ 
+            'product_qty'=>$request->product_qty, 
+            'product_tags_en'=>$request->product_tags_en, 
+            'product_tags_ban'=>$request->product_tags_ban, 
+            'product_size_en'=>$request->product_size_en, 
+            'product_size_ban'=>$request->product_size_ban, 
+            'product_color_en'=>$request->product_color_en, 
+            'product_color_ban'=>$request->product_color_ban, 
+ 
+            'selling_price'=>$request->selling_price, 
+            'discount_price'=>$request->discount_price, 
+            'short_descp_en'=>$request->short_descp_en, 
+            'short_descp_ban'=>$request->short_descp_ban, 
+            'long_descp_en'=>$request->long_descp_en, 
+            'long_descp_ban'=>$request->long_descp_ban,
+ 
+           
+            'hot_deals'=>$request->hot_deals, 
+            'featured'=>$request->featured, 
+            'special_offer'=>$request->special_offer, 
+            'special_deals'=>$request->special_deals, 
+            'status'=>1, 
+            'created_at'=>Carbon::now(), 
+         ]);
+         $notification = array(
+            'message' =>'Products Updated Without Image Successfully',
+            'alert-type'=>"success",
+        );
+        return Redirect()->route('manage-products')->with($notification);
+
+    }
+
 }
