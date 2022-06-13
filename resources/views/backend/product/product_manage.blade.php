@@ -33,9 +33,21 @@
                                     <tr>
                                         <td><img src="{{asset($item->product_thambnail) }}" style="width:100px;height:100px;"></td>
                                         <td>{{$item->product_name_en}}</td>
-                                        <td>{{$item->selling_price}}</td>
-                                        <td>{{$item->product_qty}}</td>
-                                        <td>{{$item->discount_price}}</td>
+                                        <td>{{$item->selling_price}}$</td>
+                                        <td>{{$item->product_qty}}pic</td>
+                                        <td>
+                                            @if($item->discount_price ==NULL)
+                                            <span class="badge badge-pill badge-danger">No Discount Available</span>
+
+                                            @else
+                                            @php 
+                                                $amount = $item->selling_price - $item->discount_price;
+                                                $discount = ($amount/$item->selling_price)*100;
+                                            @endphp
+                                            <span class="badge badge-pill badge-success">{{ round($discount) }}%</span>
+                                            @endif
+
+                                        </td>
                                         <td>
                                            @if($item->status == 1) 
                                            <span class="badge badge-pill badge-success">Active</span>
