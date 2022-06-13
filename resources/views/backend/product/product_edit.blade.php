@@ -233,30 +233,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            	 <div class="col-md-4">
-                                    <div class="form-group">
-                                        <h5>Main Thambnail <span class="text-danger">*</span></h5>
-                                        <div class="controls">
-                                        <input type="file" name="product_thambnail"  class="form-control" onChange="mainThamUrl(this)" />
-                                            @error('product_thambnail')
-                                                    <span class="text-danger">{{ $message }}</span>
-                                            @enderror
-                                            <img src="" alt="" id="mainThmb">
-                                        </div>
-                                    </div>
-							    </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <h5>Multiple Image <span class="text-danger">*</span></h5>
-                                        <div class="controls">
-                                        <input type="file" name="multi_img[]" required class="form-control" multiple="" id="multiImg"/>
-                                            @error('multi_img')
-                                                    <span class="text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="row" id="preview_img"></div>
-                                </div>
+                            	 
                             </div>	 <!--   end 6th row -->	
 
                             <div class="row"> <!--   start 7th row -->
@@ -375,6 +352,44 @@
 		  <!-- /.box -->
 
 		</section>
+        <section class ="content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box bt-3 border-info">
+                        <div class="box-header">
+                            <h4 class="box-title">Product Multiple Image <strong>Update</strong></h4>
+                        </div>
+                            <form action="" method="post">
+                                <div class="row row-sm">
+
+                                
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <h5>Main Thambnail <span class="text-danger">*</span></h5>
+                                            <div class="controls">
+                                            <input type="file" name="product_thambnail"  class="form-control" onChange="mainThamUrl(this)" />
+                                                @error('product_thambnail')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                                <img src="" alt="" id="mainThmb">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <h5>Multiple Image <span class="text-danger">*</span></h5>
+                                            <img src="" alt="">
+                                        </div>
+                                        <div class="row" id="preview_img"></div>
+                                    </div>
+                                </div>
+                            </form>
+                    </div>
+                </div>
+            </div>
+            
+        
+        </section>
 		<!-- /.content -->
 	  </div>
 <script type="text/javascript">

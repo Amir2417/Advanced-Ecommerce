@@ -242,16 +242,16 @@
                                     </div>
 							    </div>
                                 <div class="col-md-4">
-                                    <div class="form-group">
-                                        <h5>Multiple Image <span class="text-danger">*</span></h5>
-                                        <div class="controls">
-                                        <input type="file" name="multi_img[]" required class="form-control" multiple="" id="multiImg"/>
-                                            @error('multi_img')
-                                                    <span class="text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="row" id="preview_img"></div>
+                                div class="form-group">
+			<h5>Multiple Image <span class="text-danger">*</span></h5>
+			<div class="controls">
+	 <input type="file" name="multi_img[]" class="form-control" multiple="" id="multiImg" required="" >
+     @error('multi_img') 
+	 <span class="text-danger">{{ $message }}</span>
+	 @enderror
+	 <div class="row" id="preview_img"></div>
+
+	 		 </div>
                                 </div>
                             </div>	 <!--   end 6th row -->	
 

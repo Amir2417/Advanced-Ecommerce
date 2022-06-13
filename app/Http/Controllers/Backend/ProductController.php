@@ -4,14 +4,15 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Brand;
 use App\Models\Category;
 use App\Models\SubCategory;
 use App\Models\SubSubCategory;
+use App\Models\Brand;
+
 use App\Models\Product;
 use App\Models\MultiImg;
-use Image;
 use Carbon\Carbon;
+use Image;
 
 class ProductController extends Controller
 {
@@ -62,28 +63,36 @@ class ProductController extends Controller
            'created_at'=>Carbon::now(), 
         ]);
 
-        $multi_image = $request->file('multi_img');
-        foreach($multi_image as $img){
-            $name_gen = hexdec(uniqid()).'.'.$img->getClientOriginalExtension();
-            Image::make($img)->resize(917,1000)->save('upload/products/multi_image/'.$name_gen);
-            $multi_img_save_url = 'upload/products/multi_image/'.$name_gen;
-        }
+         ////////// Multiple Image Upload Start ///////////
 
-        MultiImg::insert([
-            'product_id'=>$product_id,
-            'photo_name'=>$multi_img_save_url,
-            'created_at'=>Carbon::now(), 
-        ]);
+      $images = $request->file('multi_img');
+      foreach ($images as $img) {
+      	$make_name = hexdec(uniqid()).'.'.$img->getClientOriginalExtension();
+    	Image::make($img)->resize(917,1000)->save('upload/products/multi_image/'.$make_name);
+    	$uploadPath = 'upload/products/multi_image/'.$make_name;
+
+    	MultiImg::insert([
+
+    		'product_id' => $product_id,
+    		'photo_name' => $uploadPath,
+    		'created_at' => Carbon::now(), 
+
+    	]);
+    }
+
         $notification = array(
             'message' =>'Products Inserted Successfully',
             'alert-type'=>"success",
         );
         return Redirect()->route('manage-products')->with($notification);
+
     }
+
     public function ProductShow(){
         $products = Product::latest()->get();
         return view('backend.product.product_manage',compact('products'));
     }
+
     public function ProductEdit($id){
         $brands = Brand::latest()->get();
         $categories = Category::latest()->get();
