@@ -391,6 +391,46 @@
                 </div>
             </div>
         </section>
+        <section class ="content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box bt-3 border-info">
+                        <div class="box-header">
+                            <h4 class="box-title">Product Thambnail Image <strong>Update</strong></h4>
+                        </div>
+                        <form action="{{ route('update-product-thambnail') }}" method="post" enctype="multipart/form-data" >
+                            @csrf 
+                            <input type="hidden" name="id" value="{{ $products->id}}">
+                            <input type="hidden" name="old_img" value="{{ $products->product_thambnail}}">
+                            <div class="row row-sm">
+                                
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <div class="card">
+                                                <img src="{{ asset($products->product_thambnail) }}" class="card-img-top" alt="">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">
+                                                        <a href="" class="btn btn-sm btn-danger" id="delete" title="Delete Data"><i class="fa fa-trash"></i></a>
+                                                    </h5>
+                                                    <p>Change Image <span class="text-danger">*</span>
+                                                        <input class="form-control" type="file" onChange="mainThamUrl(this)" name="product_thambnail" >
+                                                    </p>
+                                                    <img src="" alt="" id="mainThmb">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                 
+                            </div>
+                            <div class="text-xs-right">
+                                    <input type="submit" class="btn btn-rounded btn-primary ms-5 mb-5" value="Update Image">
+						        </div>
+                                <br>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
         
 		<!-- /.content -->
 	  </div>

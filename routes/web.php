@@ -101,6 +101,7 @@ Route::prefix('products')->group(function(){
     Route::post('/store',[ProductController::class,'ProductStore'])->name('product-store'); 
     Route::post('/data/update',[ProductController::class,'ProductUpdate'])->name('product-update'); 
     Route::post('/image/update',[ProductController::class,'MultiImageUpdate'])->name('update-product-image'); 
+    Route::post('/thamb/image/update',[ProductController::class,'ThambImageUpdate'])->name('update-product-thambnail'); 
     Route::get('/view',[ProductController::class,'ProductShow'])->name('manage-products'); 
     Route::get('/edit/{id}',[ProductController::class,'ProductEdit'])->name('product.edit'); 
   

@@ -261,7 +261,7 @@
                                             <h5>Short Description English <span class="text-danger">*</span></h5>
                                             <div class="controls">
                                                 <textarea  name="short_descp_en" id="textarea" class="form-control" required ></textarea>
-                                                @error('discount_price')
+                                                @error('short_descp_en')
                                                         <span class="text-danger">{{ $message }}</span>
                                                 @enderror
                                             </div>
@@ -272,7 +272,7 @@
                                             <h5>Short Description Bangla <span class="text-danger">*</span></h5>
                                             <div class="controls">
                                                 <textarea  name="short_descp_ban" id="textarea" class="form-control" required ></textarea>
-                                                @error('product_thambnail')
+                                                @error('short_descp_ban')
                                                         <span class="text-danger">{{ $message }}</span>
                                                 @enderror
                                             </div>
@@ -288,7 +288,7 @@
                                                 <textarea id="editor1" required name="long_descp_en" rows="10" cols="80">
                                                     
                                                 </textarea>
-                                                @error('discount_price')
+                                                @error('long_descp_en')
                                                         <span class="text-danger">{{ $message }}</span>
                                                 @enderror
                                             </div>
@@ -301,7 +301,7 @@
                                                 <textarea id="editor2" required name="long_descp_ban" rows="10" cols="80">
                                                 
                                                 </textarea>
-                                                @error('product_thambnail')
+                                                @error('long_descp_ban')
                                                         <span class="text-danger">{{ $message }}</span>
                                                 @enderror
                                             </div>
