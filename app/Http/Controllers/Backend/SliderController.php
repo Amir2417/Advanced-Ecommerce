@@ -97,8 +97,18 @@ class SliderController extends Controller
             );
             return Redirect()->route('manage-slider')->with($notification);
         }
-        
-        
+    }
 
+    //Slider Delete Method
+    public function SliderDelete($id){
+        $sliders = Slider::findOrFail($id);
+        unlink($sliders->slider_img);
+        Slider::findOrFail($id)->delete();
+
+        $notification = array(
+            'message' =>'Slider Deleted Successfully',
+            'alert-type'=>"success",
+        );
+        return Redirect()->back()->with($notification);
     }
 }
