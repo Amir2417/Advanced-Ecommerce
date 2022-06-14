@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\SliderController;
 
 
 
@@ -112,7 +113,15 @@ Route::prefix('products')->group(function(){
   
 });
 
-
+//manage-slider
+// All Routes For Brands Section
+Route::prefix('slider')->group(function(){
+    Route::get('/view',[SliderController::class,'SliderView'])->name('manage-slider');
+    Route::post('/store',[BrandController::class,'BrandStore'])->name('brand.store');
+    Route::get('/edit/{id}',[BrandController::class,'BrandEdit'])->name('brand.edit');
+    Route::post('/update',[BrandController::class,'BrandUpdate'])->name('brand.update');
+    Route::get('/delete/{id}',[BrandController::class,'BrandDelete'])->name('brand.delete');
+});
 
 
 Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
