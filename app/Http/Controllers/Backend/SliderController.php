@@ -56,4 +56,49 @@ class SliderController extends Controller
         );
         return Redirect()->back()->with($notification);
     }
+    //slider Edit Page Load
+    public function SliderEdit($id){
+        $sliders = Slider::findOrFail($id);
+        return view('backend.slider.slider_edit',compact('sliders'));
+    }
+    //Slider Update
+    public function SliderUpdate(Request $request){
+        $slider_id = $request->id;
+        $old_image = $request->old_image;
+        if($request->file('slider_img')){
+            unlink($old_image);
+            $slider_img = $request->file('slider_img');
+            $name_gen = hexdec(uniqid()).'.'.$slider_img->getClientOriginalExtension();
+            Image::make($slider_img)->resize(870,370)->save('upload/slider/'.$name_gen);
+            $save_url= 'upload/slider/'.$name_gen;
+
+            Slider::findOrFail($slider_id)->update([
+                'title'=>$request->title,
+                'description'=>$request->description,
+                'slider_img'=>$save_url,
+            ]);
+
+            $notification = array(
+                'message' =>'Slider Updated Successfully',
+                'alert-type'=>"success",
+            );
+            return Redirect()->route('manage-slider')->with($notification);
+
+        }else{
+            Slider::findOrFail($slider_id)->update([
+                'title'=>$request->title,
+                'description'=>$request->description,
+                
+            ]);
+
+            $notification = array(
+                'message' =>'Slider Updated Without Successfully',
+                'alert-type'=>"success",
+            );
+            return Redirect()->route('manage-slider')->with($notification);
+        }
+        
+        
+
+    }
 }
