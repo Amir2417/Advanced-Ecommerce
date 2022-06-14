@@ -30,8 +30,22 @@
                                     @foreach($sliders as $item)
                                     <tr>
                                          <td><img src="{{ asset($item->slider_img) }}"style="width:75px;height:75px;"></td>
-                                        <td>{{$item->title}}</td>
-                                        <td>{{$item->description}}</td>
+                                        <td>
+                                            @if($item->title== NULL)
+                                            <span class="badge badge-pill badge-danger">No Title</span>
+                                            @else
+                                            <span class="badge badge-pill badge-success">{{$item->title}}</span>
+                                            @endif
+
+                                        </td>
+                                        <td>
+                                            @if($item->description== NULL)
+                                            <span class="badge badge-pill badge-danger">No Description</span>
+                                            @else
+                                            <span class="badge badge-pill badge-success">{{$item->description}}</span>
+                                            @endif
+
+                                        </td>
                                         <td>
                                             @if($item->status ==1)
                                                 <span class="badge badge-pill badge-success">Active</span>
