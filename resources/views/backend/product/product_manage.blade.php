@@ -43,8 +43,9 @@
                                             @php 
                                                 $amount = $item->selling_price - $item->discount_price;
                                                 $discount = ($amount/$item->selling_price)*100;
+                                                $discountinpercent = 100-$discount;
                                             @endphp
-                                            <span class="badge badge-pill badge-success">{{ round($discount) }}%</span>
+                                            <span class="badge badge-pill badge-success">{{ round($discountinpercent) }}%</span>
                                             @endif
 
                                         </td>
@@ -58,7 +59,7 @@
                                         <td width="30%">
                                             <a class="btn btn-primary" href="{{ route('product.edit',$item->id) }}" title="Product Details Data"><i class="fa fa-eye"></i></a>
                                             <a class="btn btn-primary" href="{{ route('product.edit',$item->id) }}" title="Edit Data"><i class="fa fa-pencil"></i></a>
-                                            <a class="btn btn-danger" id="delete" href="{{ route('subcategory.delete',$item->id) }}" title="Delete Data"><i class="fa fa-trash"></i></a>
+                                            <a class="btn btn-danger" id="delete" href="{{ route('product.delete',$item->id) }}" title="Delete Data"><i class="fa fa-trash"></i></a>
 
                                             @if($item->status == 1)
                                             <a class="btn btn-danger" href="{{ route('product.inactive',$item->id) }}" title="Inactive Now"><i class="fa fa-arrow-down"></i></a>

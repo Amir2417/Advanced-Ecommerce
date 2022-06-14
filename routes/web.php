@@ -107,6 +107,7 @@ Route::prefix('products')->group(function(){
     Route::get('/edit/{id}',[ProductController::class,'ProductEdit'])->name('product.edit'); 
     Route::get('/inactive/{id}',[ProductController::class,'ProductInactive'])->name('product.inactive'); 
     Route::get('/active/{id}',[ProductController::class,'ProductActive'])->name('product.active'); 
+    Route::get('/delete/{id}',[ProductController::class,'ProductDelete'])->name('product.delete'); 
 
   
 });
