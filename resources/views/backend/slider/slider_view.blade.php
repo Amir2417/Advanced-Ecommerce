@@ -53,10 +53,15 @@
                                                 <span class="badge badge-pill badge-danger">InActive</span>
                                             @endif
                                         </td>
-                                        <td>
+                                        <td width="30%">
                                             <a class="btn btn-primary" href="{{ route('slider.edit',$item->id) }}" title="Edit Data"><i class="fa fa-pencil"></i></a>
 
                                             <a class="btn btn-danger" id="delete" href="{{ route('slider.delete',$item->id) }}" title="Delete Data"><i class="fa fa-trash"></i></a>
+                                            @if($item->status ==1)
+                                            <a class="btn btn-primary" href="{{ route('slider.inactive',$item->id) }}" title="InActive Now"><i class="fa fa-arrow-down"></i></a>
+                                            @else
+                                            <a class="btn btn-primary" href="{{ route('slider.active',$item->id) }}" title="Active Now"><i class="fa fa-arrow-up"></i></a>
+                                            @endif
                                         </td>
                                         
                                    @endforeach 

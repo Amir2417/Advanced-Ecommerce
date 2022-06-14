@@ -121,6 +121,9 @@ Route::prefix('slider')->group(function(){
     Route::get('/edit/{id}',[SliderController::class,'SliderEdit'])->name('slider.edit');
     Route::post('/update',[SliderController::class,'SliderUpdate'])->name('slider.update');
     Route::get('/delete/{id}',[SliderController::class,'SliderDelete'])->name('slider.delete');
+    //slider.inactive
+    Route::get('/inactive/{id}',[SliderController::class,'SliderInactive'])->name('slider.inactive');
+    Route::get('/active/{id}',[SliderController::class,'SliderActive'])->name('slider.active');
 });
 
 
