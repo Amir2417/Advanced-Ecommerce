@@ -8,6 +8,7 @@ use Auth;
 use App\Models\User;
 use App\Models\Category;
 use App\Models\Slider;
+use App\Models\Product;
 use Illuminate\Support\Facades\Hash;
 
 class IndexController extends Controller
@@ -15,8 +16,9 @@ class IndexController extends Controller
     public function index(){
         $categories = Category::orderBy('category_name_en','ASC')->get();
         $sliders = Slider::where('status',1)->orderBy('id','DESC')->limit(3)->get();
+        $products = Product::where('status',1)->orderBy('id','DESC')->get();
 
-        return view('frontend.index',compact('categories','sliders'));
+        return view('frontend.index',compact('categories','sliders','products'));
     }
     public function UserLogout(){
         Auth::logout();
