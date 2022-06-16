@@ -156,7 +156,9 @@
           <div class="navbar-collapse collapse" id="mc-horizontal-menu-collapse">
             <div class="nav-outer">
               <ul class="nav navbar-nav">
-                <li class="active dropdown yamm-fw"> <a href="home.html" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">Home</a> </li>
+                <li class="active dropdown yamm-fw"> <a href="home.html" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">@if(session()->get('language') == 'bangla') 
+                বাড়ি @else Home @endif
+                  </a> </li>
 
                 <!-- Get Category Table Data  -->
                 @php
@@ -164,7 +166,9 @@
 
                 @endphp
                 @foreach($categories as $category)
-                <li class="dropdown yamm mega-menu"> <a href="home.html" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">{{ $category->category_name_en }}</a>
+                <li class="dropdown yamm mega-menu"> <a href="home.html" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">
+                @if(session()->get('language') == 'bangla') 
+                {{ $category->category_name_ban }} @else {{ $category->category_name_en }} @endif</a>
                   <ul class="dropdown-menu container">
                     <li>
                       <div class="yamm-content ">
@@ -176,7 +180,8 @@
                           @endphp
                           @foreach($subcategories as $subcategory)
                           <div class="col-xs-12 col-sm-6 col-md-2 col-menu">
-                            <h2 class="title">{{ $subcategory->subcategory_name_en }}</h2>
+                            <h2 class="title">@if(session()->get('language') == 'bangla') 
+                            {{ $subcategory->subcategory_name_ban }} @else {{ $subcategory->subcategory_name_en }} @endif </h2>
                             <!-- Get SubCategory Table Data  -->
                             @php
                             $subsubcategories = App\Models\SubSubCategory::where('subcategory_id',$subcategory->id)->orderBy('subsubcategory_name_en','ASC')->get();
@@ -184,7 +189,9 @@
                             @endphp
                             @foreach($subsubcategories as $subsubcategory)
                             <ul class="links">
-                              <li><a href="#">{{ $subsubcategory->subsubcategory_name_en}}</a></li>
+                              <li><a href="#">@if(session()->get('language') == 'bangla') 
+                              {{ $subsubcategory->subsubcategory_name_ban}} @else {{ $subsubcategory->subsubcategory_name_en}} @endif
+                                </a></li>
                               
                             </ul>
                             @endforeach
