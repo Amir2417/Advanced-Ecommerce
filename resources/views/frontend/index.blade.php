@@ -27,10 +27,17 @@
                       <div class="col-sm-12 col-md-3">
                       <h2 class="title">@if(session()->get('language') == 'bangla') 
                             {{ $subcategory->subcategory_name_ban }} @else {{ $subcategory->subcategory_name_en }} @endif </h2>
+                            @php
+                            $subsubcategories = App\Models\SubSubCategory::where('subcategory_id',$subcategory->id)->orderBy('subsubcategory_name_en','ASC')->get();
+
+                            @endphp
+                            @foreach($subsubcategories as $subsubcategory)
                         <ul class="links list-unstyled">
-                          <li><a href="#">Dresses</a></li>
+                          <li><a href="#">@if(session()->get('language') == 'bangla') 
+                              {{ $subsubcategory->subsubcategory_name_ban}} @else {{ $subsubcategory->subsubcategory_name_en}} @endif</a></li>
                           
                         </ul>
+                        @endforeach <!-- end subsubcategory foreach -->
                       </div>
                       @endforeach <!-- end subcategory foreach -->
                       <!-- /.col -->
