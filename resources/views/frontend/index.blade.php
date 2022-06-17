@@ -913,9 +913,9 @@
             <h3 class="new-product-title pull-left">New Products</h3>
             <ul class="nav nav-tabs nav-tab-line pull-right" id="new-products-1">
               <li class="active"><a data-transition-type="backSlide" href="#all" data-toggle="tab">All</a></li>
-              <li><a data-transition-type="backSlide" href="#smartphone" data-toggle="tab">Clothing</a></li>
-              <li><a data-transition-type="backSlide" href="#laptop" data-toggle="tab">Electronics</a></li>
-              <li><a data-transition-type="backSlide" href="#apple" data-toggle="tab">Shoes</a></li>
+              @foreach($categories as $category)
+              <li><a data-transition-type="backSlide" href="#smartphone" data-toggle="tab">{{ $category->category_name_en}}</a></li>
+              @endforeach 
             </ul>
             <!-- /.nav-tabs --> 
           </div>
@@ -939,7 +939,7 @@
                           <h3 class="name"><a href="detail.html">{{$product->product_name_en}}</a></h3>
                           <div class="rating rateit-small"></div>
                           <div class="description"></div>
-                          <div class="product-price"> <span class="price"> {{$product->selling_price}} </span> <span class="price-before-discount">$ 800</span> </div>
+                          <div class="product-price"> <span class="price"> {{$product->selling_price}} </span> <span class="price-before-discount">{{$product->discount_price}}</span> </div>
                           <!-- /.product-price --> 
                           
                         </div>
