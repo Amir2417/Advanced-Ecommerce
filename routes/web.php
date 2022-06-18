@@ -62,7 +62,7 @@ Route::get('user/profile',[IndexController::class,'UserProfile'])->name('user.pr
 Route::post('user/profile/store',[IndexController::class,'UserProfileStore'])->name('user.profile.store');
 Route::get('user/change/password',[IndexController::class,'UserChangePassword'])->name('user.change.password');
 Route::post('user/password/update',[IndexController::class,'UserPasswordUpdate'])->name('user.password.update');
-Route::get('product/details/{id}',[IndexController::class,'ProductDetails']);
+Route::get('product/details/{id}/{slug}',[IndexController::class,'ProductDetails']);
 
 // All Routes For Brands Section
 Route::prefix('brand')->group(function(){

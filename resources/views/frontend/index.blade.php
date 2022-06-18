@@ -1,5 +1,8 @@
 @extends('frontend.main_master')
 @section('content')
+@section('title')
+SkyLight Shop
+@endsection
 <div class="body-content outer-top-xs" id="top-banner-and-menu">
   <div class="container">
     <div class="row"> 
@@ -916,7 +919,7 @@
               <li class="active"><a data-transition-type="backSlide" href="#all" data-toggle="tab">All</a></li>
               @foreach($categories as $category)
               <li><a data-transition-type="backSlide" href="#category{{$category->id}}" data-toggle="tab">
-              @if(session()->get('language') == 'bangla') {{ $category->category_name_ban}} @else {{ $category->category_name_en}}} @endif</a></li>
+              @if(session()->get('language') == 'bangla') {{ $category->category_name_ban}} @else {{ $category->category_name_en}} @endif</a></li>
               @endforeach 
             </ul>
             <!-- /.nav-tabs --> 
@@ -930,7 +933,7 @@
                     <div class="products">
                       <div class="product">
                         <div class="product-image">
-                          <div class="image"> <a href="detail.html"><img  src="{{ asset($product->product_thambnail) }}" alt=""></a> </div>
+                          <div class="image"> <a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug_en)}}"><img  src="{{ asset($product->product_thambnail) }}" alt=""></a> </div>
                           <!-- /.image -->
                           @php 
                               $amount = $product->selling_price - $product->discount_price;
@@ -945,7 +948,7 @@
                         <!-- /.product-image -->
                         
                         <div class="product-info text-left">
-                          <h3 class="name"><a href="{{ url('product/details/'.$product->id)}}">
+                          <h3 class="name"><a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug_en)}}">
                             @if(session()->get('language') == 'bangla') {{$product->product_name_ban}} @else {{$product->product_name_en}} @endif
                             </a></h3>
                           <div class="rating rateit-small"></div>
@@ -1009,7 +1012,7 @@
                     <div class="products">
                       <div class="product">
                         <div class="product-image">
-                          <div class="image"> <a href="detail.html"><img  src="{{ asset($product->product_thambnail) }}" alt=""></a> </div>
+                          <div class="image"> <a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug_en)}}"><img  src="{{ asset($product->product_thambnail) }}" alt=""></a> </div>
                           <!-- /.image -->
                           @php 
                               $amount = $product->selling_price - $product->discount_price;
@@ -1024,7 +1027,7 @@
                         <!-- /.product-image -->
                         
                         <div class="product-info text-left">
-                          <h3 class="name"><a href="detail.html">
+                          <h3 class="name"><a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug_en)}}">
                             @if(session()->get('language') == 'bangla') {{$product->product_name_ban}} @else {{$product->product_name_en}} @endif
                             </a></h3>
                           <div class="rating rateit-small"></div>
