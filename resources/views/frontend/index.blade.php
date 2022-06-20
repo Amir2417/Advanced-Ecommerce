@@ -196,7 +196,12 @@ SkyLight Shop
         <div class="sidebar-widget product-tag wow fadeInUp">
           <h3 class="section-title">Product tags</h3>
           <div class="sidebar-widget-body outer-top-xs">
-            <div class="tag-list"> <a class="item" title="Phone" href="category.html">Phone</a> <a class="item active" title="Vest" href="category.html">Vest</a> <a class="item" title="Smartphone" href="category.html">Smartphone</a> <a class="item" title="Furniture" href="category.html">Furniture</a> <a class="item" title="T-shirt" href="category.html">T-shirt</a> <a class="item" title="Sweatpants" href="category.html">Sweatpants</a> <a class="item" title="Sneaker" href="category.html">Sneaker</a> <a class="item" title="Toys" href="category.html">Toys</a> <a class="item" title="Rose" href="category.html">Rose</a> </div>
+            @foreach($tags as $tag)
+            <div class="tag-list"> 
+              <a class="item" title="Phone" href="category.html">{{$tag->product_tags_en}}</a>
+               
+            </div>
+            @endforeach
             <!-- /.tag-list --> 
           </div>
           <!-- /.sidebar-widget-body --> 
@@ -592,7 +597,8 @@ SkyLight Shop
         <!-- ============================================== WIDE PRODUCTS : END ============================================== --> 
         <!-- ============================================== FEATURED PRODUCTS ============================================== -->
         <section class="section featured-product wow fadeInUp">
-          <h3 class="section-title">Featured products</h3>
+          <h3 class="section-title">@if(session()->get('language')=='bangla') বৈশিষ্ট্যযুক্ত পণ্য @else
+            Featured products @endif</h3>
           <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
             
             @foreach($featured as $product)
@@ -851,7 +857,7 @@ SkyLight Shop
         <!-- Skip Brand Product Start -->
 
         <section class="section featured-product wow fadeInUp">
-          <h3 class="section-title">@if(session()->get('language') == 'bangla') {{ $skip_brand_0->brand_name_ban}} @else {{ $skip_brand_0->brand_name_en}} @endif</h3>
+          <h3 class="section-title">@if(session()->get('language') == 'bangla') {{ $skip_brand_0->brand_name_hin}} @else {{ $skip_brand_0->brand_name_en}} @endif</h3>
           <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
             
             @foreach($skip_brand_product_0 as $product)

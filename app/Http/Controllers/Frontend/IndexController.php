@@ -32,9 +32,11 @@ class IndexController extends Controller
 
         $skip_brand_0 = Brand::skip(0)->first();
         $skip_brand_product_0 = Product::where('status',1)->where('brand_id',$skip_brand_0->id)->orderBy('id','DESC')->get();
+
+        $tags = Product::get()->all();
         
 
-        return view('frontend.index',compact('categories','sliders','products','featured','hotDeals','specialOffer','specialDeals','skip_category_0','skip_product_0','skip_category_1','skip_product_1','skip_brand_0','skip_brand_product_0'));
+        return view('frontend.index',compact('categories','sliders','products','featured','hotDeals','specialOffer','specialDeals','skip_category_0','skip_product_0','skip_category_1','skip_product_1','skip_brand_0','skip_brand_product_0','tags'));
     }
     public function UserLogout(){
         Auth::logout();
