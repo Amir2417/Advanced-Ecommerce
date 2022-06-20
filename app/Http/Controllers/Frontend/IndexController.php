@@ -18,12 +18,16 @@ class IndexController extends Controller
         $categories = Category::orderBy('category_name_en','ASC')->get();
         $sliders = Slider::where('status',1)->orderBy('id','DESC')->limit(3)->get();
         $products = Product::where('status',1)->orderBy('id','DESC')->get();
-        $featured = Product::where('featured',1)->orderBy('id','DESC')->get();
-        $hotDeals = Product::where('hot_deals',1)->orderBy('id','DESC')->limit(3)->get();
-        $specialOffer = Product::where('special_offer',1)->orderBy('id','DESC')->limit(3)->get();
-        $specialDeals = Product::where('special_deals',1)->orderBy('id','DESC')->limit(3)->get();
+        $featured = Product::where('status',1)->where('featured',1)->orderBy('id','DESC')->get();
+        $hotDeals = Product::where('status',1)->where('hot_deals',1)->orderBy('id','DESC')->limit(3)->get();
+        $specialOffer = Product::where('status',1)->where('special_offer',1)->orderBy('id','DESC')->limit(3)->get();
+        $specialDeals = Product::where('status',1)->where('special_deals',1)->orderBy('id','DESC')->limit(3)->get();
+        //skip function
+        $skip_category_0 = Category::skip(0)->first();
+        $skip_product_0 = Product::where('status',1)->where('category_id',$skip_category_0->id)->orderBy('id','DESC')->get();
+        
 
-        return view('frontend.index',compact('categories','sliders','products','featured','hotDeals','specialOffer','specialDeals'));
+        return view('frontend.index',compact('categories','sliders','products','featured','hotDeals','specialOffer','specialDeals','skip_category_0','skip_product_0'));
     }
     public function UserLogout(){
         Auth::logout();
