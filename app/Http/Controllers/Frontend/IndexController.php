@@ -20,7 +20,7 @@ class IndexController extends Controller
         $sliders = Slider::where('status',1)->orderBy('id','DESC')->limit(3)->get();
         $products = Product::where('status',1)->orderBy('id','DESC')->get();
         $featured = Product::where('status',1)->where('featured',1)->orderBy('id','DESC')->get();
-        $hotDeals = Product::where('status',1)->where('hot_deals',1)->orderBy('id','DESC')->limit(3)->get();
+        $hotDeals = Product::where('status',1)->where('hot_deals',1)->where('discount_price','!=',NULL)->orderBy('id','DESC')->limit(3)->get();
         $specialOffer = Product::where('status',1)->where('special_offer',1)->orderBy('id','DESC')->limit(3)->get();
         $specialDeals = Product::where('status',1)->where('special_deals',1)->orderBy('id','DESC')->limit(3)->get();
         //skip function
