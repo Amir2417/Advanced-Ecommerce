@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Models\User;
 use App\Models\Category;
+use App\Models\Brand;
 use App\Models\Slider;
 use App\Models\Product;
 use App\Models\MultiImg;
@@ -25,9 +26,15 @@ class IndexController extends Controller
         //skip function
         $skip_category_0 = Category::skip(0)->first();
         $skip_product_0 = Product::where('status',1)->where('category_id',$skip_category_0->id)->orderBy('id','DESC')->get();
+
+        $skip_category_1 = Category::skip(1)->first();
+        $skip_product_1 = Product::where('status',1)->where('category_id',$skip_category_1->id)->orderBy('id','DESC')->get();
+
+        $skip_brand_0 = Brand::skip(0)->first();
+        $skip_brand_product_0 = Product::where('status',1)->where('brand_id',$skip_brand_0->id)->orderBy('id','DESC')->get();
         
 
-        return view('frontend.index',compact('categories','sliders','products','featured','hotDeals','specialOffer','specialDeals','skip_category_0','skip_product_0'));
+        return view('frontend.index',compact('categories','sliders','products','featured','hotDeals','specialOffer','specialDeals','skip_category_0','skip_product_0','skip_category_1','skip_product_1','skip_brand_0','skip_brand_product_0'));
     }
     public function UserLogout(){
         Auth::logout();
