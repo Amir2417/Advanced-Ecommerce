@@ -35,7 +35,6 @@ class IndexController extends Controller
 
         $tags = Product::get()->all();
         
-
         return view('frontend.index',compact('categories','sliders','products','featured','hotDeals','specialOffer','specialDeals','skip_category_0','skip_product_0','skip_category_1','skip_product_1','skip_brand_0','skip_brand_product_0','tags'));
     }
     public function UserLogout(){
@@ -98,7 +97,8 @@ class IndexController extends Controller
     public function ProductDetails($id,$slug){
         $product = Product::findOrFail($id);
         $image = MultiImg::where('product_id',$id)->get();
-        return view('frontend.product.product_details',compact('product','image'));
+        $hotDeals = Product::where('status',1)->where('hot_deals',1)->orderBy('id','DESC')->limit(3)->get();
+        return view('frontend.product.product_details',compact('product','image','hotDeals'));
     }
 
 }
