@@ -100,5 +100,20 @@ class IndexController extends Controller
         $hotDeals = Product::where('status',1)->where('hot_deals',1)->orderBy('id','DESC')->limit(3)->get();
         return view('frontend.product.product_details',compact('product','image','hotDeals'));
     }
+    
+    public function TagWiseProduct($tag){
+
+        if(session()->get('language')=='bangla'){
+            $products = Product::where('status',1)->where('product_tags_ban',$tag)->orderBy('id','DESC')->paginate(3);
+        }
+        else{
+            $products = Product::where('status',1)->where('product_tags_en',$tag)->orderBy('id','DESC')->paginate(3);
+        }
+		
+		$categories = Category::orderBy('category_name_en','ASC')->get();
+		return view('frontend.tag.tags_view',compact('products','categories'));
+
+	}
+
 
 }
