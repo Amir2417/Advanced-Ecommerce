@@ -46,7 +46,7 @@
 								@if($product->discount_price == NULL)
 								<div class="tag new"><span>new</span></div>
 								@else
-								<div class="sale-offer-tag"><span>{{ round($discount)}} % <br>off</span></div>
+								<div class="sale-offer-tag"><span>{{ round($discount)}} php artisan ser% <br>off</span></div>
 								@endif
 							<div class="timing-wrapper">
 								<div class="box-wrapper">

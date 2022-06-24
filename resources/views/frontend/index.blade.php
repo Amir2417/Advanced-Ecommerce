@@ -73,7 +73,7 @@ SkyLight Shop
         
         <!-- ============================================== HOT DEALS ============================================== -->
         <div class="sidebar-widget hot-deals wow fadeInUp outer-bottom-xs">
-          <h3 class="section-title">hot deals</h3>
+          <h3 class="section-title">Hot deals</h3>
           <div class="owl-carousel sidebar-carousel custom-carousel owl-theme outer-top-ss">
 
             @foreach($hotDeals as $product)
@@ -192,22 +192,10 @@ SkyLight Shop
         </div>
         <!-- /.sidebar-widget --> 
         <!-- ============================================== SPECIAL OFFER : END ============================================== --> 
-        <!-- ============================================== PRODUCT TAGS ============================================== -->
-        <div class="sidebar-widget product-tag wow fadeInUp">
-          <h3 class="section-title">Product tags</h3>
-          <div class="sidebar-widget-body outer-top-xs">
-            @foreach($tags as $tag)
-            <div class="tag-list"> 
-              <a class="item" title="Phone" href="category.html">{{$tag->product_tags_en}}</a>
-               
-            </div>
-            @endforeach
-            <!-- /.tag-list --> 
-          </div>
-          <!-- /.sidebar-widget-body --> 
-        </div>
+        <!-- ================= PRODUCT TAGS ============ -->
+        @include('frontend.common.product_tags')
         <!-- /.sidebar-widget --> 
-        <!-- ============================================== PRODUCT TAGS : END ============================================== --> 
+        <!-- ============================ PRODUCT TAGS : END =========================== --> 
         
         
         
