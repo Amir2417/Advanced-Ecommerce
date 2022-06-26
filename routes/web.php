@@ -63,7 +63,7 @@ Route::post('user/profile/store',[IndexController::class,'UserProfileStore'])->n
 Route::get('user/change/password',[IndexController::class,'UserChangePassword'])->name('user.change.password');
 Route::post('user/password/update',[IndexController::class,'UserPasswordUpdate'])->name('user.password.update');
 //Frontend Product Deatils Page Url
-Route::get('product/details/{id}/{slug}',[IndexController::class,'ProductDetails']);
+Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']);
 
 Route::get('/product/tag/{tag}', [IndexController::class, 'TagWiseProduct']);
 //subcategory wise product show
