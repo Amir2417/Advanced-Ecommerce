@@ -66,7 +66,10 @@ Route::post('user/password/update',[IndexController::class,'UserPasswordUpdate']
 Route::get('product/details/{id}/{slug}',[IndexController::class,'ProductDetails']);
 
 Route::get('/product/tag/{tag}', [IndexController::class, 'TagWiseProduct']);
+//subcategory wise product show
 Route::get('subcategory/product/{subcat}/{slug}', [IndexController::class, 'SubCatProduct']);
+//subsubcategory wise product show
+Route::get('subsubcategory/product/{subsubcat}/{slug}', [IndexController::class, 'SubSubCatProduct']);
 
 // All Routes For Brands Section
 Route::prefix('brand')->group(function(){
