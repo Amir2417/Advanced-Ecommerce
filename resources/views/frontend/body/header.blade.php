@@ -189,9 +189,9 @@
                             @endphp
                             @foreach($subsubcategories as $subsubcategory)
                             <ul class="links">
-                              <li><a href="#">@if(session()->get('language') == 'bangla') 
+                            <a href="{{ url('subsubcategory/product/'.$subsubcategory->id.'/'.$subsubcategory->subsubcategory_slug_en)}}"><li>@if(session()->get('language') == 'bangla') 
                               {{ $subsubcategory->subsubcategory_name_ban}} @else {{ $subsubcategory->subsubcategory_name_en}} @endif
-                                </a></li>
+                                </li></a>
                               
                             </ul>
                             @endforeach
