@@ -180,8 +180,8 @@
                           @endphp
                           @foreach($subcategories as $subcategory)
                           <div class="col-xs-12 col-sm-6 col-md-2 col-menu">
-                            <h2 class="title">@if(session()->get('language') == 'bangla') 
-                            {{ $subcategory->subcategory_name_ban }} @else {{ $subcategory->subcategory_name_en }} @endif </h2>
+                            <a href="{{ url('subcategory/product/'.$subcategory->id.'/'.$subcategory->subcategory_name_en)}}"><h2 class="title">@if(session()->get('language') == 'bangla') 
+                            {{ $subcategory->subcategory_name_ban }} @else {{ $subcategory->subcategory_name_en }} @endif </h2></a>
                             <!-- Get SubCategory Table Data  -->
                             @php
                             $subsubcategories = App\Models\SubSubCategory::where('subcategory_id',$subcategory->id)->orderBy('subsubcategory_name_en','ASC')->get();
