@@ -96,23 +96,28 @@ class IndexController extends Controller
     }
     public function ProductDetails($id,$slug){
         
-        $product = Product::findOrFail($id);
+       
+        $products = Product::findOrFail($id);
+        
 
-        $color_en = $product->product_color_en;
+        $color_en = $products->product_color_en;
         $product_color_en = explode(',',$color_en);
 
-        $color_ban = $product->product_color_ban;
+        $color_ban = $products->product_color_ban;
         $product_color_ban = explode(',',$color_ban);
 
-        $size_en = $product->product_size_en;
+        $size_en = $products->product_size_en;
         $product_size_en = explode(',',$size_en);
 
-        $size_ban = $product->product_size_ban;
+        $size_ban = $products->product_size_ban;
         $product_size_ban = explode(',',$size_ban);
+
+        $cat_id = $products->category_id;
+        $related_products = Product::where('category_id',$cat_id)->where('id','!=',$id)->orderBy('id','DESC')->get();
 
         $image = MultiImg::where('product_id',$id)->get();
         $hotDeals = Product::where('status',1)->where('hot_deals',1)->orderBy('id','DESC')->limit(3)->get();
-        return view('frontend.product.product_details',compact('product','image','hotDeals','product_color_en','product_color_ban','product_size_en','product_size_ban'));
+        return view('frontend.product.product_details',compact('products','image','hotDeals','product_color_en','product_color_ban','product_size_en','product_size_ban','related_products'));
     }
     
     public function TagWiseProduct($tag){
