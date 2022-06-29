@@ -5,6 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <meta name="description" content="">
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <meta name="author" content="">
 <meta name="keywords" content="MediaCenter, Template, eCommerce">
 <meta name="robots" content="all">
@@ -91,7 +92,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel"> Product  </h5>
+        <h5 class="modal-title" id="exampleModalLabel"> <span id="pname"></span>  </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -100,17 +101,17 @@
         <div class="row">{{-- start row  --}}
           <div class="col-md-4">{{-- start col-md-4  --}}
             <div class="card" style="width: 18rem;">{{-- start card  --}}
-              <img src="..." class="card-img-top" style="height: 200px; width:200px;"  alt="...">
+              <img src="" class="card-img-top" id="pimage" style="height: 200px; width:180px;"  alt="">
               
              </div>{{-- end card  --}}
           </div>{{-- end col-md-4  --}}
 
           <div class="col-md-4">{{-- start col-md-4  --}}
             <ul class="list-group">
-              <li class="list-group-item">Product Price:</li>
-              <li class="list-group-item">Product Code:</li>
-              <li class="list-group-item">Category:</li>
-              <li class="list-group-item">Brand:</li>
+              <li class="list-group-item">Product Price: <span id="price"></span></li>
+              <li class="list-group-item">Product Code: <span id="pcode"></span></li>
+              <li class="list-group-item">Category: <span id="pcategory"></span></li>
+              <li class="list-group-item">Brand: <span id="pbrand"></span></li>
               <li class="list-group-item">Stock</li>
             </ul>
           </div>{{-- end col-md-4  --}}
@@ -118,22 +119,16 @@
           <div class="col-md-4">{{-- start col-md-4  --}}
             <div class="form-group">
               <label for="exampleFormControlSelect1">Choose Color</label>
-              <select class="form-control" id="exampleFormControlSelect1">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
+              <select class="form-control" id="exampleFormControlSelect1" name="color">
+                <option></option>
+                
               </select>
             </div>
-            <div class="form-group">
+            <div class="form-group" id="sizeArea">
               <label for="exampleFormControlSelect1">Choose Size</label>
-              <select class="form-control" id="exampleFormControlSelect1">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
+              <select class="form-control" id="exampleFormControlSelect1" name="size">
+                <option></option>
+                
               </select>
             </div>
             <div class="form-group">
@@ -148,6 +143,59 @@
     </div>
   </div>
 </div>
+
+<script >
+
+    $.ajaxSetup({
+      headers:{
+        'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+      }
+    })  
+
+
+// start product view with modal 
+
+function productView(id){
+
+// alert(id)
+    $.ajax({
+      type: 'GET',
+      url: '/product/view/modal/'+id,
+      dataType:'json',
+      success:function(data){
+        $('#pname').text(data.product.product_name_en);
+        $('#price').text(data.product.selling_price);
+        $('#pcode').text(data.product.product_code);
+        $('#pcategory').text(data.product.category.category_name_en);
+        $('#pbrand').text(data.product.brand.brand_name_en);
+        $('#pimage').attr('src','/'+data.product.product_thambnail);
+       
+        //color
+        $('select[name="color"]').empty();
+        $.each(data.color,function(key,value){
+          $('select[name="color"]').append('<option value=" '+value+' ">'+value+'</option>')
+        })
+
+
+        //size
+        $('select[name="size"]').empty();
+        $.each(data.size,function(key,value){
+          $('select[name="size"]').append('<option value=" '+value+' ">'+value+'</option>')
+          if(data.size=="") {
+            $('#sizeArea').hide();
+          } else{
+            $('#sizeArea').show();
+          }
+        })
+
+      }
+
+    })
+
+}
+
+
+</script>
  
 </body>
 </html>

@@ -70,6 +70,8 @@ Route::get('/product/tag/{tag}', [IndexController::class, 'TagWiseProduct']);
 Route::get('subcategory/product/{subcat}/{slug}', [IndexController::class, 'SubCatProduct']);
 //subsubcategory wise product show
 Route::get('subsubcategory/product/{subsubcat}/{slug}', [IndexController::class, 'SubSubCatProduct']);
+//product view modal
+Route::get('/product/view/modal/{id}', [IndexController::class, 'ViewAjax']);
 
 // All Routes For Brands Section
 Route::prefix('brand')->group(function(){

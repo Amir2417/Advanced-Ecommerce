@@ -157,7 +157,7 @@
                                     <div class="form-group">
                                         <h5>Product Tags Bangla <span class="text-danger">*</span></h5>
                                         <div class="controls">
-                                        <input type="text" name="product_tags_ban" required value="{{ $products->product_tags_ban }}" data-role="tagsinput" placeholder="add tags" />
+                                        <input type="text" name="product_tags_ban"  value="{{ $products->product_tags_ban }}" data-role="tagsinput" placeholder="add tags" />
                                             @error('product_tags_ban')
                                                     <span class="text-danger">{{ $message }}</span>
                                             @enderror
@@ -168,7 +168,7 @@
                                     <div class="form-group">
                                         <h5>Product Size English <span class="text-danger">*</span></h5>
                                         <div class="controls">
-                                        <input type="text" name="product_size_en" required value="{{ $products->product_size_en }}" data-role="tagsinput" placeholder="add tags" />
+                                        <input type="text" name="product_size_en"  value="{{ $products->product_size_en }}" data-role="tagsinput" placeholder="add tags" />
                                             @error('product_size_en')
                                                     <span class="text-danger">{{ $message }}</span>
                                             @enderror
@@ -179,7 +179,7 @@
                                     <div class="form-group">
                                         <h5>Product Size Bangla <span class="text-danger">*</span></h5>
                                         <div class="controls">
-                                        <input type="text" name="product_size_ban" required value="{{ $products->product_size_ban }}" data-role="tagsinput" placeholder="add tags" />
+                                        <input type="text" name="product_size_ban"  value="{{ $products->product_size_ban }}" data-role="tagsinput" placeholder="add tags" />
                                             @error('product_size_ban')
                                                     <span class="text-danger">{{ $message }}</span>
                                             @enderror
@@ -192,7 +192,7 @@
                                     <div class="form-group">
                                         <h5>Product Color English <span class="text-danger">*</span></h5>
                                         <div class="controls">
-                                        <input type="text" name="product_color_en" required value="{{ $products->product_color_en }}" data-role="tagsinput" placeholder="add tags" />
+                                        <input type="text" name="product_color_en"  value="{{ $products->product_color_en }}" data-role="tagsinput" placeholder="add tags" />
                                             @error('product_color_en')
                                                     <span class="text-danger">{{ $message }}</span>
                                             @enderror
@@ -203,7 +203,7 @@
                                     <div class="form-group">
                                         <h5>Product Color Bangla <span class="text-danger">*</span></h5>
                                         <div class="controls">
-                                        <input type="text" name="product_color_ban" required value="{{ $products->product_color_ban }}" data-role="tagsinput" placeholder="add tags" />
+                                        <input type="text" name="product_color_ban"  value="{{ $products->product_color_ban }}" data-role="tagsinput" placeholder="add tags" />
                                             @error('product_color_ban')
                                                     <span class="text-danger">{{ $message }}</span>
                                             @enderror
