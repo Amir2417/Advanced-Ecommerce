@@ -101,7 +101,7 @@
         <div class="row">{{-- start row  --}}
           <div class="col-md-4">{{-- start col-md-4  --}}
             <div class="card" style="width: 18rem;">{{-- start card  --}}
-              <img src="" class="card-img-top" id="pimage" style="height: 200px; width:180px;"  alt="">
+              <img src="" class="card-img-top" id="pimage" style="height: 200px; width:200px;"  alt="">
               
              </div>{{-- end card  --}}
           </div>{{-- end col-md-4  --}}
