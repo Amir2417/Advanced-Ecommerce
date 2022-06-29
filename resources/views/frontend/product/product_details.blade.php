@@ -489,10 +489,10 @@
 					</div><!-- /.row -->
 				</div><!-- /.product-tabs -->
 
-				<!-- ========== Releted PRODUCTS ============= -->
+				<!-- ========== Related PRODUCTS ============= -->
 				<section class="section featured-product wow fadeInUp">
-					<h3 class="section-title">@if(session()->get('language')=='bangla') বৈশিষ্ট্যযুক্ত পণ্য @else
-					  Featured products @endif</h3>
+					<h3 class="section-title">
+					  Related Product </h3>
 					<div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
 					  
 					  @foreach($related_products as $product)
