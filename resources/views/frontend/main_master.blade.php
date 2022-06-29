@@ -91,18 +91,60 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel"> Product  </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+        <div class="row">{{-- start row  --}}
+          <div class="col-md-4">{{-- start col-md-4  --}}
+            <div class="card" style="width: 18rem;">{{-- start card  --}}
+              <img src="..." class="card-img-top" style="height: 200px; width:200px;"  alt="...">
+              
+             </div>{{-- end card  --}}
+          </div>{{-- end col-md-4  --}}
+
+          <div class="col-md-4">{{-- start col-md-4  --}}
+            <ul class="list-group">
+              <li class="list-group-item">Product Price:</li>
+              <li class="list-group-item">Product Code:</li>
+              <li class="list-group-item">Category:</li>
+              <li class="list-group-item">Brand:</li>
+              <li class="list-group-item">Stock</li>
+            </ul>
+          </div>{{-- end col-md-4  --}}
+
+          <div class="col-md-4">{{-- start col-md-4  --}}
+            <div class="form-group">
+              <label for="exampleFormControlSelect1">Choose Color</label>
+              <select class="form-control" id="exampleFormControlSelect1">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlSelect1">Choose Size</label>
+              <select class="form-control" id="exampleFormControlSelect1">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlSelect1">Quantity</label>
+              <input type="number" min="1" class="form-control" value="1">
+            </div>
+            <button type="submit" class="btn btn-primary mb-2">Submit</button>
+          </div>{{-- end col-md-4  --}}
+        </div>{{-- end row  --}}
+      </div>{{-- end modal body --}}
+      
     </div>
   </div>
 </div>
