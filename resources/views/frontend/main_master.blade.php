@@ -108,7 +108,7 @@
 
           <div class="col-md-4">{{-- start col-md-4  --}}
             <ul class="list-group">
-              <li class="list-group-item">Product Price: <span id="price"></span></li>
+              <li class="list-group-item">Product Price: <strong class="text-danger">$<span id="pprice"></span></strong> <del id="oldprice"></del>$ </li>
               <li class="list-group-item">Product Code: <span id="pcode"></span></li>
               <li class="list-group-item">Category: <span id="pcategory"></span></li>
               <li class="list-group-item">Brand: <span id="pbrand"></span></li>
@@ -117,7 +117,7 @@
           </div>{{-- end col-md-4  --}}
 
           <div class="col-md-4">{{-- start col-md-4  --}}
-            <div class="form-group">
+            <div class="form-group " id="colorArea">
               <label for="exampleFormControlSelect1">Choose Color</label>
               <select class="form-control" id="exampleFormControlSelect1" name="color">
                 <option></option>
@@ -169,11 +169,27 @@ function productView(id){
         $('#pcategory').text(data.product.category.category_name_en);
         $('#pbrand').text(data.product.brand.brand_name_en);
         $('#pimage').attr('src','/'+data.product.product_thambnail);
+
+        //Product Price
+
+        if (data.product.discount_price == null) {
+          $('#pprice').text('');
+          $('#oldprice').text('');
+          $('#pprice').text(data.product.selling_price);
+        } else {
+          $('#pprice').text(data.product.discount_price);
+          $('#oldprice').text(data.product.selling_price);
+        }
        
         //color
         $('select[name="color"]').empty();
         $.each(data.color,function(key,value){
           $('select[name="color"]').append('<option value=" '+value+' ">'+value+'</option>')
+          if (data.color=="") {
+            $('#colorArea').hide();
+          } else {
+            $('#colorArea').show();
+          }
         })
 
 
