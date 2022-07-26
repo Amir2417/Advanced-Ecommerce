@@ -73,8 +73,10 @@ Route::get('subcategory/product/{subcat}/{slug}', [IndexController::class, 'SubC
 Route::get('subsubcategory/product/{subsubcat}/{slug}', [IndexController::class, 'SubSubCatProduct']);
 //product view modal
 Route::get('/product/view/modal/{id}', [IndexController::class, 'ViewAjax']);
-//product Cart
+// add to cart store data
 Route::POST('/cart/data/store/{id}', [CartController::class, 'AddToCart']);
+//Get data from Mini Cart
+Route::get('/product/mini/cart', [CartController::class, 'AddMiniCart']);
 
 // All Routes For Brands Section
 Route::prefix('brand')->group(function(){

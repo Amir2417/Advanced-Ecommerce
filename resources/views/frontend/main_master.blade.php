@@ -282,6 +282,20 @@ function addToCart(){
 //End Add to Cart Product
 
 </script>
+{{-- Start Mini Cart --}}
+<script>
+    function addMiniCart(){
+        $.ajax({
+            type:"GET",
+            url: '/product/mini/cart',
+            dataType: 'json',
+            success:function(response){
+                console.log(response);
+            }
+        })
+    }
+</script>
+{{-- end Mini Cart --}}
 
 </body>
 </html>
