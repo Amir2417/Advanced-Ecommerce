@@ -5,7 +5,7 @@
     <div class="content">
         <div class="row">
 
-        
+
             <div class="col-8">
 
                 <div class="box">
@@ -23,7 +23,7 @@
                                         <th>Description</th>
                                         <th>Status</th>
                                         <th>Action</th>
-                                        
+
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -57,23 +57,24 @@
                                             <a class="btn btn-primary" href="{{ route('slider.edit',$item->id) }}" title="Edit Data"><i class="fa fa-pencil"></i></a>
 
                                             <a class="btn btn-danger" id="delete" href="{{ route('slider.delete',$item->id) }}" title="Delete Data"><i class="fa fa-trash"></i></a>
+                                            
                                             @if($item->status ==1)
                                             <a class="btn btn-primary" href="{{ route('slider.inactive',$item->id) }}" title="InActive Now"><i class="fa fa-arrow-down"></i></a>
                                             @else
                                             <a class="btn btn-primary" href="{{ route('slider.active',$item->id) }}" title="Active Now"><i class="fa fa-arrow-up"></i></a>
                                             @endif
                                         </td>
-                                        
-                                   @endforeach 
+
+                                   @endforeach
                                 </tbody>
-                                
+
                             </table>
                         </div>
                     </div>
-                   
-                </div>       
+
+                </div>
             </div>
-            
+
             <div class="col-md-4">
                 <div class="box">
                     <div class="box-header with-border">
@@ -86,39 +87,39 @@
                                     <h5>Slider Title<span class="text-danger">*</span></h5>
                                     <div class="controls">
                                         <input type="text" name="title" class="form-control">
-                                        
+
                                     </div>
                                 </div>
                                 <div class="form-group">
                                         <h5>Slider Description<span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <input type="text" name="description" class="form-control" > 
-                                        
+                                        <input type="text" name="description" class="form-control" >
+
                                     </div>
                                 </div>
                                 <div class="form-group">
                                         <h5>Slider Image <span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <input type="file" name="slider_img" class="form-control" > 
+                                        <input type="file" name="slider_img" class="form-control" >
                                         @error('slider_img')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
                                 </div>
-                                    
-                                    
+
+
                                 <div class="text-xs-right">
                                     <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Add Slider">
-                                    
+
                                 </div>
                             </form>
                         </div>
-                    
+
                     </div>
                 </div>
             </div>
-        </div> 
+        </div>
     </div>
 </div>
 
-@endsection 
+@endsection

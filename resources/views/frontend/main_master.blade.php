@@ -40,28 +40,28 @@
 
 <!-- ============================================== HEADER : END ============================================== -->
 @yield('content')
-<!-- /#top-banner-and-menu --> 
+<!-- /#top-banner-and-menu -->
 
 <!-- ============================================================= FOOTER ============================================================= -->
 @include('frontend.body.footer')
-<!-- ============================================================= FOOTER : END============================================================= --> 
+<!-- ============================================================= FOOTER : END============================================================= -->
 
-<!-- For demo purposes – can be removed on production --> 
+<!-- For demo purposes – can be removed on production -->
 
-<!-- For demo purposes – can be removed on production : End --> 
+<!-- For demo purposes – can be removed on production : End -->
 
-<!-- JavaScripts placed at the end of the document so the pages load faster --> 
-<script src="{{ asset('frontend/assets/js/jquery-1.11.1.min.js')}}"></script> 
-<script src="{{ asset('frontend/assets/js/bootstrap.min.js')}}"></script> 
-<script src="{{ asset('frontend/assets/js/bootstrap-hover-dropdown.min.js')}}"></script> 
-<script src="{{ asset('frontend/assets/js/owl.carousel.min.js')}}"></script> 
-<script src="{{ asset('frontend/assets/js/echo.min.js')}}"></script> 
-<script src="{{ asset('frontend/assets/js/jquery.easing-1.3.min.js')}}"></script> 
-<script src="{{ asset('frontend/assets/js/bootstrap-slider.min.js')}}"></script> 
-<script src="{{ asset('frontend/assets/js/jquery.rateit.min.js')}}"></script> 
-<script type="text/javascript" src="{{ asset('frontend/assets/js/lightbox.min.js')}}"></script> 
-<script src="{{ asset('frontend/assets/js/bootstrap-select.min.js')}}"></script> 
-<script src="{{ asset('frontend/assets/js/wow.min.js')}}"></script> 
+<!-- JavaScripts placed at the end of the document so the pages load faster -->
+<script src="{{ asset('frontend/assets/js/jquery-1.11.1.min.js')}}"></script>
+<script src="{{ asset('frontend/assets/js/bootstrap.min.js')}}"></script>
+<script src="{{ asset('frontend/assets/js/bootstrap-hover-dropdown.min.js')}}"></script>
+<script src="{{ asset('frontend/assets/js/owl.carousel.min.js')}}"></script>
+<script src="{{ asset('frontend/assets/js/echo.min.js')}}"></script>
+<script src="{{ asset('frontend/assets/js/jquery.easing-1.3.min.js')}}"></script>
+<script src="{{ asset('frontend/assets/js/bootstrap-slider.min.js')}}"></script>
+<script src="{{ asset('frontend/assets/js/jquery.rateit.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('frontend/assets/js/lightbox.min.js')}}"></script>
+<script src="{{ asset('frontend/assets/js/bootstrap-select.min.js')}}"></script>
+<script src="{{ asset('frontend/assets/js/wow.min.js')}}"></script>
 <script src="{{ asset('frontend/assets/js/scripts.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" type="text/javascript"></script>
 
@@ -84,9 +84,9 @@
       }
     @endif
 
-    
+
   </script>
- 
+
    <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -102,7 +102,7 @@
           <div class="col-md-4">{{-- start col-md-4  --}}
             <div class="card" style="width: 18rem;">{{-- start card  --}}
               <img src="" class="card-img-top" id="pimage" style="height: 200px; width:200px;"  alt="">
-              
+
              </div>{{-- end card  --}}
           </div>{{-- end col-md-4  --}}
 
@@ -119,28 +119,29 @@
 
           <div class="col-md-4">{{-- start col-md-4  --}}
             <div class="form-group " id="colorArea">
-              <label for="exampleFormControlSelect1">Choose Color</label>
-              <select class="form-control" id="exampleFormControlSelect1" name="color">
+              <label for="color">Choose Color</label>
+              <select class="form-control" id="color" name="color">
                 <option></option>
-                
+
               </select>
             </div>
             <div class="form-group" id="sizeArea">
-              <label for="exampleFormControlSelect1">Choose Size</label>
-              <select class="form-control" id="exampleFormControlSelect1" name="size">
+              <label for="size">Choose Size</label>
+              <select class="form-control" id="size" name="size">
                 <option></option>
-                
+
               </select>
             </div>
             <div class="form-group">
-              <label for="exampleFormControlSelect1">Quantity</label>
-              <input type="number" min="1" class="form-control" value="1">
+              <label for="qty">Quantity</label>
+              <input type="number" id="qty" min="1" class="form-control" value="1">
             </div>
-            <button type="submit" class="btn btn-primary mb-2">Submit</button>
+            <input type="hidden" id="product_id">
+            <button type="submit" class="btn btn-primary mb-2" onclick="addToCart()">Add To Cart</button>
           </div>{{-- end col-md-4  --}}
         </div>{{-- end row  --}}
       </div>{{-- end modal body --}}
-      
+
     </div>
   </div>
 </div>
@@ -151,10 +152,10 @@
       headers:{
         'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
       }
-    })  
+    })
 
 
-// start product view with modal 
+// start product view with modal
 
 function productView(id){
 
@@ -170,6 +171,8 @@ function productView(id){
         $('#pcategory').text(data.product.category.category_name_en);
         $('#pbrand').text(data.product.brand.brand_name_en);
         $('#pimage').attr('src','/'+data.product.product_thambnail);
+        $('#product_id').val(id);
+        $('#qty').val(1);
 
         //Product Price
 
@@ -196,7 +199,7 @@ function productView(id){
         }
 
         //End Stock Product
-       
+
         //color
         $('select[name="color"]').empty();
         $.each(data.color,function(key,value){
@@ -225,9 +228,34 @@ function productView(id){
     })
 
 }
+// end product view with modal
 
+//Start Add to Cart Product
+
+function addToCart(){
+    var product_name = $('#pname').text();
+    var id = $('#product_id').val();
+    var color = $('#color option:selected').text();
+    var size = $('#size option:selected').text();
+    var quantity = $('#qty').val();
+    $.ajax({
+        type:"POST",
+        dataType:'json',
+        data:{
+            color:color,size:size,product_name:product_name,quantity:quantity
+        },
+        url:"/cart/data/store/"+id,
+        success:function(data){
+            console.log(data);
+        }
+    })
+
+}
+
+
+//End Add to Cart Product
 
 </script>
- 
+
 </body>
 </html>
