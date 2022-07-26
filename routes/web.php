@@ -5,6 +5,7 @@ use App\Models\User;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\LanguageController;
+use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Backend\AdminProfileController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
@@ -38,16 +39,16 @@ Route::middleware(['auth:admin'])->group(function(){
     Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', function () {
         return view('admin.index');
     })->name('dashboard')->middleware('auth:admin');
-    
+
     //All Routes For the Admin
-    
+
     Route::get('/admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');
     Route::get('/admin/profile', [AdminProfileController::class, 'AdminProfile'])->name('admin.profile');
     Route::get('/admin/profile/edit', [AdminProfileController::class, 'AdminProfileEdit'])->name('admin.profile.edit');
     Route::post('/admin/profile/store', [AdminProfileController::class, 'AdminProfileStore'])->name('admin.profile.store');
     Route::get('/admin/change/password', [AdminProfileController::class, 'AdminChangePassword'])->name('admin.change.password');
     Route::post('/update/change/password', [AdminProfileController::class, 'AdminUpdateChangePassword'])->name('update.change.password');
-       
+
 });
 
 
@@ -72,6 +73,8 @@ Route::get('subcategory/product/{subcat}/{slug}', [IndexController::class, 'SubC
 Route::get('subsubcategory/product/{subsubcat}/{slug}', [IndexController::class, 'SubSubCatProduct']);
 //product view modal
 Route::get('/product/view/modal/{id}', [IndexController::class, 'ViewAjax']);
+//product Cart
+Route::POST('/cart/data/store/{id}', [CartController::class, 'AddToCart']);
 
 // All Routes For Brands Section
 Route::prefix('brand')->group(function(){
@@ -93,37 +96,37 @@ Route::prefix('category')->group(function(){
 
     //All Routes For Sub Category
     Route::get('/sub/view',[SubCategoryController::class,'SubCategoryView'])->name('all.subcategory');
-    Route::post('/sub/store',[SubCategoryController::class,'SubCategoryStore'])->name('subcategory.store'); 
+    Route::post('/sub/store',[SubCategoryController::class,'SubCategoryStore'])->name('subcategory.store');
     Route::get('/sub/edit/{id}',[SubCategoryController::class,'SubCategoryEdit'])->name('subcategory.edit');
     Route::post('/sub/update',[SubCategoryController::class,'SubCategoryUpdate'])->name('subcategory.update');
     Route::get('/sub/delete/{id}',[SubCategoryController::class,'SubCategoryDelete'])->name('subcategory.delete');
 
     //All Routes For the Sub Sub Category
 
-    
+
     Route::get('/sub/sub/view',[SubCategoryController::class,'SubSubCategoryView'])->name('all.subsubcategory');
     Route::get('/subcategory/ajax/{category_id}', [SubCategoryController::class, 'GetSubCategory']);
     Route::get('/subsubcategory/ajax/{subcategory_id}', [SubCategoryController::class, 'GetSubSubCategory']);
-    Route::post('/sub/sub/store',[SubCategoryController::class,'SubSubCategoryStore'])->name('subsubcategory.store'); 
+    Route::post('/sub/sub/store',[SubCategoryController::class,'SubSubCategoryStore'])->name('subsubcategory.store');
     Route::get('/sub/sub/edit/{id}',[SubCategoryController::class,'SubSubCategoryEdit'])->name('subsubcategory.edit');
     Route::post('/sub/sub/update',[SubCategoryController::class,'SubSubCategoryUpdate'])->name('subsubcategory.update');
     Route::get('/sub/sub/delete/{id}',[SubCategoryController::class,'SubSubCategoryDelete'])->name('subsubcategory.delete');
 });
 Route::prefix('products')->group(function(){
     Route::get('/add',[ProductController::class,'AddProduct'])->name('add-products');
-    
-    Route::post('/store',[ProductController::class,'ProductStore'])->name('product-store'); 
-    Route::post('/data/update',[ProductController::class,'ProductUpdate'])->name('product-update'); 
-    Route::post('/image/update',[ProductController::class,'MultiImageUpdate'])->name('update-product-image'); 
-    Route::post('/thamb/image/update',[ProductController::class,'ThambImageUpdate'])->name('update-product-thambnail'); 
-    Route::get('/view',[ProductController::class,'ProductShow'])->name('manage-products'); 
-    Route::get('/multi/image/delete/{id}',[ProductController::class,'MultiImageDelete'])->name('multi.image.delete'); 
-    Route::get('/edit/{id}',[ProductController::class,'ProductEdit'])->name('product.edit'); 
-    Route::get('/inactive/{id}',[ProductController::class,'ProductInactive'])->name('product.inactive'); 
-    Route::get('/active/{id}',[ProductController::class,'ProductActive'])->name('product.active'); 
-    Route::get('/delete/{id}',[ProductController::class,'ProductDelete'])->name('product.delete'); 
 
-  
+    Route::post('/store',[ProductController::class,'ProductStore'])->name('product-store');
+    Route::post('/data/update',[ProductController::class,'ProductUpdate'])->name('product-update');
+    Route::post('/image/update',[ProductController::class,'MultiImageUpdate'])->name('update-product-image');
+    Route::post('/thamb/image/update',[ProductController::class,'ThambImageUpdate'])->name('update-product-thambnail');
+    Route::get('/view',[ProductController::class,'ProductShow'])->name('manage-products');
+    Route::get('/multi/image/delete/{id}',[ProductController::class,'MultiImageDelete'])->name('multi.image.delete');
+    Route::get('/edit/{id}',[ProductController::class,'ProductEdit'])->name('product.edit');
+    Route::get('/inactive/{id}',[ProductController::class,'ProductInactive'])->name('product.inactive');
+    Route::get('/active/{id}',[ProductController::class,'ProductActive'])->name('product.active');
+    Route::get('/delete/{id}',[ProductController::class,'ProductDelete'])->name('product.delete');
+
+
 });
 
 //manage-slider
@@ -141,8 +144,8 @@ Route::prefix('slider')->group(function(){
 
 
 
-//All Frontend Routes    
-// Language Routes 
+//All Frontend Routes
+// Language Routes
 
 Route::get('/language/english',[LanguageController::class,'English'])->name('language.english');
 Route::get('/language/bangla',[LanguageController::class,'Bangla'])->name('language.bangla');
