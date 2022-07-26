@@ -247,6 +247,7 @@ function addToCart(){
         },
         url:"/cart/data/store/"+id,
         success:function(data){
+            miniCart();
             $('#closeModel').click();
             // console.log(data);
 
@@ -291,17 +292,19 @@ function addToCart(){
             dataType: 'json',
             success:function(response){
                 // console.log(response);
+                $('span[id="cartSubTotal"]').text(response.cartTotal);
+                $("#cartQty").text(response.cartsQty);
                 var miniCart = "";
 
                 $.each(response.carts,function(key,value){
                     miniCart += `<div class="cart-item product-summary">
                   <div class="row">
                     <div class="col-xs-4">
-                      <div class="image"> <a href="detail.html"><img src="{{ asset('frontend/assets/images/cart.jpg')}}" alt=""></a> </div>
+                      <div class="image"> <a href="detail.html"><img src="/${value.options.image}" alt=""></a> </div>
                     </div>
                     <div class="col-xs-7">
-                      <h3 class="name"><a href="index.php?page-detail">Simple Product</a></h3>
-                      <div class="price">$600.00</div>
+                      <h3 class="name"><a href="index.php?page-detail">${value.name}</a></h3>
+                      <div class="price">${value.price} * ${value.qty}</div>
                     </div>
                     <div class="col-xs-1 action"> <a href="#"><i class="fa fa-trash"></i></a> </div>
                   </div>
