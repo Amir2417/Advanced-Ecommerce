@@ -77,6 +77,8 @@ Route::get('/product/view/modal/{id}', [IndexController::class, 'ViewAjax']);
 Route::POST('/cart/data/store/{id}', [CartController::class, 'AddToCart']);
 //Get data from Mini Cart
 Route::get('/product/mini/cart', [CartController::class, 'AddMiniCart']);
+//Remove Mini Cart
+Route::get('/minicart/product-remove/{rowId}', [CartController::class, 'RemoveMiniCart']);
 
 // All Routes For Brands Section
 Route::prefix('brand')->group(function(){

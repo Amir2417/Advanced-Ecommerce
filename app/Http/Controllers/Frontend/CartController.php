@@ -50,10 +50,20 @@ class CartController extends Controller
         $cartsQty = Cart::count();
         $cartTotal = Cart::total();
 
+
         return response()->json(array(
             'carts'=> $carts ,
             'cartsQty'=> $cartsQty ,
             'cartTotal'=> $cartTotal ,
         ));
     }//end mini cart section
+
+    //RemoveMiniCart method start
+
+    public function RemoveMiniCart($rowId){
+        Cart::remove($rowId);
+        return response()->json(['success' =>'Product Remove From Cart']);
+    }
+    //RemoveMiniCart method end
+
 }
