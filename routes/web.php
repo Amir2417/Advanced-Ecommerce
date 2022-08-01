@@ -85,6 +85,7 @@ Route::get('/minicart/product-remove/{rowId}', [CartController::class, 'RemoveMi
 Route::POST('/add-to-wishlist/{product_id}', [CartController::class, 'AddToWishList']);
 //WishList Data show
 Route::get('/wishlist',[WishlistController::class,'ViewWishList'])->name('wishlist');
+Route::get('/get-wishlist-product',[WishlistController::class,'GetWishlistProduct']);
 
 // All Routes For Brands Section
 Route::prefix('brand')->group(function(){
