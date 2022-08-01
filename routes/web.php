@@ -12,6 +12,7 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SliderController;
+use App\Http\Controllers\User\WishlistController;
 
 
 
@@ -82,6 +83,8 @@ Route::get('/product/mini/cart', [CartController::class, 'AddMiniCart']);
 Route::get('/minicart/product-remove/{rowId}', [CartController::class, 'RemoveMiniCart']);
 // add to WishList
 Route::POST('/add-to-wishlist/{product_id}', [CartController::class, 'AddToWishList']);
+//WishList Data show
+Route::get('/wishlist',[WishlistController::class,'ViewWishList'])->name('wishlist');
 
 // All Routes For Brands Section
 Route::prefix('brand')->group(function(){

@@ -8,7 +8,7 @@
           <ul class="list-unstyled">
             <li><a href="#"><i class="icon fa fa-user"></i>@if(session()->get('language') == 'bangla')
             আমার প্রোফাইল @else My Profile @endif </a></li>
-            <li><a href="#"><i class="icon fa fa-heart"></i>@if(session()->get('language') == 'bangla')
+            <li><a href="{{ route('wishlist') }}"><i class="icon fa fa-heart"></i>@if(session()->get('language') == 'bangla')
             ইচ্ছেতালিকা @else Wishlist @endif</a></li>
             <li><a href="#"><i class="icon fa fa-shopping-cart"></i>@if(session()->get('language') == 'bangla')
             আমার কার্ট @else My Cart @endif</a></li>
