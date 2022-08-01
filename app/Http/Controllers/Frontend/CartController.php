@@ -66,4 +66,10 @@ class CartController extends Controller
     }
     //RemoveMiniCart method end
 
+    // AddToWishList method start
+    public function AddToWishList(Request $request,$product_id){
+        
+    }
+    // AddToWishList method end
+
 }

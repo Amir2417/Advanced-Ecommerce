@@ -354,8 +354,29 @@ function addToCart(){
         });
     }
     //miniCartRemove function end
+
+
+
 </script>
 {{-- end Mini Cart --}}
+
+{{-- Start WishList add  Page --}}
+<script>
+    function addToWishList(product_id){
+        $.ajax({
+            type:'POST',
+            dataType:'json',
+            url:"/add-to-wishlist/"+product_id,
+            success:function(data){
+                
+            }
+        });
+
+
+
+    }
+</script>
+{{-- End WishList add  Page --}}
 
 </body>
 </html>
