@@ -424,7 +424,8 @@ function addToCart(){
 						</div>
 					</td>
 					<td class="col-md-2">
-						<a href="#" class="btn-upper btn btn-primary">Add to cart</a>
+						<button class="btn btn-primary icon" type="button"  data-toggle="modal" data-target="#exampleModal"  id="${value.product_id}" onclick="productView(this.id)"> Add to Cart </button>
+                                  
 					</td>
 					<td class="col-md-1 close-btn">
 						<a href="#" class=""><i class="fa fa-times"></i></a>
