@@ -83,10 +83,21 @@ Route::get('/product/mini/cart', [CartController::class, 'AddMiniCart']);
 Route::get('/minicart/product-remove/{rowId}', [CartController::class, 'RemoveMiniCart']);
 // add to WishList
 Route::POST('/add-to-wishlist/{product_id}', [CartController::class, 'AddToWishList']);
-//WishList Data show
-Route::get('/wishlist',[WishlistController::class,'ViewWishList'])->name('wishlist');
-Route::get('/get-wishlist-product',[WishlistController::class,'GetWishlistProduct']);
-Route::get('/wishlist-remove/{id}',[WishlistController::class,'RemoveWishlist']);
+
+Route::group(['prefix'=>'user','middleware'=>['user','auth'],'namespace'=>'User'],
+    function(){
+        //WishList Data show
+        Route::get('/wishlist',[WishlistController::class,'ViewWishList'])->name('wishlist');
+        Route::get('/get-wishlist-product',[WishlistController::class,'GetWishlistProduct']);
+        Route::get('/wishlist-remove/{id}',[WishlistController::class,'RemoveWishlist']);
+    }
+);
+
+
+
+
+
+
 
 // All Routes For Brands Section
 Route::prefix('brand')->group(function(){
