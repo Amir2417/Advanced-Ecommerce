@@ -490,8 +490,8 @@ function addToCart(){
 
                 $.each(response.carts,function(key,value){
                     rows += `<tr>
-					<td class="col-md-2"><img src="/${value.options.image}" alt="imga"></td>
-					<td class="col-md-7">
+					<td class="col-md-2" style="text-align:center;"><img src="/${value.options.image}" alt="imga" style="width:60px;height:60px"></td>
+					<td class="col-md-2" >
 						<div class="product-name"><a href="#">${value.name}</a></div>
 
 						<div class="price">
@@ -499,6 +499,23 @@ function addToCart(){
 
 						</div>
 					</td>
+                    <td class="col-md-2" style="text-align:center;">
+                        ${value.options.color}
+                    </td>
+                    <td class="col-md-2" style="text-align:center;">
+                        ${value.options.size == null
+                            ? `<span>....</span>`
+                            :`<span>${value.options.size}</span>`
+                        }
+                    </td>
+                    <td class="col-md-2" style="text-align:center;">
+                        <button type="submit" class="btn btn-primary btn-sm">+</button>
+                        <input type="text" value="${value.qty}" min="1" max="100" style="width:25px;">
+                        <button type="submit" class="btn btn-danger btn-sm">-</button>
+                    </td>
+                    <td class="col-md-2" style="text-align:center;">
+                        $${value.subtotal}
+                    </td>
 
 					<td class="col-md-1 close-btn">
 						<button type="submit" class="" id="${value.id}" onclick="RemoveWishlist(this.id)"><i class="fa fa-times"></i></button>
