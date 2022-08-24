@@ -93,6 +93,7 @@ Route::group(['prefix'=>'user','middleware'=>['user','auth'],'namespace'=>'User'
         Route::get('/wishlist-remove/{id}',[WishlistController::class,'RemoveWishlist']);
         //Mycart Data show
         Route::get('/mycart',[CartPageController::class,'ViewMyCart'])->name('mycart');
+        Route::get('/get-cart-product',[CartPageController::class,'GetCartlistProduct']);
     }
 );
 

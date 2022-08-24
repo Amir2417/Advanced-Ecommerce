@@ -29,7 +29,7 @@
 					<th colspan="4" class="heading-title">MyCart</th>
 				</tr>
 			</thead>
-			<tbody id="mycart">
+			<tbody id="cartPage">
 
 
 			</tbody>
