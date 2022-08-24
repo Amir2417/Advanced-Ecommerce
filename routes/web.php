@@ -13,6 +13,7 @@ use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\User\WishlistController;
+use App\Http\Controllers\User\CartPageController;
 
 
 
@@ -90,14 +91,10 @@ Route::group(['prefix'=>'user','middleware'=>['user','auth'],'namespace'=>'User'
         Route::get('/wishlist',[WishlistController::class,'ViewWishList'])->name('wishlist');
         Route::get('/get-wishlist-product',[WishlistController::class,'GetWishlistProduct']);
         Route::get('/wishlist-remove/{id}',[WishlistController::class,'RemoveWishlist']);
+        //Mycart Data show
+        Route::get('/mycart',[CartPageController::class,'ViewMyCart'])->name('mycart');
     }
 );
-
-
-
-
-
-
 
 // All Routes For Brands Section
 Route::prefix('brand')->group(function(){
