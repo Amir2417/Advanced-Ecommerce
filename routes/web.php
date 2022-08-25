@@ -94,6 +94,7 @@ Route::group(['prefix'=>'user','middleware'=>['user','auth'],'namespace'=>'User'
         //Mycart Data show
         Route::get('/mycart',[CartPageController::class,'ViewMyCart'])->name('mycart');
         Route::get('/get-cart-product',[CartPageController::class,'GetCartlistProduct']);
+        Route::get('/cart-remove/{rowId}',[CartPageController::class,'RemoveCart']);
     }
 );
 

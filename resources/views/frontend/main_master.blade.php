@@ -518,7 +518,7 @@ function addToCart(){
                     </td>
 
 					<td class="col-md-1 close-btn">
-						<button type="submit" class="" id="${value.id}" onclick="RemoveWishlist(this.id)"><i class="fa fa-times"></i></button>
+						<button type="submit" class="" id="${value.rowId}" onclick="RemoveCart(this.id)"><i class="fa fa-times"></i></button>
 					</td>
 				</tr>`
                 });
@@ -528,15 +528,16 @@ function addToCart(){
     }
     cart();
 
-    // wishlist product Remove start
+    // cart product Remove start
 
-    function RemoveWishlist(id){
+    function RemoveCart(id){
         $.ajax({
             type:"GET",
-            url:'/user/wishlist-remove/'+id,
+            url:'/user/cart-remove/'+id,
             dataType:'json',
             success:function(data){
-                wishlist();
+              cart();
+              miniCart();
                 //Start Sweet Alert Message
                 const Toast = Swal.mixin({
                 toast: true,
@@ -562,7 +563,7 @@ function addToCart(){
             }
         });
     }
-    // wishlist product Remove end
+    // cart product Remove end
 </script>
 
 {{-- Load My Cart End--}}
