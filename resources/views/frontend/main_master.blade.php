@@ -509,7 +509,7 @@ function addToCart(){
                         }
                     </td>
                     <td class="col-md-2" style="text-align:center;">
-                        <button type="submit" class="btn btn-danger btn-sm id="${value.rowId}" onclick="CartDecrement(this.id)"">-</button>
+                        <button type="submit" class="btn btn-danger btn-sm" id="${value.rowId}" onclick="CartDecrement(this.id)">-</button>
 
                         <input type="text" value="${value.qty}" min="1" max="100" style="width:25px;">
 
@@ -580,6 +580,23 @@ function addToCart(){
         });
     }
  // ---------- END CART INCREMENT -----///
+//  CART DECREMENT //
+
+    function CartDecrement(rowId){
+        $.ajax({
+            type:'GET',
+            url: "/cart-decrement/"+rowId,
+            dataType:'json',
+            success:function(data){
+                cart();
+                miniCart();
+            }
+        });
+    }
+
+
+
+//  CART DECREMENT END//
 </script>
 
 {{-- Load My Cart End--}}
