@@ -91,12 +91,13 @@ Route::group(['prefix'=>'user','middleware'=>['user','auth'],'namespace'=>'User'
         Route::get('/wishlist',[WishlistController::class,'ViewWishList'])->name('wishlist');
         Route::get('/get-wishlist-product',[WishlistController::class,'GetWishlistProduct']);
         Route::get('/wishlist-remove/{id}',[WishlistController::class,'RemoveWishlist']);
-        //Mycart Data show
-        Route::get('/mycart',[CartPageController::class,'ViewMyCart'])->name('mycart');
-        Route::get('/get-cart-product',[CartPageController::class,'GetCartlistProduct']);
-        Route::get('/cart-remove/{rowId}',[CartPageController::class,'RemoveCart']);
+
     }
 );
+//Mycart Data show
+Route::get('/mycart',[CartPageController::class,'ViewMyCart'])->name('mycart');
+Route::get('/user/get-cart-product',[CartPageController::class,'GetCartlistProduct']);
+Route::get('/user/cart-remove/{rowId}',[CartPageController::class,'RemoveCart']);
 
 // All Routes For Brands Section
 Route::prefix('brand')->group(function(){
