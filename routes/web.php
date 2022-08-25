@@ -98,6 +98,7 @@ Route::group(['prefix'=>'user','middleware'=>['user','auth'],'namespace'=>'User'
 Route::get('/mycart',[CartPageController::class,'ViewMyCart'])->name('mycart');
 Route::get('/user/get-cart-product',[CartPageController::class,'GetCartlistProduct']);
 Route::get('/user/cart-remove/{rowId}',[CartPageController::class,'RemoveCart']);
+Route::get('/cart-increment/{rowId}', [CartPageController::class, 'CartIncrement']);
 
 // All Routes For Brands Section
 Route::prefix('brand')->group(function(){
