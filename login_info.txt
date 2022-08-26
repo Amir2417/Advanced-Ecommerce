@@ -1,0 +1,13 @@
+Admin DashBoard Information:
+ 
+Email : admin@gmail.com
+Password: 12345678
+
+User Dashboard Information :
+
+Email: user@gmail.com
+Password : 12345678
+
+Email: akash@gmail.com
+Password : 12345678
+

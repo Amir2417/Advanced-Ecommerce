@@ -155,9 +155,21 @@ Route::prefix('products')->group(function(){
 });
 
 //manage-slider
-// All Routes For Brands Section
+
 Route::prefix('slider')->group(function(){
     Route::get('/view',[SliderController::class,'SliderView'])->name('manage-slider');
+    Route::post('/store',[SliderController::class,'SliderStore'])->name('slider.store');
+    Route::get('/edit/{id}',[SliderController::class,'SliderEdit'])->name('slider.edit');
+    Route::post('/update',[SliderController::class,'SliderUpdate'])->name('slider.update');
+    Route::get('/delete/{id}',[SliderController::class,'SliderDelete'])->name('slider.delete');
+    //slider.inactive
+    Route::get('/inactive/{id}',[SliderController::class,'SliderInactive'])->name('slider.inactive');
+    Route::get('/active/{id}',[SliderController::class,'SliderActive'])->name('slider.active');
+});
+//manage-coupons
+
+Route::prefix('coupons')->group(function(){
+    Route::get('/index',[SliderController::class,'index'])->name('coupons');
     Route::post('/store',[SliderController::class,'SliderStore'])->name('slider.store');
     Route::get('/edit/{id}',[SliderController::class,'SliderEdit'])->name('slider.edit');
     Route::post('/update',[SliderController::class,'SliderUpdate'])->name('slider.update');

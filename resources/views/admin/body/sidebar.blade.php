@@ -1,35 +1,35 @@
 <aside class="main-sidebar">
     <!-- sidebar-->
-    <section class="sidebar">	
-		
+    <section class="sidebar">
+
         <div class="user-profile">
 			<div class="ulogo">
 				 <a href="{{ url('/admin/dashboard')}}">
 				  <!-- logo for regular state and mobile devices -->
-					 <div class="d-flex align-items-center justify-content-center">					 	
+					 <div class="d-flex align-items-center justify-content-center">
 						  <img src="{{ asset('backend/images/logo-dark.png') }}" alt="">
-                          
+
 						  <h3><b>SkyLight</b> Shop</h3>
 					 </div>
 				</a>
 			</div>
         </div>
-      @php 
+      @php
 
         $prefix = Request::route()->getPrefix();
         $route = Route::current()->getName();
 
       @endphp
       <!-- sidebar menu-->
-      <ul class="sidebar-menu" data-widget="tree">  
-		  
+      <ul class="sidebar-menu" data-widget="tree">
+
 		<li class="{{ ( $route == 'dashboard')?'active':''  }}">
           <a href="{{ url('admin/dashboard') }}">
             <i data-feather="pie-chart"></i>
 			<span>Dashboard</span>
           </a>
-        </li>  
-		
+        </li>
+
         <li class="treeview {{ ($prefix == '/brand')?'active':''}}">
           <a href="#">
             <i data-feather="message-circle"></i>
@@ -40,10 +40,10 @@
           </a>
           <ul class="treeview-menu">
             <li class="{{ ( $route == 'all.brands')?'active':''  }}"><a href="{{ route('all.brands') }}"><i class="ti-more"></i>All Brands</a></li>
-            
+
           </ul>
-        </li> 
-		  
+        </li>
+
         <li class="treeview {{ ($prefix == '/category')?'active':''}}">
           <a href="#">
             <i data-feather="mail"></i> <span>Category</span>
@@ -55,10 +55,10 @@
             <li class="{{ ( $route == 'all.category')?'active':''  }}"><a href="{{ route('all.category') }}"><i class="ti-more"></i>All Category</a></li>
             <li class="{{ ( $route == 'all.subcategory')?'active':''  }}"><a href="{{ route('all.subcategory')}}"><i class="ti-more"></i>SubCategory</a></li>
             <li class="{{ ( $route == 'all.subsubcategory')?'active':''  }}"><a href="{{ route('all.subsubcategory')}}"><i class="ti-more"></i>Sub SubCategory</a></li>
-           
+
           </ul>
         </li>
-		
+
         <li class="treeview">
           <a href="#">
             <i data-feather="file"></i>
@@ -70,9 +70,9 @@
           <ul class="treeview-menu {{ ($prefix == '/category')?'active':''}}">
             <li class="{{ ( $route == 'add-products')?'active':''  }}"><a href="{{ route('add-products')}}"><i class="ti-more"></i>Add Products</a></li>
             <li class="{{ ( $route == 'manage-products')?'active':''  }}"><a href="{{ route('manage-products')}}"><i class="ti-more"></i>Manage All Products</a></li>
-          
+
           </ul>
-        </li> 		  
+        </li>
         <li class="treeview">
           <a href="#">
           <i data-feather="file"></i>
@@ -83,13 +83,24 @@
           </a>
           <ul class="treeview-menu {{ ($prefix == '/slider')?'active':''}}">
             <li class="{{ ( $route == 'manage-slider')?'active':''  }}"><a href="{{ route('manage-slider')}}"><i class="ti-more"></i>Slider</a></li>
-            
-          
           </ul>
-        </li> 		  
-		 
+        </li>
+        {{-- Coupon --}}
+        <li class="treeview">
+          <a href="#">
+          <i data-feather="file"></i>
+            <span>Coupon</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu {{ ($prefix == '/coupon')?'active':''}}">
+            <li class="{{ ( $route == 'coupons')?'active':''  }}"><a href="{{ route('coupons')}}"><i class="ti-more"></i>Coupon</a></li>
+          </ul>
+        </li>
+
         <li class="header nav-small-cap">User Interface</li>
-		  
+
         <li class="treeview">
           <a href="#">
             <i data-feather="grid"></i>
@@ -109,7 +120,7 @@
             <li><a href="components_progress_bars.html"><i class="ti-more"></i>Progress Bars</a></li>
           </ul>
         </li>
-		
+
 		<li class="treeview">
           <a href="#">
             <i data-feather="credit-card"></i>
@@ -123,13 +134,13 @@
 			<li><a href="card_basic.html"><i class="ti-more"></i>Basic Cards</a></li>
 			<li><a href="card_color.html"><i class="ti-more"></i>Cards Color</a></li>
 		  </ul>
-        </li>  
-		  
-        
-        
+        </li>
+
+
+
       </ul>
     </section>
-	
+
 	<div class="sidebar-footer">
 		<!-- item-->
 		<a href="javascript:void(0)" class="link" data-toggle="tooltip" title="" data-original-title="Settings" aria-describedby="tooltip92529"><i class="ti-settings"></i></a>
