@@ -11,6 +11,7 @@
                 <div class="box">
                     <div class="box-header with-border">
                         <h3 class="box-title">Slider List</h3>
+                        
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
@@ -57,7 +58,7 @@
                                             <a class="btn btn-primary" href="{{ route('slider.edit',$item->id) }}" title="Edit Data"><i class="fa fa-pencil"></i></a>
 
                                             <a class="btn btn-danger" id="delete" href="{{ route('slider.delete',$item->id) }}" title="Delete Data"><i class="fa fa-trash"></i></a>
-                                            
+
                                             @if($item->status ==1)
                                             <a class="btn btn-primary" href="{{ route('slider.inactive',$item->id) }}" title="InActive Now"><i class="fa fa-arrow-down"></i></a>
                                             @else

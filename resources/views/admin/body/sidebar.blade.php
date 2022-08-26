@@ -96,6 +96,7 @@
           </a>
           <ul class="treeview-menu {{ ($prefix == '/coupon')?'active':''}}">
             <li class="{{ ( $route == 'coupons')?'active':''  }}"><a href="{{ route('coupons')}}"><i class="ti-more"></i>Coupon</a></li>
+            <li class="{{ ( $route == 'coupon.show')?'active':''  }}"><a href="{{ route('coupon.show')}}"><i class="ti-more"></i>Coupon</a></li>
           </ul>
         </li>
 

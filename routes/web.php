@@ -12,6 +12,7 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SliderController;
+use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\User\CartPageController;
 
@@ -169,14 +170,13 @@ Route::prefix('slider')->group(function(){
 //manage-coupons
 
 Route::prefix('coupons')->group(function(){
-    Route::get('/index',[SliderController::class,'index'])->name('coupons');
-    Route::post('/store',[SliderController::class,'SliderStore'])->name('slider.store');
-    Route::get('/edit/{id}',[SliderController::class,'SliderEdit'])->name('slider.edit');
-    Route::post('/update',[SliderController::class,'SliderUpdate'])->name('slider.update');
-    Route::get('/delete/{id}',[SliderController::class,'SliderDelete'])->name('slider.delete');
-    //slider.inactive
-    Route::get('/inactive/{id}',[SliderController::class,'SliderInactive'])->name('slider.inactive');
-    Route::get('/active/{id}',[SliderController::class,'SliderActive'])->name('slider.active');
+    Route::get('/index',[CouponController::class,'index'])->name('coupons');
+    Route::get('/show',[CouponController::class,'show'])->name('coupon.show');
+    Route::post('/store',[CouponController::class,'store'])->name('coupon.store');
+    Route::get('/edit/{id}',[CouponController::class,'edit'])->name('coupon.edit');
+    Route::post('/update/{id}',[CouponController::class,'update'])->name('coupon.update');
+    Route::get('/delete/{id}',[CouponController::class,'delete'])->name('coupon.delete');
+
 });
 
 
