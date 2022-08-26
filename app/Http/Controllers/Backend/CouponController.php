@@ -10,7 +10,7 @@ use Carbon\Carbon;
 class CouponController extends Controller
 {
     public function index(){
-        $coupons = Coupon::orderBy('id','DESC')->get();
+        $coupons = Coupon::latest()->orderBy('id','DESC')->get();
         return view('backend.coupon.index',compact('coupons'));
     }
     public function show(){
@@ -51,6 +51,14 @@ class CouponController extends Controller
             'alert-type'=>'success',
         );
         return Redirect()->route('coupons')->with($notification);
+    }
+    public function delete($id){
+        Coupon::findOrFail($id)->delete();
+        $notification = array(
+            'message' => "Coupon Deleted Succesfully",
+            'alert-type'=>'info',
+        );
+        return Redirect()->back()->with($notification);
     }
 
 
