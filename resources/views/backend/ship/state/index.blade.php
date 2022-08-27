@@ -37,7 +37,7 @@
                                             <span class="badge badge-pill badge-danger">Inactive</span>
                                             @endif
                                          </td>
-                                        <td>
+                                        <td width="30%">
                                             <a class="btn btn-primary" href="{{ route('state.edit',$item->id) }}" title="Edit Data"><i class="fa fa-pencil"></i></a>
                                             <a class="btn btn-danger" id="delete" href="{{ route('state.delete',$item->id) }}" title="Delete Data"><i class="fa fa-trash"></i></a>
 
@@ -96,7 +96,7 @@
                                     <h5>State Name<span class="text-danger">*</span>
                                     </h5>
                                     <div class="controls">
-                                        <input type="text" name="district_name" class="form-control">
+                                        <input type="text" name="state_name" class="form-control">
                                         @error('state_name')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror

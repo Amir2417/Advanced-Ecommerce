@@ -143,5 +143,21 @@ class ShippingAreaController extends Controller
         $districts = ShipDistrict::where('division_id',$division_id)->orderBy('district_name','ASC')->get();
         return json_encode($districts);
     }
+    public function state_store(Request $request){
+        $request->validate([
+            'division_id'=>'required',
+            'district_id'=>'required',
+            'state_name'=>'required',
+        ]);
+        $data = new ShipState();
+        $input = $request->all();
+        $data->fill($input)->save();
+
+        $notification = array(
+            'message' => 'State Inserted Successfully',
+            'alert-type' => 'success',
+        );
+        return Redirect()->back()->with($notification);
+    }
 
 }
