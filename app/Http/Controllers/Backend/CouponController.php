@@ -60,6 +60,4 @@ class CouponController extends Controller
         );
         return Redirect()->back()->with($notification);
     }
-
-
 }

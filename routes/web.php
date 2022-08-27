@@ -13,6 +13,7 @@ use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\CouponController;
+use App\Http\Controllers\Backend\ShippingAreaController;
 use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\User\CartPageController;
 
@@ -167,7 +168,8 @@ Route::prefix('slider')->group(function(){
     Route::get('/inactive/{id}',[SliderController::class,'SliderInactive'])->name('slider.inactive');
     Route::get('/active/{id}',[SliderController::class,'SliderActive'])->name('slider.active');
 });
-//manage-coupons
+
+//manage-coupons all routes
 
 Route::prefix('coupons')->group(function(){
     Route::get('/index',[CouponController::class,'index'])->name('coupons');
@@ -176,6 +178,16 @@ Route::prefix('coupons')->group(function(){
     Route::get('/edit/{id}',[CouponController::class,'edit'])->name('coupon.edit');
     Route::post('/update/{id}',[CouponController::class,'update'])->name('coupon.update');
     Route::get('/delete/{id}',[CouponController::class,'delete'])->name('coupon.delete');
+
+});
+//manage-shipping-division all routes
+
+Route::prefix('shipping')->group(function(){
+    Route::get('/index',[ShippingAreaController::class,'index'])->name('division_management');
+    Route::post('/store',[ShippingAreaController::class,'store'])->name('division.store');
+    Route::get('/edit/{id}',[ShippingAreaController::class,'edit'])->name('division.edit');
+    Route::post('/update/{id}',[ShippingAreaController::class,'update'])->name('division.update');
+    Route::get('/delete/{id}',[ShippingAreaController::class,'delete'])->name('division.delete');
 
 });
 

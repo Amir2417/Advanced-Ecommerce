@@ -95,8 +95,22 @@
             </span>
           </a>
           <ul class="treeview-menu {{ ($prefix == '/coupon')?'active':''}}">
-            <li class="{{ ( $route == 'coupons')?'active':''  }}"><a href="{{ route('coupons')}}"><i class="ti-more"></i>Coupon</a></li>
-            <li class="{{ ( $route == 'coupon.show')?'active':''  }}"><a href="{{ route('coupon.show')}}"><i class="ti-more"></i>Coupon</a></li>
+            <li class="{{ ( $route == 'coupons')?'active':''  }}"><a href="{{ route('coupons')}}"><i class="ti-more"></i>Coupon Management</a></li>
+            <li class="{{ ( $route == 'coupon.show')?'active':''  }}"><a href="{{ route('coupon.show')}}"><i class="ti-more"></i>Add Coupon</a></li>
+          </ul>
+        </li>
+        {{-- Shipping --}}
+        <li class="treeview">
+          <a href="#">
+          <i data-feather="file"></i>
+            <span>Shipping Area </span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu {{ ($prefix == '/shipping')?'active':''}}">
+            <li class="{{ ( $route == 'division_management')?'active':''  }}"><a href="{{ route('division_management')}}"><i class="ti-more"></i>Ship Division</a></li>
+
           </ul>
         </li>
 
