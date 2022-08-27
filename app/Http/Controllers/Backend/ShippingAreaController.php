@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ShipDivision;
+use App\Models\ShipDistrict;
 use Carbon\Carbon;
 
 class ShippingAreaController extends Controller
@@ -64,4 +65,30 @@ class ShippingAreaController extends Controller
         );
         return Redirect()->back()->with($notification);
     }
+    // end ship division
+
+    // start ship district method
+    public function district_index(){
+        $divisions = ShipDivision::orderBy('division_name','ASC')->get();
+        $districts = ShipDistrict::orderBy('id','DESC')->get();
+        return view('backend.ship.district.index',compact('divisions','districts'));
+    }
+    public function district_store(Request $request){
+        $request->validate([
+            'division_id'=>'required',
+            'district_name'=>'required',
+        ]);
+        $data = new ShipDistrict();
+        $input = $request->all();
+        $data->fill($input)->save();
+
+        $notification = array(
+            'message' => "District Inserted Succesfully",
+            'alert-type'=>'success',
+        );
+        return Redirect()->route('district_management')->with($notification);
+
+    }
+
+
 }

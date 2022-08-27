@@ -183,13 +183,24 @@ Route::prefix('coupons')->group(function(){
 //manage-shipping-division all routes
 
 Route::prefix('shipping')->group(function(){
+
     Route::get('/index',[ShippingAreaController::class,'index'])->name('division_management');
-    Route::post('/store',[ShippingAreaController::class,'store'])->name('division.store');
-    Route::get('/edit/{id}',[ShippingAreaController::class,'edit'])->name('division.edit');
-    Route::post('/update/{id}',[ShippingAreaController::class,'update'])->name('division.update');
-    Route::get('/delete/{id}',[ShippingAreaController::class,'destroy'])->name('division.delete');
-    Route::get('/inactive/{id}',[ShippingAreaController::class,'inactive'])->name('division.inactive');
-    Route::get('/active/{id}',[ShippingAreaController::class,'active'])->name('division.active');
+    Route::post('/division/store',[ShippingAreaController::class,'store'])->name('division.store');
+    Route::get('/division/edit/{id}',[ShippingAreaController::class,'edit'])->name('division.edit');
+    Route::post('/division/update/{id}',[ShippingAreaController::class,'update'])->name('division.update');
+    Route::get('/division/delete/{id}',[ShippingAreaController::class,'destroy'])->name('division.delete');
+    Route::get('/division/inactive/{id}',[ShippingAreaController::class,'inactive'])->name('division.inactive');
+    Route::get('/division/active/{id}',[ShippingAreaController::class,'active'])->name('division.active');
+
+    // Ship Division All Routes
+
+    Route::get('/district/index',[ShippingAreaController::class,'district_index'])->name('district_management');
+    Route::post('/district/store',[ShippingAreaController::class,'district_store'])->name('district.store');
+    Route::get('/district/edit/{id}',[ShippingAreaController::class,'district_edit'])->name('district.edit');
+    Route::post('/district/update/{id}',[ShippingAreaController::class,'district_update'])->name('district.update');
+    Route::get('/district/delete/{id}',[ShippingAreaController::class,'district_destroy'])->name('district.delete');
+    Route::get('/district/inactive/{id}',[ShippingAreaController::class,'district_inactive'])->name('district.inactive');
+    Route::get('/district/active/{id}',[ShippingAreaController::class,'district_active'])->name('district.active');
 
 });
 
