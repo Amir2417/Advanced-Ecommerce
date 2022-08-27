@@ -30,7 +30,7 @@
                                     <h5>District Name<span class="text-danger">*</span>
                                     </h5>
                                     <div class="controls">
-                                        <input type="text" name="district_name" class="form-control">
+                                        <input type="text" name="district_name" value="{{ $districts->district_name }}" class="form-control">
                                         @error('district_name')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
