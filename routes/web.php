@@ -202,6 +202,16 @@ Route::prefix('shipping')->group(function(){
     Route::get('/district/inactive/{id}',[ShippingAreaController::class,'district_inactive'])->name('district.inactive');
     Route::get('/district/active/{id}',[ShippingAreaController::class,'district_active'])->name('district.active');
 
+    // Ship State All Routes
+
+    Route::get('/state/index',[ShippingAreaController::class,'state_index'])->name('state_management');
+    Route::post('/state/store',[ShippingAreaController::class,'state_store'])->name('state.store');
+    Route::get('/state/edit/{id}',[ShippingAreaController::class,'state_edit'])->name('state.edit');
+    Route::post('/state/update/{id}',[ShippingAreaController::class,'state_update'])->name('state.update');
+    Route::get('/state/delete/{id}',[ShippingAreaController::class,'state_destroy'])->name('state.delete');
+    Route::get('/state/inactive/{id}',[ShippingAreaController::class,'state_inactive'])->name('state.inactive');
+    Route::get('/state/active/{id}',[ShippingAreaController::class,'state_active'])->name('state.active');
+
 });
 
 

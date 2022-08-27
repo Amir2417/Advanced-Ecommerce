@@ -111,6 +111,7 @@
           <ul class="treeview-menu {{ ($prefix == '/shipping')?'active':''}}">
             <li class="{{ ( $route == 'division_management')?'active':''  }}"><a href="{{ route('division_management')}}"><i class="ti-more"></i>Ship Division</a></li>
             <li class="{{ ( $route == 'district_management')?'active':''  }}"><a href="{{ route('district_management')}}"><i class="ti-more"></i>Ship District</a></li>
+            <li class="{{ ( $route == 'state_management')?'active':''  }}"><a href="{{ route('state_management')}}"><i class="ti-more"></i>Ship State</a></li>
 
           </ul>
         </li>

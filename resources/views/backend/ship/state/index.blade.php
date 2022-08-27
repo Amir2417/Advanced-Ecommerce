@@ -7,7 +7,7 @@
             <div class="col-8">
                 <div class="box">
                     <div class="box-header with-border">
-                        <h3 class="box-title">District List</h3>
+                        <h3 class="box-title">State List</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
@@ -17,16 +17,18 @@
                                     <tr>
                                         <th>Division Name</th>
                                         <th>District Name</th>
+                                        <th>State Name</th>
                                         <th>Status</th>
                                         <th>Action</th>
 
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($districts as $item)
+                                    @foreach($states as $item)
                                     <tr>
                                         <td>{{$item->division->division_name}}</td>
-                                        <td>{{$item->district_name}}</td>
+                                        <td>{{$item->district->district_name}}</td>
+                                        <td>{{$item->state_name}}</td>
                                         <td>
                                             @if($item->status == 1)
                                             <span class="badge badge-pill badge-success">Active</span>
@@ -35,13 +37,13 @@
                                             @endif
                                          </td>
                                         <td>
-                                            <a class="btn btn-primary" href="{{ route('district.edit',$item->id) }}" title="Edit Data"><i class="fa fa-pencil"></i></a>
-                                            <a class="btn btn-danger" id="delete" href="{{ route('district.delete',$item->id) }}" title="Delete Data"><i class="fa fa-trash"></i></a>
+                                            <a class="btn btn-primary" href="{{ route('state.edit',$item->id) }}" title="Edit Data"><i class="fa fa-pencil"></i></a>
+                                            <a class="btn btn-danger" id="delete" href="{{ route('state.delete',$item->id) }}" title="Delete Data"><i class="fa fa-trash"></i></a>
 
                                             @if($item->status == 1)
-                                            <a class="btn btn-danger" href="{{ route('district.inactive',$item->id) }}" title="Inactive Now"><i class="fa fa-arrow-down"></i></a>
+                                            <a class="btn btn-danger" href="{{ route('state.inactive',$item->id) }}" title="Inactive Now"><i class="fa fa-arrow-down"></i></a>
                                             @else
-                                            <a class="btn btn-success" href="{{ route('district.active',$item->id) }}" title="Active Now"><i class="fa fa-arrow-up"></i></a>
+                                            <a class="btn btn-success" href="{{ route('state.active',$item->id) }}" title="Active Now"><i class="fa fa-arrow-up"></i></a>
                                             @endif
                                         </td>
 
@@ -58,10 +60,10 @@
             <div class="col-md-4">
                 <div class="box">
                     <div class="box-header with-border">
-                            <h3 class="box-title">Add District</h3>
+                            <h3 class="box-title">Add State</h3>
                     </div>
                         <div class="card-body">
-                            <form action="{{ route('district.store')}}" method="post">
+                            <form action="{{ route('state.store')}}" method="post">
                                 @csrf
                                 <div class="form-group">
 								    <h5>Division Select <span class="text-danger">*</span></h5>
@@ -78,17 +80,31 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <h5>District Name<span class="text-danger">*</span>
+								    <h5>District Select <span class="text-danger">*</span></h5>
+                                    <div class="controls">
+                                        <select name="district_id" class="form-control">
+                                            <option value="" selected="" disabled="">Select District</option>
+                                            @foreach($divisions as $division)
+                                            <option value="{{ $division->id }}">{{$division->division_name}}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('district_id')
+                                                <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <h5>State Name<span class="text-danger">*</span>
                                     </h5>
                                     <div class="controls">
                                         <input type="text" name="district_name" class="form-control">
-                                        @error('district_name')
+                                        @error('state_name')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
                                 </div>
                                 <div class="text-xs-right">
-                                    <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Add District">
+                                    <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Add State">
                                 </div>
                             </form>
                         </div>
