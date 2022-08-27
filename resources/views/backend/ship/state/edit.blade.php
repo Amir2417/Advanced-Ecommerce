@@ -41,10 +41,10 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <h5>District Name<span class="text-danger">*</span>
+                                    <h5>State Name<span class="text-danger">*</span>
                                     </h5>
                                     <div class="controls">
-                                        <input type="text" name="district_name" value="{{ $states->state_name }}" class="form-control">
+                                        <input type="text" name="state_name" value="{{ $states->state_name }}" class="form-control">
                                         @error('district_name')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
