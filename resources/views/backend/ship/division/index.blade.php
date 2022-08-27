@@ -36,8 +36,14 @@
                                             @endif
                                          </td>
                                         <td>
-                                            <a class="btn btn-primary" href="{{ route('category.edit',$item->id) }}" title="Edit Data"><i class="fa fa-pencil"></i></a>
-                                            <a class="btn btn-danger" id="delete" href="{{ route('category.delete',$item->id) }}" title="Delete Data"><i class="fa fa-trash"></i></a>
+                                            <a class="btn btn-primary" href="{{ route('division.edit',$item->id) }}" title="Edit Data"><i class="fa fa-pencil"></i></a>
+                                            <a class="btn btn-danger" id="delete" href="{{ route('division.delete',$item->id) }}" title="Delete Data"><i class="fa fa-trash"></i></a>
+
+                                            @if($item->status == 1)
+                                            <a class="btn btn-danger" href="{{ route('division.inactive',$item->id) }}" title="Inactive Now"><i class="fa fa-arrow-down"></i></a>
+                                            @else
+                                            <a class="btn btn-success" href="{{ route('division.active',$item->id) }}" title="Active Now"><i class="fa fa-arrow-up"></i></a>
+                                            @endif
                                         </td>
 
                                    @endforeach
@@ -69,7 +75,7 @@
                                     </div>
                                 </div>
                                 <div class="text-xs-right">
-                                    <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Add Category">
+                                    <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Add Division">
 
                                 </div>
                             </form>
