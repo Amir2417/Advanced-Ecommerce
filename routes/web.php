@@ -205,6 +205,7 @@ Route::prefix('shipping')->group(function(){
     // Ship State All Routes
 
     Route::get('/state/index',[ShippingAreaController::class,'state_index'])->name('state_management');
+    Route::get('/division/district/ajax/{division_id}',[ShippingAreaController::class,'get_district_data']);
     Route::post('/state/store',[ShippingAreaController::class,'state_store'])->name('state.store');
     Route::get('/state/edit/{id}',[ShippingAreaController::class,'state_edit'])->name('state.edit');
     Route::post('/state/update/{id}',[ShippingAreaController::class,'state_update'])->name('state.update');

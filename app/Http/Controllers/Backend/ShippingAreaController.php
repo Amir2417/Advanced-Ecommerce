@@ -139,5 +139,9 @@ class ShippingAreaController extends Controller
         $states = ShipState::orderBy('id','DESC')->get();
         return view('backend.ship.state.index',compact('divisions','districts','states'));
     }
+    public function get_district_data($division_id){
+        $districts = ShipDistrict::where('division_id',$division_id)->orderBy('district_name','ASC')->get();
+        return json_encode($districts);
+    }
 
 }

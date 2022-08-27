@@ -1,5 +1,6 @@
 @extends('admin.admin_master')
 @section('admin')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <div class="container-full">
     <div class="content">
@@ -84,9 +85,7 @@
                                     <div class="controls">
                                         <select name="district_id" class="form-control">
                                             <option value="" selected="" disabled="">Select District</option>
-                                            @foreach($divisions as $division)
-                                            <option value="{{ $division->id }}">{{$division->division_name}}</option>
-                                            @endforeach
+
                                         </select>
                                         @error('district_id')
                                                 <span class="text-danger">{{ $message }}</span>
@@ -115,5 +114,28 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('select[name ="division_id"]').on('change',function(){
+            var division_id = $(this).val();
+            if(division_id) {
+                $.ajax({
+                    url: "{{ url('/shipping/division/district/ajax') }}/"+division_id,
+                    type:"GET",
+                    dataType:"json",
+                    success:function(data) {
+                        var d = $('select[name="district_id"]').empty();
+                        $.each(data,function(key,value){
+                            $('select[name ="district_id"]').append('<option value="'+ value.id +'">' + value.   district_name + '</option>');
+                        });
+                    },
+                });
+            }
+            else{
+                alert('danger');
+            }
+        });
+    });
+</script>
 
 @endsection
