@@ -7,10 +7,10 @@
             <div class="col-md-12">
                 <div class="box">
                     <div class="box-header with-border">
-                            <h3 class="box-title">Edit District</h3>
+                            <h3 class="box-title">Edit State</h3>
                     </div>
                         <div class="card-body">
-                            <form action="{{ route('district.update',$districts->id)}}" method="post">
+                            <form action="{{ route('state.update',$states->id)}}" method="post">
                                 @csrf
                                 <div class="form-group">
 								    <h5>Division Select <span class="text-danger">*</span></h5>
@@ -18,7 +18,7 @@
                                         <select name="division_id" class="form-control">
                                             <option value="" selected="" disabled="">Select Division</option>
                                             @foreach($divisions as $division)
-                                            <option value="{{ $division->id }}" {{ $division->id==$districts->division_id?'selected':''}}  >{{$division->division_name}}</option>
+                                            <option value="{{ $division->id }}" {{ $division->id==$states->division_id?'selected':''}}  >{{$division->division_name}}</option>
                                             @endforeach
                                         </select>
                                         @error('division_id')
@@ -27,10 +27,24 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+								    <h5>District Select <span class="text-danger">*</span></h5>
+                                    <div class="controls">
+                                        <select name="district_id" class="form-control">
+                                            <option value="" selected="" disabled="">Select District</option>
+                                            @foreach($districts as $district)
+                                            <option value="{{ $district->id }}" {{ $district->id==$states->district_id?'selected':''}}  >{{$district->district_name}}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('district_id')
+                                                <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <h5>District Name<span class="text-danger">*</span>
                                     </h5>
                                     <div class="controls">
-                                        <input type="text" name="district_name" value="{{ $districts->district_name }}" class="form-control">
+                                        <input type="text" name="district_name" value="{{ $states->state_name }}" class="form-control">
                                         @error('district_name')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
