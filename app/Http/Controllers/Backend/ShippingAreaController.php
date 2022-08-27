@@ -56,4 +56,12 @@ class ShippingAreaController extends Controller
         );
         return Redirect()->back()->with($notification);
     }
+    public function active($id){
+        ShipDivision::findOrFail($id)->update(['status'=>1]);
+        $notification = array(
+            'message' => "Division Active Succesfully",
+            'alert-type'=>'info',
+        );
+        return Redirect()->back()->with($notification);
+    }
 }
