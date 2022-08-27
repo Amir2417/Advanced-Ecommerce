@@ -100,10 +100,18 @@ class ShippingAreaController extends Controller
             'district_name'=>$request->district_name,
         ]);
         $notification = array(
-            'message' => "District Updated Succesfully",
+            'message' => "District Update Succesfully",
             'alert-type'=>'success',
         );
         return Redirect()->route('district_management')->with($notification);
+    }
+    public function district_destroy($id){
+        ShipDistrict::findOrFail($id)->delete();
+        $notification = array(
+            'message' => "District Delete Succesfully",
+            'alert-type'=>'info',
+        );
+        return Redirect()->back()->with($notification);
     }
 
 }
