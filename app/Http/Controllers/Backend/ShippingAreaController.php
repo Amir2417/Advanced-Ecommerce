@@ -121,5 +121,14 @@ class ShippingAreaController extends Controller
         );
         return Redirect()->back()->with($notification);
     }
+    public function district_active($id){
+        ShipDistrict::findOrFail($id)->update(['status'=>1]);
+        $notification = array(
+            'message' => 'District Active Successfully',
+            'alert-type' => 'success',
+        );
+        return Redirect()->back()->with($notification);
+    }
+    // End ship district method
 
 }
