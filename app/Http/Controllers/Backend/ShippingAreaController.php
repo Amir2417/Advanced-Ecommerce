@@ -113,5 +113,13 @@ class ShippingAreaController extends Controller
         );
         return Redirect()->back()->with($notification);
     }
+    public function district_inactive($id){
+        ShipDistrict::findOrFail($id)->update(['status'=>0]);
+        $notification = array(
+            'message' => "District Inactive Succesfully",
+            'alert-type'=>'success',
+        );
+        return Redirect()->back()->with($notification);
+    }
 
 }
