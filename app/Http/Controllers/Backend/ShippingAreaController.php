@@ -195,5 +195,13 @@ class ShippingAreaController extends Controller
         );
         return Redirect()->back()->with($notification);
     }
+    public function state_active($id){
+        ShipState::findOrFail($id)->update(['status'=>1]);
+        $notification = array(
+            'message' => 'State Active Successfully',
+            'alert-type' => 'success',
+        );
+        return Redirect()->back()->with($notification);
+    }
 
 }
