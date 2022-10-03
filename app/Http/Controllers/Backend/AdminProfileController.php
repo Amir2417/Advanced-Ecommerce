@@ -20,8 +20,8 @@ class AdminProfileController extends Controller
     }
     public function AdminProfileStore(Request $request){
         $data = Admin::find(1);
-        $data->name = $request->name; 
-        $data->email = $request->email; 
+        $data->name = $request->name;
+        $data->email = $request->email;
 
         if($request->file('profile_photo_path')){
             $file = $request->file('profile_photo_path');
@@ -41,7 +41,7 @@ class AdminProfileController extends Controller
 
     }
 
-    //Admin Change Password 
+    //Admin Change Password
     public function AdminChangePassword(){
         return view('admin.admin_change_password');
     }

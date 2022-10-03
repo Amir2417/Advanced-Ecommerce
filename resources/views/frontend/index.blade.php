@@ -584,7 +584,7 @@ SkyLight Shop
         <!-- /.section -->
         <!-- ============================================== FEATURED PRODUCTS : END ============================================== -->
         <!-- ============Skip Product_0 PRODUCTS ============================================== -->
-        <section class="section featured-product wow fadeInUp">
+        {{-- <section class="section featured-product wow fadeInUp">
           <h3 class="section-title">@if(session()->get('language') == 'bangla') {{ $skip_category_0->category_name_ban}} @else {{ $skip_category_0->category_name_en}} @endif</h3>
           <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
 
@@ -734,7 +734,7 @@ SkyLight Shop
             <!-- /.item -->
           </div>
           <!-- /.home-owl-carousel -->
-        </section>
+        </section> --}}
         <!-- /.section -->
         <!-- =========Skip Product_1 PRODUCTS : END ======= -->
         <!-- ============================================== WIDE PRODUCTS ============================================== -->
@@ -766,7 +766,7 @@ SkyLight Shop
 
         <!-- Skip Brand Product Start -->
 
-        <section class="section featured-product wow fadeInUp">
+        {{-- <section class="section featured-product wow fadeInUp">
           <h3 class="section-title">@if(session()->get('language') == 'bangla') {{ $skip_brand_0->brand_name_hin}} @else {{ $skip_brand_0->brand_name_en}} @endif</h3>
           <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
 
@@ -839,7 +839,7 @@ SkyLight Shop
             <!-- /.item -->
           </div>
           <!-- /.home-owl-carousel -->
-        </section>
+        </section> --}}
         <!-- /.section -->
         <!-- =========Skip Product_1 PRODUCTS : END ======= -->
 

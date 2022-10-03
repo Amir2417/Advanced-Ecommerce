@@ -16,7 +16,7 @@
                 </ul>
             </div>
             <div class="col-md-2">
-                
+
             </div>
             <div class="col-md-6">
                 <div class="card">
@@ -27,25 +27,25 @@
                         <div class="form-group">
                             <h5>User Name <span class="text-danger">*</span></h5>
                             <div class="controls">
-                                <input type="text" name="name" value="{{ $user->name}}" class="form-control" > 
+                                <input type="text" name="name" value="{{ $user->name}}" class="form-control" >
                             </div>
                         </div>
                         <div class="form-group">
                             <h5>User Email <span class="text-danger">*</span></h5>
                                 <div class="controls">
-                                    <input type="email" name="email" value="{{ $user->email}}" class="form-control" > 
+                                    <input type="email" name="email" value="{{ $user->email}}" class="form-control" >
                                 </div>
                         </div>
                             <div class="form-group">
                                 <h5>User Phone <span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <input type="text" name="phone" value="{{ $user->phone}}" class="form-control" > 
+                                        <input type="text" name="phone" value="{{ $user->phone}}" class="form-control" >
                                     </div>
                             </div>
                             <div class="form-group">
                                 <h5>User File <span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <input id="image" type="file" name="profile_photo_path" class="form-control" > 
+                                        <input id="image" type="file" name="profile_photo_path" class="form-control" >
                                     </div>
                             </div>
                             <div class="form-group">

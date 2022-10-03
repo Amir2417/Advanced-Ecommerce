@@ -86,6 +86,9 @@ Route::get('/product/mini/cart', [CartController::class, 'AddMiniCart']);
 Route::get('/minicart/product-remove/{rowId}', [CartController::class, 'RemoveMiniCart']);
 // add to WishList
 Route::POST('/add-to-wishlist/{product_id}', [CartController::class, 'AddToWishList']);
+// Route::POST('/coupon_apply', [CartController::class, 'coupon_apply']);
+// Route::get('/coupon_calculation', [CartController::class, 'coupon_calculation']);
+
 
 Route::group(['prefix'=>'user','middleware'=>['user','auth'],'namespace'=>'User'],
     function(){

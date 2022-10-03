@@ -12,6 +12,7 @@ use App\Models\Slider;
 use App\Models\Product;
 use App\Models\MultiImg;
 use Illuminate\Support\Facades\Hash;
+use Image;
 
 class IndexController extends Controller
 {
@@ -24,18 +25,18 @@ class IndexController extends Controller
         $specialOffer = Product::where('status',1)->where('special_offer',1)->orderBy('id','DESC')->limit(3)->get();
         $specialDeals = Product::where('status',1)->where('special_deals',1)->orderBy('id','DESC')->limit(3)->get();
         //skip function
-        $skip_category_0 = Category::skip(0)->first();
-        $skip_product_0 = Product::where('status',1)->where('category_id',$skip_category_0->id)->orderBy('id','DESC')->get();
+        // $skip_category_0 = Category::skip(0)->first();
+        // $skip_product_0 = Product::where('status',1)->where('category_id',$skip_category_0->id)->orderBy('id','DESC')->get();
 
-        $skip_category_1 = Category::skip(1)->first();
-        $skip_product_1 = Product::where('status',1)->where('category_id',$skip_category_1->id)->orderBy('id','DESC')->get();
+        // $skip_category_1 = Category::skip(1)->first();
+        // $skip_product_1 = Product::where('status',1)->where('category_id',$skip_category_1->id)->orderBy('id','DESC')->get();
 
-        $skip_brand_0 = Brand::skip(0)->first();
-        $skip_brand_product_0 = Product::where('status',1)->where('brand_id',$skip_brand_0->id)->orderBy('id','DESC')->get();
+        // $skip_brand_0 = Brand::skip(0)->first();
+        // $skip_brand_product_0 = Product::where('status',1)->where('brand_id',$skip_brand_0->id)->orderBy('id','DESC')->get();,'skip_category_0','skip_product_0','skip_category_1','skip_product_1','skip_brand_0','skip_brand_product_0'
 
-       
-        
-        return view('frontend.index',compact('categories','sliders','products','featured','hotDeals','specialOffer','specialDeals','skip_category_0','skip_product_0','skip_category_1','skip_product_1','skip_brand_0','skip_brand_product_0'));
+
+
+        return view('frontend.index',compact('categories','sliders','products','featured','hotDeals','specialOffer','specialDeals'));
     }
     public function UserLogout(){
         Auth::logout();
@@ -51,13 +52,18 @@ class IndexController extends Controller
         $data -> name = $request ->name;
         $data -> email = $request ->email;
         $data -> phone = $request -> phone;
-        
+
         if($request->file('profile_photo_path')){
             $file = $request -> file('profile_photo_path');
-            @unlink(public_path('upload/user_images/'.$data->profile_photo_path));
+            // @unlink(public_path('upload/user_images/'.$data->profile_photo_path));
             $filename = date('TmdHmi').$file->getClientOriginalName();
-            $file->move(public_path('upload/user_images'),$filename);
+            $file->move(('upload/user_images'),$filename);
             $data['profile_photo_path'] = $filename;
+
+        //     $image = $request->file('profile_photo_path');
+        // $image_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+        // Image::make($image)->resize(300,300)->save('upload/user_images/'.$image_gen);
+        // $save_url = 'upload/user_images/'.$image_gen;
         }
         $data->save();
         $notification = array(
@@ -77,7 +83,7 @@ class IndexController extends Controller
         'oldpassword' =>'required',
         'password' =>'required|confirmed',
        ]);
- 
+
        $hashPassword = Auth::user()->password;
        if( Hash::check($request->oldpassword,$hashPassword)){
            $user = User::find(Auth::id());
@@ -87,7 +93,7 @@ class IndexController extends Controller
            $noitifation = array(
                'message' => 'Password Change Successfully',
                'alert-type'=>'primary',
-           ); 
+           );
            return Redirect()->route('user.logout')->with($noitifation);
        }
        else{
@@ -95,10 +101,10 @@ class IndexController extends Controller
        }
     }
     public function ProductDetails($id,$slug){
-        
-       
+
+
         $products = Product::findOrFail($id);
-        
+
 
         $color_en = $products->product_color_en;
         $product_color_en = explode(',',$color_en);
@@ -119,7 +125,7 @@ class IndexController extends Controller
         $hotDeals = Product::where('status',1)->where('hot_deals',1)->orderBy('id','DESC')->limit(3)->get();
         return view('frontend.product.product_details',compact('products','image','hotDeals','product_color_en','product_color_ban','product_size_en','product_size_ban','related_products'));
     }
-    
+
     public function TagWiseProduct($tag){
 
         if(session()->get('language')=='bangla'){
@@ -128,7 +134,7 @@ class IndexController extends Controller
         else{
             $products = Product::where('status',1)->where('product_tags_en',$tag)->orderBy('id','DESC')->paginate(3);
         }
-		
+
 		$categories = Category::orderBy('category_name_en','ASC')->get();
 		return view('frontend.tag.tags_view',compact('products','categories'));
 
@@ -150,20 +156,20 @@ class IndexController extends Controller
     public function ViewAjax($id){
 
         $products = Product::with('category','brand')->findOrFail($id);
-        
+
 
         $color = $products->product_color_en;
         $product_color = explode(',',$color);
-       
+
         $size = $products->product_size_en;
         $product_size = explode(',',$size);
         return response()->json(array(
             'product' => $products,
             'color' => $product_color,
             'size' => $product_size,
-            
+
         ));
-       
+
 
 	}
 

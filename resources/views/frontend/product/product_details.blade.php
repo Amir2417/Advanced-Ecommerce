@@ -360,7 +360,7 @@
 
 								<div id="description" class="tab-pane in active">
 									<div class="product-tab">
-										<p class="text">@if(session()->get('language') == 'bangla') {!!$product->long_descp_ban!!} @else {!!$product->long_descp_en!!} @endif</p>
+										<p class="text">@if(session()->get('language') == 'bangla') {!!$products->long_descp_ban!!} @else {!!$products->long_descp_en!!} @endif</p>
 									</div>
 								</div><!-- /.tab-pane -->
 

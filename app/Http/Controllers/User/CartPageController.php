@@ -20,7 +20,7 @@ class CartPageController extends Controller
         return response()->json(array(
             'carts'=> $carts ,
             'cartsQty'=> $cartsQty ,
-            'cartTotal'=> $cartTotal ,
+            'cartTotal'=> round($cartTotal) ,
         ));
     }
     public function RemoveCart($rowId){
