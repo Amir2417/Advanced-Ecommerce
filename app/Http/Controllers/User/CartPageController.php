@@ -15,12 +15,10 @@ class CartPageController extends Controller
         $carts = Cart::content();
         $cartsQty = Cart::count();
         $cartTotal = Cart::total();
-
-
         return response()->json(array(
             'carts'=> $carts ,
             'cartsQty'=> $cartsQty ,
-            'cartTotal'=> round($cartTotal) ,
+            'cartTotal'=> $cartTotal,
         ));
     }
     public function RemoveCart($rowId){
