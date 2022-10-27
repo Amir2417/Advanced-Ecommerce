@@ -1,7 +1,6 @@
 @extends('admin.admin_master')
 @section('admin')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
 <div class="container-full">
     <div class="content">
         <div class="row">
@@ -21,7 +20,6 @@
                                         <th>State Name</th>
                                         <th>Status</th>
                                         <th>Action</th>
-
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -47,17 +45,13 @@
                                             <a class="btn btn-success" href="{{ route('state.active',$item->id) }}" title="Active Now"><i class="fa fa-arrow-up"></i></a>
                                             @endif
                                         </td>
-
                                    @endforeach
                                 </tbody>
-
                             </table>
                         </div>
                     </div>
-
                 </div>
             </div>
-
             <div class="col-md-4">
                 <div class="box">
                     <div class="box-header with-border">
@@ -85,7 +79,6 @@
                                     <div class="controls">
                                         <select name="district_id" class="form-control">
                                             <option value="" selected="" disabled="">Select District</option>
-
                                         </select>
                                         @error('district_id')
                                                 <span class="text-danger">{{ $message }}</span>
@@ -107,7 +100,6 @@
                                 </div>
                             </form>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -137,5 +129,4 @@
         });
     });
 </script>
-
 @endsection

@@ -1,6 +1,5 @@
 @extends('admin.admin_master')
 @section('admin')
-
 <div class="container-full">
     <div class="content">
         <div class="row">
@@ -19,7 +18,6 @@
                                         <th>District Name</th>
                                         <th>Status</th>
                                         <th>Action</th>
-
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -44,17 +42,13 @@
                                             <a class="btn btn-success" href="{{ route('district.active',$item->id) }}" title="Active Now"><i class="fa fa-arrow-up"></i></a>
                                             @endif
                                         </td>
-
                                    @endforeach
                                 </tbody>
-
                             </table>
                         </div>
                     </div>
-
                 </div>
             </div>
-
             <div class="col-md-4">
                 <div class="box">
                     <div class="box-header with-border">
@@ -92,12 +86,10 @@
                                 </div>
                             </form>
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 @endsection

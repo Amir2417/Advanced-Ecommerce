@@ -17,8 +17,6 @@ use App\Http\Controllers\Backend\ShippingAreaController;
 use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\User\CartPageController;
 
-
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,7 +27,6 @@ use App\Http\Controllers\User\CartPageController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -43,7 +40,6 @@ Route::middleware(['auth:admin'])->group(function(){
     Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', function () {
         return view('admin.index');
     })->name('dashboard')->middleware('auth:admin');
-
     //All Routes For the Admin
 
     Route::get('/admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');
@@ -145,7 +141,6 @@ Route::prefix('category')->group(function(){
 });
 Route::prefix('products')->group(function(){
     Route::get('/add',[ProductController::class,'AddProduct'])->name('add-products');
-
     Route::post('/store',[ProductController::class,'ProductStore'])->name('product-store');
     Route::post('/data/update',[ProductController::class,'ProductUpdate'])->name('product-update');
     Route::post('/image/update',[ProductController::class,'MultiImageUpdate'])->name('update-product-image');
@@ -156,8 +151,6 @@ Route::prefix('products')->group(function(){
     Route::get('/inactive/{id}',[ProductController::class,'ProductInactive'])->name('product.inactive');
     Route::get('/active/{id}',[ProductController::class,'ProductActive'])->name('product.active');
     Route::get('/delete/{id}',[ProductController::class,'ProductDelete'])->name('product.delete');
-
-
 });
 
 //manage-slider
@@ -172,9 +165,7 @@ Route::prefix('slider')->group(function(){
     Route::get('/inactive/{id}',[SliderController::class,'SliderInactive'])->name('slider.inactive');
     Route::get('/active/{id}',[SliderController::class,'SliderActive'])->name('slider.active');
 });
-
 //manage-coupons all routes
-
 Route::prefix('coupons')->group(function(){
     Route::get('/index',[CouponController::class,'index'])->name('coupons');
     Route::get('/show',[CouponController::class,'show'])->name('coupon.show');
@@ -182,12 +173,9 @@ Route::prefix('coupons')->group(function(){
     Route::get('/edit/{id}',[CouponController::class,'edit'])->name('coupon.edit');
     Route::post('/update/{id}',[CouponController::class,'update'])->name('coupon.update');
     Route::get('/delete/{id}',[CouponController::class,'delete'])->name('coupon.delete');
-
 });
 //manage-shipping-division all routes
-
 Route::prefix('shipping')->group(function(){
-
     Route::get('/index',[ShippingAreaController::class,'index'])->name('division_management');
     Route::post('/division/store',[ShippingAreaController::class,'store'])->name('division.store');
     Route::get('/division/edit/{id}',[ShippingAreaController::class,'edit'])->name('division.edit');
