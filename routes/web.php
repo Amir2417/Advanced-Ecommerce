@@ -106,6 +106,7 @@ Route::get('/user/cart-remove/{rowId}',[CartPageController::class,'RemoveCart'])
 Route::get('/cart-increment/{rowId}', [CartPageController::class, 'CartIncrement']);
 Route::get('/cart-decrement/{rowId}', [CartPageController::class, 'CartDecrement']);
 
+
 // All Routes For Brands Section
 Route::prefix('brand')->group(function(){
     Route::get('/view',[BrandController::class,'BrandView'])->name('all.brands');

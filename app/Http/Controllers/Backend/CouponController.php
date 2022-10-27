@@ -33,7 +33,6 @@ class CouponController extends Controller
             'alert-type'=>'success',
         );
         return Redirect()->route('coupons')->with($notification);
-
     }
     public function edit($id){
         $coupons = Coupon::findOrFail($id);

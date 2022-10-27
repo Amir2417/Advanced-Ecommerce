@@ -1,6 +1,5 @@
 @extends('admin.admin_master')
 @section('admin')
-
 <div class="container-full">
     <div class="content">
         <div class="row">
@@ -40,20 +39,15 @@
                                         @enderror
                                     </div>
                                 </div>
-
-
                                 <div class="text-xs-right">
                                     <input type="submit" class="btn btn-rounded btn-primary mb-5" value="Update">
-
                                 </div>
                             </form>
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 @endsection
