@@ -100,8 +100,8 @@ class CartController extends Controller
            Session::put('coupon',[
             'coupon_name'=>$coupon->coupon_name,
             'coupon_discount'=>$coupon->coupon_discount,
-            'discount_amount'=>(int)(Cart::total())* (int)($coupon->coupon_discount/100),
-            'total_amount'=>(float)(Cart::total()) - (float)(Cart::total()) * (float)($coupon->coupon_discount/100),
+            'discount_amount'=>round(Cart::total() * $coupon->coupon_discount/100),
+            'total_amount'=>round(Cart::total() - Cart::total() * $coupon->coupon_discount/100),
            ]);
            return response()->json(array(
             'success' =>'Coupon Applied Succcessfully'
