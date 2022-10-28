@@ -127,4 +127,30 @@ class CartController extends Controller
         }
 
     }
+    public function checkout(){
+        if (Auth::check()) {
+            if (Cart::total()> 0) {
+
+                $carts = Cart::content();
+                $cartsQty = Cart::count();
+                $cartTotal = Cart::total();
+
+                return view('frontend.checkout.checkout_view',compact('carts','cartsQty','cartTotal'));
+            } else {
+                $notification = array(
+                    'message' =>'Shopping At Least One Product',
+                    'alert-type'=>"error",
+                );
+                return Redirect()->to('/')->with($notification);
+            }
+
+        } else {
+            $notification = array(
+                'message' =>'You Need To Login First',
+                'alert-type'=>"error",
+            );
+            return Redirect()->route('login')->with($notification);
+        }
+
+    }
 }
