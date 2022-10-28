@@ -492,7 +492,7 @@ function addToCart(){
                     rows += `<tr>
 					<td class="col-md-2" style="text-align:center;"><img src="/${value.options.image}" alt="imga" style="width:60px;height:60px"></td>
 					<td class="col-md-2" >
-						<div class="product-name"><a href="#">${value.name}</a></div>
+						<div class="product-name"><a href="">${value.name}</a></div>
 
 						<div class="price">
                             ${value.price}$
@@ -607,8 +607,84 @@ function addToCart(){
 </script>
 
 {{-- Load My Cart End--}}
+{{-- coupon apply Start --}}
+<script>
+    function applyCoupon(){
+        var coupon_name = $('#coupon_name').val();
+        $.ajax({
+            type:'POST',
+            dataType:'json',
+            data:{coupon_name:coupon_name},
+            url:"{{ url('/coupon_apply') }}",
+            success:function(data){
+                const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000
+            })
+            if ($.isEmptyObject(data.error)) {
+                Toast.fire({
+                    type:'success',
+                    icon: 'success',
+                    title: data.success
+                })
+            } else {
+                Toast.fire({
+                    type:'error',
+                    icon: 'error',
+                    title: data.error
+                })
+            }
+            }
+        })
+    }
 
+    function couponCalculation(){
+        $.ajax({
+            type:'GET',
+            url:"{{ url('/coupon_calculation') }}",
+            dataType:'json',
+            success:function(data){
+                if (data.total) {
+                    $('#couponCalField').html(
+                        `<tr>
+                                <th>
+                                    <div class="cart-sub-total">
+                                        Subtotal<span class="inner-left-md">$ ${data.total}</span>
+                                    </div>
+                                    <div class="cart-grand-total">
+                                        Grand Total<span class="inner-left-md">$ ${data.total}</span>
+                                    </div>
+                                </th>
+                            </tr>`
+                    )
+                } else {
+                    $('#couponCalField').html(
+                        `<tr>
+                                <th>
+                                    <div class="cart-sub-total">
+                                        Subtotal<span class="inner-left-md">$ ${data.subtotal}</span>
+                                    </div>
+                                    <div class="cart-sub-total">
+                                        Coupon Name<span class="inner-left-md"> ${data.coupon_name}</span>
+                                    </div>
+                                    <div class="cart-sub-total">
+                                        Discount Amount<span class="inner-left-md"> ${data.coupon_discount}</span>
+                                    </div>
+                                    <div class="cart-grand-total">
+                                        Grand Total<span class="inner-left-md">$ ${data.total_amount}</span>
+                                    </div>
+                                </th>
+                            </tr>`
+                    )
+                }
 
-
+            }
+        });
+    }
+    couponCalculation();
+</script>
+// {{-- coupon apply End --}}
 </body>
 </html>

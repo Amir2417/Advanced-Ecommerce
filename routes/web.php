@@ -214,6 +214,8 @@ Route::prefix('shipping')->group(function(){
 
 Route::get('/language/english',[LanguageController::class,'English'])->name('language.english');
 Route::get('/language/bangla',[LanguageController::class,'Bangla'])->name('language.bangla');
+Route::post('/coupon_apply',[CartController::class,'coupon_apply']);
+Route::get('/coupon_calculation',[CartController::class,'coupon_calculation']);
 
 
 
