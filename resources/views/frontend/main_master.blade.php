@@ -581,6 +581,7 @@ function addToCart(){
             url: "/cart-increment/"+rowId,
             dataType:'json',
             success:function(data){
+                couponCalculation();
                 cart();
                 miniCart();
             }
@@ -595,6 +596,7 @@ function addToCart(){
             url: "/cart-decrement/"+rowId,
             dataType:'json',
             success:function(data){
+                couponCalculation();
                 cart();
                 miniCart();
             }
@@ -666,14 +668,14 @@ function addToCart(){
                                     <div class="cart-sub-total">
                                         Subtotal<span class="inner-left-md">$ ${data.subtotal}</span>
                                     </div>
-                                    <div class="cart-sub-total">
+                                    {{-- <div class="cart-sub-total">
                                         Coupon Name<span class="inner-left-md"> ${data.coupon_name}</span>
                                     </div>
                                     <div class="cart-sub-total">
                                         Discount Amount<span class="inner-left-md"> ${data.coupon_discount}</span>
-                                    </div>
+                                    </div> --}}
                                     <div class="cart-grand-total">
-                                        Grand Total<span class="inner-left-md">$ ${data.total_amount}</span>
+                                        Grand Total<span class="inner-left-md">$ ${data.subtotal}</span>
                                     </div>
                                 </th>
                             </tr>`

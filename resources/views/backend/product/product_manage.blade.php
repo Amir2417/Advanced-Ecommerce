@@ -5,7 +5,7 @@
     <div class="content">
         <div class="row">
 
-        
+
             <div class="col-md-12">
 
                 <div class="box">
@@ -25,7 +25,7 @@
                                         <th>Discount</th>
                                         <th>Status</th>
                                         <th>Action</th>
-                                        
+
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -40,17 +40,17 @@
                                             <span class="badge badge-pill badge-danger">No Discount Available</span>
 
                                             @else
-                                            @php 
+                                            @php
                                                 $amount = $item->selling_price - $item->discount_price;
                                                 $discount = ($amount/$item->selling_price)*100;
-                                                $discountinpercent = 100-$discount;
+
                                             @endphp
-                                            <span class="badge badge-pill badge-success">{{ round($discountinpercent) }}%</span>
+                                            <span class="badge badge-pill badge-success">{{ round($discount) }}%</span>
                                             @endif
 
                                         </td>
                                         <td>
-                                           @if($item->status == 1) 
+                                           @if($item->status == 1)
                                            <span class="badge badge-pill badge-success">Active</span>
                                            @else
                                            <span class="badge badge-pill badge-danger">Inactive</span>
@@ -68,20 +68,20 @@
                                             @endif
 
                                         </td>
-                                    </tr>   
-                                   @endforeach 
+                                    </tr>
+                                   @endforeach
                                 </tbody>
-                                
+
                             </table>
                         </div>
                     </div>
-                   
-                </div>       
+
+                </div>
             </div>
-            
-            
-        </div> 
+
+
+        </div>
     </div>
 </div>
 
-@endsection 
+@endsection

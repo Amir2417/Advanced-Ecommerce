@@ -45,7 +45,7 @@ My Cart Page
                 <div class="col-md-4 col-sm-12 estimate-ship-tax">
                 </div>
                 <div class="col-md-4 col-sm-12 estimate-ship-tax">
-                    @if (Session::has('coupon'))
+                    {{-- @if (Session::has('coupon'))
 
                     @else
                     <table class="table">
@@ -70,7 +70,7 @@ My Cart Page
                                 </tr>
                         </tbody><!-- /tbody -->
                     </table><!-- /table -->
-                    @endif
+                    @endif --}}
                 </div><!-- /.estimate-ship-tax -->
 
                 <div class="col-md-4 col-sm-12 cart-shopping-total">
