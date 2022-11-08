@@ -29,22 +29,23 @@ My Checkout Page
                                         <!-- guest-login -->
                                         <div class="col-md-6 col-sm-6 already-registered-login">
                                             <h4 class="checkout-subtitle"><b>Shipping Address</b></h4>
-                                            <p class="text title-tag-line">Please log in below:</p>
-                                            <form class="register-form" role="form">
+
+                                            <form class="register-form" method="POST" action="{{ route('checkout.store') }}">
+                                                @csrf
                                                 <div class="form-group">
-                                                    <label class="info-title" for="exampleInputEmail1">Shipping Name <span>*</span></label>
+                                                    <label class="info-title" for="exampleInputEmail1"><b>Shipping Name</b> <span>*</span></label>
                                                     <input type="text" name="shipping_name" class="form-control unicase-form-control text-input" id="exampleInputEmail1" value="{{ Auth::user()->name }}" required>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="info-title" for="exampleInputEmail1">Email <span>*</span></label>
+                                                    <label class="info-title" for="exampleInputEmail1"><b>Email</b> <span>*</span></label>
                                                     <input type="email" name="shipping_email" class="form-control unicase-form-control text-input" id="exampleInputEmail1" value="{{ Auth::user()->email }}" required>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="info-title" for="exampleInputEmail1">Phone <span>*</span></label>
+                                                    <label class="info-title" for="exampleInputEmail1"><b>Phone </b><span>*</span></label>
                                                     <input type="number" name="shipping_phone" class="form-control unicase-form-control text-input" id="exampleInputEmail1" value="{{ Auth::user()->phone }}" required>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="info-title" for="exampleInputEmail1">Post Code <span>*</span></label>
+                                                    <label class="info-title" for="exampleInputEmail1"><b>Post Code</b> <span>*</span></label>
                                                     <input type="text" name="post_code" class="form-control unicase-form-control text-input" id="exampleInputEmail1" placeholder="Post Code" required>
                                                 </div>
 
@@ -85,7 +86,7 @@ My Checkout Page
                                                         <option value="" selected="" disabled="">Select State</option>
 
                                                     </select>
-                                                    @error('division_id')
+                                                    @error('state_id')
                                                             <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
@@ -98,7 +99,7 @@ My Checkout Page
                                             </div>
 
 
-                                            </form>
+
                                         </div>
                                         <!-- already-registered-login -->
                                     </div>
@@ -135,15 +136,48 @@ My Checkout Page
                                             </li>
                                         @endforeach
                                         <hr>
-                                        <li>Sub Total {{ $cartTotal }}</li><hr>
-                                        <li><a href="#">Payment Method</a></li>
+                                        <li><b> Sub Total  ${{ $cartTotal }} </b></li><hr>
+
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+				<div class="col-md-4">
+					<!-- checkout-progress-sidebar -->
+                    <div class="checkout-progress-sidebar ">
+                        <div class="panel-group">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="unicase-checkout-title">Select Payment Method</h4>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label for="stripe">Stripe</label>
+                                        <input type="radio" name="payment_method" value="stripe" id="">
+                                        <img src="{{ asset('frontend/assets/images/payments/2.png') }}" alt="">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="card">Card</label>
+                                        <input type="radio" name="payment_method" value="card" id="">
+                                        <img src="{{ asset('frontend/assets/images/payments/3.png') }}" alt="">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="cash">Cash</label>
+                                        <input type="radio" name="payment_method" value="cash" id="">
+                                        <img src="{{ asset('frontend/assets/images/payments/4.png') }}" alt="">
+                                    </div>
+                                </div>
+                                <hr>
+                                <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Payment Step</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
 			</div><!-- /.row -->
+
 		</div><!-- /.checkout-box -->
     </div>
 </div><!-- /.body-content -->

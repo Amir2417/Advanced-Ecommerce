@@ -223,6 +223,7 @@ Route::get('/coupon_calculation',[CartController::class,'coupon_calculation']);
 Route::get('/checkout',[CartController::class,'checkout'])->name('checkout');
 Route::get('/district_get/ajax/{division_id}',[CheckoutController::class,'district_get']);
 Route::get('/state_get/ajax/{district_id}',[CheckoutController::class,'state_get']);
+Route::post('/checkout/store',[CheckoutController::class,'store'])->name('checkout.store');
 
 
 
