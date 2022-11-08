@@ -1,5 +1,6 @@
 @extends('frontend.main_master')
 @section('content')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 @section('title')
 My Checkout Page
 @endsection
@@ -46,24 +47,57 @@ My Checkout Page
                                                     <label class="info-title" for="exampleInputEmail1">Post Code <span>*</span></label>
                                                     <input type="text" name="post_code" class="form-control unicase-form-control text-input" id="exampleInputEmail1" placeholder="Post Code" required>
                                                 </div>
-                                            </form>
+
                                         </div>
                                         <!-- guest-login -->
                                         <!-- already-registered-login -->
                                         <div class="col-md-6 col-sm-6 already-registered-login">
-                                            <h4 class="checkout-subtitle">Already registered?</h4>
-                                            <p class="text title-tag-line">Please log in below:</p>
-                                            <form class="register-form" role="form">
-                                                <div class="form-group">
-                                                <label class="info-title" for="exampleInputEmail1">Email Address <span>*</span></label>
-                                                <input type="email" class="form-control unicase-form-control text-input" id="exampleInputEmail1" placeholder="">
+                                            <div class="form-group">
+                                                <h5><b> Division Select</b> <span class="text-danger">*</span></h5>
+                                                <div class="controls">
+                                                    <select name="division_id" class="form-control" required>
+                                                        <option value="" selected="" disabled="">Select Division</option>
+                                                        @foreach($divisions as $item)
+                                                        <option value="{{ $item->id }}">{{$item->division_name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    @error('division_id')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="info-title" for="exampleInputPassword1">Password <span>*</span></label>
-                                                <input type="password" class="form-control unicase-form-control text-input" id="exampleInputPassword1" placeholder="">
-                                                <a href="#" class="forgot-password">Forgot your Password?</a>
+                                                <h5><b> District Select </b><span class="text-danger">*</span></h5>
+                                                <div class="controls">
+                                                    <select name="district_id" class="form-control" required>
+                                                        <option value="" selected="" disabled="">Select District</option>
+
+                                                    </select>
+                                                    @error('district_id')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
                                             </div>
-                                            <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Login</button>
+                                            <div class="form-group">
+                                                <h5><b> State Select</b> <span class="text-danger">*</span></h5>
+                                                <div class="controls">
+                                                    <select name="state_id" class="form-control" required>
+                                                        <option value="" selected="" disabled="">Select State</option>
+
+                                                    </select>
+                                                    @error('division_id')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <h5><b> Notes</b> <span class="text-danger">*</span></h5>
+                                                <div class="controls">
+                                                    <textarea class="form-control" name="notes" id="" cols="30" rows="10"></textarea>
+                                                </div>
+                                            </div>
+
+
                                             </form>
                                         </div>
                                         <!-- already-registered-login -->
@@ -113,5 +147,48 @@ My Checkout Page
 		</div><!-- /.checkout-box -->
     </div>
 </div><!-- /.body-content -->
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('select[name ="division_id"]').on('change',function(){
+            var division_id = $(this).val();
+            if(division_id) {
+                $.ajax({
+                    url: "{{ url('/district_get/ajax') }}/"+division_id,
+                    type:"GET",
+                    dataType:"json",
+                    success:function(data) {
+                            $('select[name="state_id"]').html('');
+                        var d = $('select[name="district_id"]').empty();
+                        $.each(data,function(key,value){
+                            $('select[name ="district_id"]').append('<option value="'+ value.id +'">' + value.district_name + '</option>');
+                        });
+                    },
+                });
+            }
+            else{
+                alert('danger');
+            }
+        });
 
+$('select[name ="district_id"]').on('change',function(){
+            var district_id = $(this).val();
+            if(district_id) {
+                $.ajax({
+                    url: "{{ url('/state_get/ajax') }}/"+district_id,
+                    type:"GET",
+                    dataType:"json",
+                    success:function(data) {
+                        var d = $('select[name="state_id"]').empty();
+                        $.each(data,function(key,value){
+                            $('select[name ="state_id"]').append('<option value="'+ value.id +'">' + value.state_name + '</option>');
+                        });
+                    },
+                });
+            }
+            else{
+                alert('danger');
+            }
+        });
+    });
+</script>
 @endsection
