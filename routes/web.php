@@ -3,9 +3,12 @@
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use App\Http\Controllers\AdminController;
+
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\LanguageController;
 use App\Http\Controllers\Frontend\CartController;
+
+
 use App\Http\Controllers\Backend\AdminProfileController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
@@ -14,9 +17,12 @@ use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\ShippingAreaController;
+
+
 use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\User\CartPageController;
 use App\Http\Controllers\User\CheckoutController;
+use App\Http\Controllers\User\StripeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -93,6 +99,7 @@ Route::group(['prefix'=>'user','middleware'=>['user','auth'],'namespace'=>'User'
         Route::get('/wishlist',[WishlistController::class,'ViewWishList'])->name('wishlist');
         Route::get('/get-wishlist-product',[WishlistController::class,'GetWishlistProduct']);
         Route::get('/wishlist-remove/{id}',[WishlistController::class,'RemoveWishlist']);
+        Route::post('/stripe/order',[StripeController::class,'stripe_order'])->name('stripe.order');
 
     }
 );
@@ -130,7 +137,6 @@ Route::prefix('category')->group(function(){
     Route::get('/sub/delete/{id}',[SubCategoryController::class,'SubCategoryDelete'])->name('subcategory.delete');
 
     //All Routes For the Sub Sub Category
-
 
     Route::get('/sub/sub/view',[SubCategoryController::class,'SubSubCategoryView'])->name('all.subsubcategory');
     Route::get('/subcategory/ajax/{category_id}', [SubCategoryController::class, 'GetSubCategory']);
@@ -231,6 +237,5 @@ Route::post('/checkout/store',[CheckoutController::class,'store'])->name('checko
 Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
     $id = Auth::user()->id;
     $user = User::find($id);
-
     return view('dashboard',compact('user'));
 })->name('dashboard');
