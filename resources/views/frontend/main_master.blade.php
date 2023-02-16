@@ -323,7 +323,6 @@ function addToCart(){
     miniCart();
 
     //miniCartRemove function start
-
     function miniCartRemove(rowId){
         $.ajax({
             type:"GET",
@@ -350,14 +349,10 @@ function addToCart(){
                     title: data.error
                 })
             }
-
             }
         });
     }
     //miniCartRemove function end
-
-
-
 </script>
 {{-- end Mini Cart --}}
 
@@ -369,30 +364,27 @@ function addToCart(){
             dataType:'json',
             url:"/add-to-wishlist/"+product_id,
             success:function(data){
-                    const Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 3000
-                })
-            if ($.isEmptyObject(data.error)) {
-                    Toast.fire({
-                        type:'success',
-                        icon: 'success',
-                        title: data.success
+                        const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000
                     })
-            } else {
-                Toast.fire({
-                    type:'error',
-                    icon: 'error',
-                    title: data.error
-                })
-            }
+                if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                            type:'success',
+                            icon: 'success',
+                            title: data.success
+                        })
+                } else {
+                    Toast.fire({
+                        type:'error',
+                        icon: 'error',
+                        title: data.error
+                    })
+                }
             }
         });
-
-
-
     }
 </script>
 {{-- End WishList add  Page --}}
@@ -406,27 +398,22 @@ function addToCart(){
             dataType: 'json',
             success:function(response){
                 // console.log(response);
-
                 var rows = "";
-
                 $.each(response,function(key,value){
                     rows += `<tr>
 					<td class="col-md-2"><img src="/${value.product.product_thambnail}" alt="imga"></td>
 					<td class="col-md-7">
 						<div class="product-name"><a href="#">${value.product.product_name_en}</a></div>
-
 						<div class="price">
                             ${value.product.discount_price == null
                                 ? `${value.product.selling_price}`
                                 :
                                 `${value.product.discount_price} <span>${value.product.selling_price}</span>`
                             }
-
 						</div>
 					</td>
 					<td class="col-md-2">
 						<button class="btn btn-primary icon" type="button"  data-toggle="modal" data-target="#exampleModal"  id="${value.product_id}" onclick="productView(this.id)"> Add to Cart </button>
-
 					</td>
 					<td class="col-md-1 close-btn">
 						<button type="submit" class="" id="${value.id}" onclick="RemoveWishlist(this.id)"><i class="fa fa-times"></i></button>
@@ -449,27 +436,26 @@ function addToCart(){
             success:function(data){
                 wishlist();
                 //Start Sweet Alert Message
-                const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
+                    const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
 
-                showConfirmButton: false,
-                timer: 3000
-            })
-            if ($.isEmptyObject(data.error)) {
-                Toast.fire({
-                    type:'success',
-                    icon: 'success',
-                    title: data.success
+                    showConfirmButton: false,
+                    timer: 3000
                 })
-            } else {
-                Toast.fire({
-                    type:'error',
-                    icon: 'error',
-                    title: data.error
-                })
-            }
-
+                if ($.isEmptyObject(data.error)) {
+                    Toast.fire({
+                        type:'success',
+                        icon: 'success',
+                        title: data.success
+                    })
+                } else {
+                    Toast.fire({
+                        type:'error',
+                        icon: 'error',
+                        title: data.error
+                    })
+                }
             }
         });
     }
@@ -486,18 +472,14 @@ function addToCart(){
             dataType: 'json',
             success:function(response){
                 // console.log(response);
-
                 var rows = "";
-
                 $.each(response.carts,function(key,value){
                     rows += `<tr>
 					<td class="col-md-2" style="text-align:center;"><img src="/${value.options.image}" alt="imga" style="width:60px;height:60px"></td>
 					<td class="col-md-2" >
 						<div class="product-name"><a href="">${value.name}</a></div>
-
 						<div class="price">
                             ${value.price}$
-
 						</div>
 					</td>
                     <td class="col-md-2" style="text-align:center;">
@@ -515,13 +497,8 @@ function addToCart(){
                             `<button type="submit" class="btn btn-danger btn-sm" id="${value.rowId}" onclick="CartDecrement(this.id)">-</button>`
                             :
                             `<button type="submit" class="btn btn-danger btn-sm" disabled>-</button>`
-
-
                         }
-
-
                         <input type="text" value="${value.qty}" min="1" max="100" style="width:25px;">
-
                         <button type="submit" class="btn btn-success btn-sm" id="${value.rowId}" onclick="cartIncrement(this.id)" >+</button>
                     </td>
                     <td class="col-md-2" style="text-align:center;">
@@ -555,20 +532,20 @@ function addToCart(){
                 position: 'top-end',
                 showConfirmButton: false,
                 timer: 3000
-            })
-            if ($.isEmptyObject(data.error)) {
-                Toast.fire({
-                    type:'success',
-                    icon: 'success',
-                    title: data.success
                 })
-            } else {
-                Toast.fire({
-                    type:'error',
-                    icon: 'error',
-                    title: data.error
-                })
-            }
+                if ($.isEmptyObject(data.error)) {
+                    Toast.fire({
+                        type:'success',
+                        icon: 'success',
+                        title: data.success
+                    })
+                } else {
+                    Toast.fire({
+                        type:'error',
+                        icon: 'error',
+                        title: data.error
+                    })
+                }
 
             }
         });
@@ -652,34 +629,34 @@ function addToCart(){
                 if (data.total) {
                     $('#couponCalField').html(
                         `<tr>
-                                <th>
-                                    <div class="cart-sub-total">
-                                        Subtotal<span class="inner-left-md">$ ${data.total}</span>
-                                    </div>
-                                    <div class="cart-grand-total">
-                                        Grand Total<span class="inner-left-md">$ ${data.total}</span>
-                                    </div>
-                                </th>
-                            </tr>`
+                            <th>
+                                <div class="cart-sub-total">
+                                    Subtotal<span class="inner-left-md">$ ${data.total}</span>
+                                </div>
+                                <div class="cart-grand-total">
+                                    Grand Total<span class="inner-left-md">$ ${data.total}</span>
+                                </div>
+                            </th>
+                        </tr>`
                     )
                 } else {
                     $('#couponCalField').html(
                         `<tr>
-                                <th>
-                                    <div class="cart-sub-total">
-                                        Subtotal<span class="inner-left-md">$ ${data.subtotal}</span>
-                                    </div>
-                                    {{-- <div class="cart-sub-total">
-                                        Coupon Name<span class="inner-left-md"> ${data.coupon_name}</span>
-                                    </div>
-                                    <div class="cart-sub-total">
-                                        Discount Amount<span class="inner-left-md"> ${data.coupon_discount}</span>
-                                    </div> --}}
-                                    <div class="cart-grand-total">
-                                        Grand Total<span class="inner-left-md">$ ${data.subtotal}</span>
-                                    </div>
-                                </th>
-                            </tr>`
+                            <th>
+                                <div class="cart-sub-total">
+                                    Subtotal<span class="inner-left-md">$ ${data.subtotal}</span>
+                                </div>
+                                {{-- <div class="cart-sub-total">
+                                    Coupon Name<span class="inner-left-md"> ${data.coupon_name}</span>
+                                </div>
+                                <div class="cart-sub-total">
+                                    Discount Amount<span class="inner-left-md"> ${data.coupon_discount}</span>
+                                </div> --}}
+                                <div class="cart-grand-total">
+                                    Grand Total<span class="inner-left-md">$ ${data.subtotal}</span>
+                                </div>
+                            </th>
+                        </tr>`
                     )
                 }
 
@@ -688,6 +665,6 @@ function addToCart(){
     }
     couponCalculation();
 </script>
-// {{-- coupon apply End --}}
+{{-- coupon apply End --}}
 </body>
 </html>
