@@ -13,7 +13,22 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 class StripeController extends Controller
 {
     public function stripe_order(Request $request){
-        $total_amount = round((float) Cart::total(),2);
+        $total_amount =Cart::total();
+        //replace comma in total price
+        
+        $total = str_replace(",","",$total_amount);
+        $total_price = (float)$total;
+
+        // $total = ((float)($total_amount));
+        // $total = floatval($total_amount);
+        // var_dump($total);
+        // var_dump(str_replace(",","",$total_amount));
+        // $total_amount = Cart::total();
+        // dd($total_price);
+
+// $i = "25,25.00";
+// $j = (float)$i;
+// dd($j);
 
         \Stripe\Stripe::setApiKey('sk_test_51KK6g7JPRcCF9jDyzAig5biknDtzj0b3TGnF4VyuV340uW7Bo4FuF4ovSrXicKsFizBLe0YG5CD0QU4yJUr6L9ZK00lrf5a6yh');
 
@@ -21,13 +36,13 @@ class StripeController extends Controller
         $token = $_POST['stripeToken'];
 
         $charge = \Stripe\Charge::create([
-        'amount' => $total_amount * 100,
+        'amount' => $total_price * 100,
         'currency' => 'usd',
         'description' => 'Sky Light ',
         'source' => $token,
         'metadata' => ['order_id' => uniqid()],
         ]);
-        // dd($charge);
+        dd($charge);
         $order_id = Order::insertGetId([
             'user_id' => Auth::id(),
             'division_id' => $request->division_id,
