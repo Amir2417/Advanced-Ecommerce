@@ -23,6 +23,7 @@ use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\User\CartPageController;
 use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\StripeController;
+use App\Http\Controllers\User\AllUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,6 +71,8 @@ Route::get('user/profile',[IndexController::class,'UserProfile'])->name('user.pr
 Route::post('user/profile/store',[IndexController::class,'UserProfileStore'])->name('user.profile.store');
 Route::get('user/change/password',[IndexController::class,'UserChangePassword'])->name('user.change.password');
 Route::post('user/password/update',[IndexController::class,'UserPasswordUpdate'])->name('user.password.update');
+
+
 //Frontend Product Deatils Page Url
 Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']);
 
@@ -100,6 +103,7 @@ Route::group(['prefix'=>'user','middleware'=>['user','auth'],'namespace'=>'User'
         Route::get('/get-wishlist-product',[WishlistController::class,'GetWishlistProduct']);
         Route::get('/wishlist-remove/{id}',[WishlistController::class,'RemoveWishlist']);
         Route::post('/stripe/order',[StripeController::class,'stripe_order'])->name('stripe.order');
+        Route::get('/my/orders',[AllUserController::class,'my_orders'])->name('my.orders');
 
     }
 );

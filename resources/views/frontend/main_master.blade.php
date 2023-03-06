@@ -35,7 +35,7 @@
 <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 <script src="https://js.stripe.com/v3/"></script>
 </head>
-<body class="cnt-home">
+<body>
 <!-- ============================================== HEADER ============================================== -->
 @include('frontend.body.header')
 
