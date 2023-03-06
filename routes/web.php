@@ -104,6 +104,7 @@ Route::group(['prefix'=>'user','middleware'=>['user','auth'],'namespace'=>'User'
         Route::get('/wishlist-remove/{id}',[WishlistController::class,'RemoveWishlist']);
         Route::post('/stripe/order',[StripeController::class,'stripe_order'])->name('stripe.order');
         Route::get('/my/orders',[AllUserController::class,'my_orders'])->name('my.orders');
+        Route::get('/order_details/{order_id}',[AllUserController::class,'order_details']);
 
     }
 );
