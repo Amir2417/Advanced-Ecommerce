@@ -2,36 +2,39 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\Order;
-use App\Models\OrderItem;
 use Auth;
 use Carbon\Carbon;
+use App\Models\Order;
+use App\Mail\OrderMail;
+use App\Models\OrderItem;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
 class StripeController extends Controller
 {
     public function stripe_order(Request $request){
+
         $total_amount =Cart::total();
+
         //replace comma in total price
-        
+
         $total = str_replace(",","",$total_amount);
         $total_price = (float)$total;
 
-        // $total = ((float)($total_amount));
-        // $total = floatval($total_amount);
-        // var_dump($total);
-        // var_dump(str_replace(",","",$total_amount));
-        // $total_amount = Cart::total();
-        // dd($total_price);
+        // if (Session::has('coupon')) {
+        //     $total_price = Session::get('coupon')['total_amount'];
+        // } else {
+        //     $total_amount =Cart::total();
 
-// $i = "25,25.00";
-// $j = (float)$i;
-// dd($j);
+        //     //replace comma in total price
+
+        //     $total = str_replace(",","",$total_amount);
+        //     $total_price = (float)$total;
+        // }
 
         \Stripe\Stripe::setApiKey('sk_test_51KK6g7JPRcCF9jDyzAig5biknDtzj0b3TGnF4VyuV340uW7Bo4FuF4ovSrXicKsFizBLe0YG5CD0QU4yJUr6L9ZK00lrf5a6yh');
-
 
         $token = $_POST['stripeToken'];
 
@@ -42,7 +45,7 @@ class StripeController extends Controller
         'source' => $token,
         'metadata' => ['order_id' => uniqid()],
         ]);
-        dd($charge);
+        // dd($charge);
         $order_id = Order::insertGetId([
             'user_id' => Auth::id(),
             'division_id' => $request->division_id,
@@ -59,10 +62,10 @@ class StripeController extends Controller
             'payment_type' => $charge->payment_method,
             'transaction_id' => $charge->balance_transaction,
             'currency' => $charge->currency,
-            'amount' => $total_amount,
+            'amount' => $total_price,
             'order_number' => $charge->metadata->order_id,
 
-            'invoice_no' => 'EOS'.mt_rand(10000000,99999999),
+            'invoice_no' => 'SL'.mt_rand(10000000,99999999),
             'order_date' => Carbon::now()->format('d F Y'),
             'order_month' => Carbon::now()->format('F'),
             'order_year' => Carbon::now()->format('Y'),
@@ -70,6 +73,15 @@ class StripeController extends Controller
             'created_at' => Carbon::now(),
 
         ]);
+
+        $invoice = Order::findOrFail($order_id);
+        $data = [
+            'invoice_no'=>$invoice->invoice_no,
+            'amount'=>$total_price,
+            'name'=>$invoice->name,
+            'email'=>$invoice->email,
+        ];
+        Mail::to($request->email)->send(new OrderMail($data));
 
         $carts = Cart::content();
         foreach($carts as $cart){
@@ -79,10 +91,13 @@ class StripeController extends Controller
                 'color'=>$cart->options->color,
                 'size'=>$cart->options->size,
                 'qty'=>$cart->qty,
-                'price'=>$total_amount,
+                'price'=>$total_price,
                 'created_at' => Carbon::now(),
             ]);
         }
+        // if(Session::has('coupon')){
+        //     Session::forget('coupon');
+        // }
         Cart::destroy();
         $notification = array(
 			'message' => 'Your Order Place Successfully',
