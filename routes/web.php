@@ -240,6 +240,7 @@ Route::prefix('orders')->group(function(){
     Route::get('delivered',[OrderController::class,'delivered'])->name('admin.delivered.orders');
 
     Route::get('cancel',[OrderController::class,'cancel'])->name('admin.cancel.orders');
+    Route::get('order_invoice/{order_id}',[OrderController::class,'order_invoice'])->name('order.invoice');
 
 });
 

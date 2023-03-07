@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Models\Order;
+use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -87,5 +89,15 @@ class OrderController extends Controller
 		);
 
 		return redirect()->route('admin.shipped.orders')->with($notification);
+    }
+    public function order_invoice($order_id){
+        $order = Order::with('division','district','state','user')->where('id',$order_id)->first();
+
+        $orderItem = OrderItem::with('product')->where('order_id',$order_id)->orderBy('id','DESC')->get();
+        $pdf = PDF::loadView('backend.orders.order_invoice',compact('order','orderItem'))->setPaper('a4')->setOptions([
+            'tempDir' => public_path(),
+            'chroot' => public_path(),
+        ]);
+        return $pdf->download('invoice.pdf');
     }
 }

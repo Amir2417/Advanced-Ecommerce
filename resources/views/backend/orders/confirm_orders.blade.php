@@ -33,13 +33,13 @@
                                     @foreach($orders as $item)
                                     <tr>
                                         <td>{{$item->order_date}}</td>
-                                        <td>{{$item->amount}}</td>
+                                        <td>${{$item->amount}}</td>
                                         <td>{{ $item->payment_method }}</td>
                                         <td>{{ $item->invoice_no }}</td>
                                         <td><span class="badge badge-pill badge-warning" style="background: #418DB9">{{ $item->status }}</span></td>
                                         <td>
                                             <a class="btn btn-primary" href="{{ route('order_details',$item->id) }}" title="Edit Data"><i class="fa fa-pencil"></i></a>
-                                            <a class="btn btn-danger" id="delete" href="{{ route('coupon.delete',$item->id) }}" title="Delete Data"><i class="fa fa-trash"></i></a>
+                                            <a class="btn btn-danger" href="{{ route('order.invoice',$item->id) }}" title="Invoice Download"><i class="fa fa-download"></i></a>
                                         </td>
                                    @endforeach
                                 </tbody>
