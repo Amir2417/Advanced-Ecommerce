@@ -224,9 +224,22 @@ Route::prefix('shipping')->group(function(){
 Route::prefix('orders')->group(function(){
     Route::get('pending',[OrderController::class,'pending'])->name('admin.pending.orders');
     Route::get('order_detais/{order_id}',[OrderController::class,'pending_details'])->name('order_details');
-    Route::get('pending_confirm/{order_id}',[OrderController::class,'pending_confirm'])->name('pending.confirm');
+    Route::get('pending_confirm/{order_id}',[OrderController::class,'pendingToconfirm'])->name('pending.confirm');
+
     Route::get('confirm',[OrderController::class,'confirm'])->name('admin.confirm.orders');
-    Route::get('confirm_processing/{order_id}',[OrderController::class,'confirm_processing'])->name('confirm.processing');
+    Route::get('confirm_processing/{order_id}',[OrderController::class,'confirmToprocessing'])->name('confirm.processing');
+
+    Route::get('processing',[OrderController::class,'processing'])->name('admin.processing.orders');
+    Route::get('processing_picked/{order_id}',[OrderController::class,'processingTopicked'])->name('processing.picked');
+
+    Route::get('picked',[OrderController::class,'picked'])->name('admin.picked.orders');
+    Route::get('picked_shipped/{order_id}',[OrderController::class,'pickedToshipped'])->name('picked.shipped');
+
+    Route::get('shipped',[OrderController::class,'shipped'])->name('admin.shipped.orders');
+    Route::get('shipped_delivered/{order_id}',[OrderController::class,'shippedTodelivered'])->name('shipped.delivered');
+    Route::get('delivered',[OrderController::class,'delivered'])->name('admin.delivered.orders');
+
+    Route::get('cancel',[OrderController::class,'cancel'])->name('admin.cancel.orders');
 
 });
 

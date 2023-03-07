@@ -126,15 +126,15 @@
               <i class="fa fa-angle-right pull-right"></i>
             </span>
           </a>
-          <ul class="treeview-menu">
-            <li><a href="{{ route('admin.pending.orders') }}"><i class="ti-more"></i>Pending Orders</a></li>
-            <li><a href="{{ route('admin.confirm.orders') }}"><i class="ti-more"></i>Confirm Orders</a></li>
-            <li><a href="components_buttons.html"><i class="ti-more"></i>Buttons</a></li>
-            <li><a href="components_sliders.html"><i class="ti-more"></i>Sliders</a></li>
-            <li><a href="components_dropdown.html"><i class="ti-more"></i>Dropdown</a></li>
-            <li><a href="components_modals.html"><i class="ti-more"></i>Modal</a></li>
-            <li><a href="components_nestable.html"><i class="ti-more"></i>Nestable</a></li>
-            <li><a href="components_progress_bars.html"><i class="ti-more"></i>Progress Bars</a></li>
+          <ul class="treeview-menu {{ ($prefix == '/orders')?'active':''}}">
+            <li class="{{ ( $route == 'admin.pending.orders')?'active':''  }}"><a href="{{ route('admin.pending.orders') }}"><i class="ti-more"></i>Pending Orders</a></li>
+            <li class="{{ ( $route == 'admin.confirm.orders')?'active':''  }}"><a href="{{ route('admin.confirm.orders') }}"><i class="ti-more"></i>Confirm Orders</a></li>
+            <li class="{{ ( $route == 'admin.processing.orders')?'active':''  }}"><a href="{{ route('admin.processing.orders') }}"><i class="ti-more"></i>Processing Orders</a></li>
+            <li class="{{ ( $route == 'admin.picked.orders')?'active':''  }}"><a href="{{ route('admin.picked.orders') }}"><i class="ti-more"></i>Picked Orders</a></li>
+            <li class="{{ ( $route == 'admin.shipped.orders')?'active':''  }}"><a href="{{ route('admin.shipped.orders') }}"><i class="ti-more"></i>Shipped Orders</a></li>
+            <li class="{{ ( $route == 'admin.delivered.orders')?'active':''  }}"><a href="{{ route('admin.delivered.orders') }}"><i class="ti-more"></i>Delivered Orders</a></li>
+            <li class="{{ ( $route == 'admin.cancel.orders')?'active':''  }}"><a href="{{ route('admin.cancel.orders') }}"><i class="ti-more"></i>Cancel Orders</a></li>
+
           </ul>
         </li>
 
