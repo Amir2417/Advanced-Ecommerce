@@ -17,6 +17,7 @@ use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\ShippingAreaController;
+use App\Http\Controllers\Backend\OrderController;
 
 
 use App\Http\Controllers\User\WishlistController;
@@ -105,6 +106,7 @@ Route::group(['prefix'=>'user','middleware'=>['user','auth'],'namespace'=>'User'
         Route::post('/stripe/order',[StripeController::class,'stripe_order'])->name('stripe.order');
         Route::get('/my/orders',[AllUserController::class,'my_orders'])->name('my.orders');
         Route::get('/order_details/{order_id}',[AllUserController::class,'order_details']);
+        Route::get('/invoice/{order_id}',[AllUserController::class,'invoice']);
 
     }
 );
@@ -218,7 +220,15 @@ Route::prefix('shipping')->group(function(){
     Route::get('/state/active/{id}',[ShippingAreaController::class,'state_active'])->name('state.active');
 
 });
+//manage all orders
+Route::prefix('orders')->group(function(){
+    Route::get('pending',[OrderController::class,'pending'])->name('admin.pending.orders');
+    Route::get('order_detais/{order_id}',[OrderController::class,'pending_details'])->name('order_details');
+    Route::get('pending_confirm/{order_id}',[OrderController::class,'pending_confirm'])->name('pending.confirm');
+    Route::get('confirm',[OrderController::class,'confirm'])->name('admin.confirm.orders');
+    Route::get('confirm_processing/{order_id}',[OrderController::class,'confirm_processing'])->name('confirm.processing');
 
+});
 
 
 //All Frontend Routes

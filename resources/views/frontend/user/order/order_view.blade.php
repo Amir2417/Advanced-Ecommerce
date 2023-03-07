@@ -59,7 +59,7 @@
                                     </td>
                                     <td class="col-md-3">
                                         <a href="{{ url('/user/order_details/'.$order->id) }} " class="btn btn-primary"><i class="fa fa-eye">View</i></a>
-                                        <a href=" " class="btn btn-danger"><i class="fa fa-download">Invoice</i></a>
+                                        <a href="{{ url('/user/invoice/'.$order->id) }} " class="btn btn-danger"><i class="fa fa-download">Invoice</i></a>
                                     </td>
                                 </tr>
                             @endforeach

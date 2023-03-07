@@ -1,16 +1,12 @@
-@extends('frontend.main_master')
-@section('content')
-
-
-<div class="body-content">
-    <div class="container">
+@extends('admin.admin_master')
+@section('admin')
+<div class="container-full">
+    <div class="content">
         <div class="row">
-            @include('frontend.common.use_sidebar')
-            <div class="col-md-5">
+            <div class="col-md-6 col-12">
                 <div class="card">
                     <div class="card-header"><h4>Shipping Details</h4></div>
-                    <hr>
-                    <div class="card-body" style="background: #E9EBEC">
+                    <div class="card-body">
                         <table class="table">
                             <tr>
                                 <th>Shipping Name:</th>
@@ -48,13 +44,12 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-5">
+            <div class="col-md-6 col-12">
                 <div class="card">
                     <div class="card-header"><h4>Order Details For
                         <span style="color:red">Invoice : {{ $order->invoice_no }}</span></h4>
                     </div>
-                    <hr>
-                    <div class="card-body" style="background: #E9EBEC">
+                    <div class="card-body">
                         <table class="table">
                             <tr>
                                 <th>Name:</th>
@@ -87,21 +82,36 @@
                             <tr>
                                 <th>Order :</th>
                                 <th><span class="badge badge-pill badge-warning" style="background: #418DB9">{{ $order->status }}</span></th>
+
                             </tr>
+
                         </table>
+                        <div class="box-tools">
+                            <div class="input-group input-group-sm hidden-xs" >
+                                <div class="text-right">
+                                    @if ($order->status == 'pending')
+                                        <a href="{{ route('pending.confirm',$order->id) }}" class="btn btn-success btn-flat" id="confirm"> Confirm Order </a>
+                                    @elseif ($order->status == 'confirm')
+                                        <a href="{{ route('confirm.processing',$order->id) }}" class="btn btn-success btn-flat"> Processing Order </a>
+                                    @else
+
+                                    @endif
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-
         </div>
         <div class="row">
             <div class="col-md-12">
-                <div class="table-responsive">
-                    <h3 class="text-center">Product Information</h3>
-                    <hr>
+                <div class="card">
+                    <div class="card-header"><h4>Product Information</h4></div>
+                    <div class="card-body">
                     <table class="table table-bordered table-striped">
                         <thead>
-                            <tr style="background: #e2e2e2;">
+                            <tr>
                                 <td class="col-md-1">
                                     <label for="date">Image</label>
                                 </td>
@@ -149,7 +159,7 @@
                                         {{ $item->qty }}
                                     </td>
                                     <td class="col-md-1">
-                                         ${{ $item->product->discount_price }}  (${{ $item->product->discount_price * $item->qty }})
+                                        ${{ $item->product->discount_price }}  (${{ $item->product->discount_price * $item->qty }})
                                     </td>
                                 </tr>
                             @endforeach
@@ -163,8 +173,4 @@
         </div>
     </div>
 </div>
-
-
-
-
 @endsection
