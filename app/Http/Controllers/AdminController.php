@@ -2,20 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Contracts\Auth\StatefulGuard;
+use Image;
+use Carbon\Carbon;
+use App\Models\Admin;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
+use Laravel\Fortify\Fortify;
+use Laravel\Fortify\Features;
 use Illuminate\Routing\Pipeline;
+use Illuminate\Routing\Controller;
+use App\Http\Responses\LoginResponse;
+use Illuminate\Contracts\Auth\StatefulGuard;
+use Laravel\Fortify\Contracts\LogoutResponse;
 use App\Actions\Fortify\AttemptToAuthenticate;
+use Laravel\Fortify\Http\Requests\LoginRequest;
+use Laravel\Fortify\Contracts\LoginViewResponse;
 use Laravel\Fortify\Actions\EnsureLoginIsNotThrottled;
 use Laravel\Fortify\Actions\PrepareAuthenticatedSession;
 use App\Actions\Fortify\RedirectIfTwoFactorAuthenticatable;
-use App\Http\Responses\LoginResponse;
-use Laravel\Fortify\Contracts\LoginViewResponse;
-use Laravel\Fortify\Contracts\LogoutResponse;
-use Laravel\Fortify\Features;
-use Laravel\Fortify\Fortify;
-use Laravel\Fortify\Http\Requests\LoginRequest;
 
 class AdminController extends Controller
 {
@@ -35,7 +38,7 @@ class AdminController extends Controller
     public function __construct(StatefulGuard $guard)
     {
         $this->guard = $guard;
-         
+
     }
 
     public function loginForm(){
@@ -93,7 +96,26 @@ class AdminController extends Controller
             PrepareAuthenticatedSession::class,
         ]));
     }
+    public function register(){
+        return view('auth.admin_register', ['guard' => 'admin']);
+    }
+    public function register_store(REquest $request){
 
+        $profile_photo_path = $request->file('profile_photo_path');
+        $name_gen = hexdec(uniqid()).'.'.$profile_photo_path->getClientOriginalExtension();
+        Image::make($profile_photo_path)->resize(100,100)->save('upload/admin_images/'.$name_gen);
+        $save_url= 'upload/admin_images/'.$name_gen;
+
+        $admin = new Admin();
+
+        $admin-> name =$request->name;
+        $admin-> email =$request->email;
+        $admin-> password =bcrypt($request->password);
+        $admin-> profile_photo_path = $save_url;
+        $admin-> email_verified_at = Carbon::now();
+        $admin->save();
+        return Redirect()->route('admin.login');
+    }
     /**
      * Destroy an authenticated session.
      *

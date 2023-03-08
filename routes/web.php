@@ -43,6 +43,8 @@ Route::get('/', function () {
 Route::group(['prefix'=> 'admin', 'middleware'=>['admin:admin']], function(){
 	Route::get('/login', [AdminController::class, 'loginForm']);
 	Route::post('/login',[AdminController::class, 'store'])->name('admin.login');
+	Route::post('/register_store',[AdminController::class, 'register_store'])->name('register.store');
+	Route::get('/register',[AdminController::class, 'register'])->name('admin.register');
 });
 
 Route::middleware(['auth:admin'])->group(function(){
