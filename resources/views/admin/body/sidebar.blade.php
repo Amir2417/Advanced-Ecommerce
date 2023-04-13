@@ -141,7 +141,7 @@
 		<li class="treeview">
           <a href="#">
             <i data-feather="credit-card"></i>
-            <span>Cards</span>
+            <span>Total Users</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-right pull-right"></i>
             </span>
