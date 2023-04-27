@@ -157,7 +157,7 @@
 
       </ul>
     </section>
-{{-- End Section  --}}
+{{-- End Section amir --}}
 	<div class="sidebar-footer">
 		<!-- item-->
 		<a href="javascript:void(0)" class="link" data-toggle="tooltip" title="" data-original-title="Settings" aria-describedby="tooltip92529"><i class="ti-settings"></i></a>
