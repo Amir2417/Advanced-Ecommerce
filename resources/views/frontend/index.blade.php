@@ -1192,7 +1192,7 @@ SkyLight Shop
 
                   <div class="blog-post-info text-left">
                     <h3 class="name"><a href="#">Dolorem eum fugiat</a></h3>
-                    
+                    <h3 class="name"><a href="#">Dolorem eum fugiat</a></h3>
                     <span class="info">By Saraha Smith &nbsp;|&nbsp; 21 March 2016 </span>
                     <p class="text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium</p>
                     <a href="#" class="lnk btn btn-primary">Read more</a> </div>
