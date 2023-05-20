@@ -17,14 +17,15 @@
 	<div class="container">
 		<div class="sign-in-page">
 			<div class="row">
-				<!-- Sign-in -->			
+				<!-- Sign-in -->
 <div class="col-md-6 col-sm-6 sign-in">
 	<h4 class="">Sign in</h4>
 	<p class="">Hello, Welcome to your account.</p>
 	<div class="social-sign-in outer-top-xs">
 		<a href="#" class="facebook-sign-in"><i class="fa fa-facebook"></i> Sign In with Facebook</a>
-		<a href="#" class="twitter-sign-in"><i class="fa fa-twitter"></i> Sign In with Twitter</a>
+		<a href="#" class="twitter-sign-in"><i class="fa fa-google"></i> Sign In with Google</a>
 	</div>
+    <br>
 	<form method="POST" action="{{ isset($guard) ? url($guard.'/login') : route('login') }}">
             @csrf
 		<div class="form-group">
@@ -42,7 +43,7 @@
 		  	<a href="{{ route('password.request') }}" class="forgot-password pull-right">Forgot your Password?</a>
 		</div>
 	  	<button type="submit" class="btn-upper btn btn-primary checkout-page-button">Login</button>
-	</form>					
+	</form>
 </div>
 <!-- Sign-in -->
 
@@ -70,7 +71,7 @@
             </span>
             @enderror
 	  	</div>
-        
+
         <div class="form-group">
 		    <label class="info-title" for="exampleInputEmail1">Phone Number <span>*</span></label>
 		    <input type="text" id="phone" name="phone" class="form-control unicase-form-control text-input">
@@ -100,9 +101,9 @@
 		</div>
 	  	<button type="submit" class="btn-upper btn btn-primary checkout-page-button">Sign Up</button>
 	</form>
-	
-	
-</div>	
+
+
+</div>
 <!-- create a new account -->			</div><!-- /.row -->
 		</div><!-- /.sigin-in-->
 		<!-- ============================================== BRANDS CAROUSEL ============================================== -->
